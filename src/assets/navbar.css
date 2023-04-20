@@ -21,9 +21,13 @@
 }
 
 .image-search-button {
-  border: none;
-  border-radius: 10;
-  background-color: gray;
+  margin-left: 5px;
+  border: 1px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: rgb(184, 184, 184);
+  box-shadow: 1px 3px 3px 0 rgba(0,0,0,0.19);
 }
 
 .drop-list {
