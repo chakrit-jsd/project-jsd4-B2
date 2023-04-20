@@ -1,0 +1,40 @@
+.outter-nav {
+  border-bottom: 1px solid black;
+  position: relative;
+}
+
+.search-nav {
+  box-sizing: border-box;
+
+  width: 400px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 27.5px;
+}
+
+.image-button {
+    border: none;
+}
+
+.image-search-button {
+  border: none;
+  border-radius: 10;
+  background-color: gray;
+}
+
+.drop-list {
+  position: absolute;
+  margin-right: 0px;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  background-color: white;
+}
+
+.container-dropdown {
+  position: relative;
+}
