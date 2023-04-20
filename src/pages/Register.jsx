@@ -4,21 +4,6 @@ import schema from "../utils/validators"
 import { Input } from "../components/shared/Input"
 
 
-
-// const Input = ({ label, field, register, errors, placeholder, type, id }) => {
-
-//   return (
-//     <>
-//       <label>
-//         <p>{label}</p>
-//         <span><ErrorMessage errors={errors} name={field} /></span>
-//         <input {...register(field)} placeholder={placeholder} type={type} />
-//       </label>
-//     </>
-//   )
-// }
-
-
 const Register = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onBlur', resolver: yupResolver(schema)})

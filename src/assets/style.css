@@ -68,3 +68,19 @@ body {
 .card-activity {
   height: 600px;
 }
+
+.dropzone {
+  border: 2px dashed gray;
+}
+
+.classDropReject {
+  border: 2px dashed red;
+}
+
+.classDropActive {
+  border: 2px dashed green;
+}
+
+.classDropDefult {
+  border: 2px dashed gray;
+}
