@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from '@hookform/resolvers/yup'
-import schema from "../utils/validators"
+import schema from "../utils/validateRegister"
 import { Input } from "../components/shared/Input"
 
 

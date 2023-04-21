@@ -70,17 +70,61 @@ body {
 }
 
 .dropzone {
-  border: 2px dashed gray;
+  height: 200px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .classDropReject {
   border: 2px dashed red;
+  background-color: rgba(255, 0, 0, 0.048);
 }
 
 .classDropActive {
   border: 2px dashed green;
+  background-color: rgba(0, 128, 0, 0.082);
 }
 
 .classDropDefult {
   border: 2px dashed gray;
+}
+
+.classDropNone {
+  border: 0;
+  background-color: white;
+}
+
+.image-preview {
+  max-height: 200px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image-preview img {
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+}
+
+.image-preview span {
+  position: fixed;
+  display: none;
+  font-size: 2rem;
+  z-index: 1000;
+}
+
+.image-preview:hover span {
+  display: block;
+}
+
+.container-image-input p {
+  position: absolute;
+  z-index: 10;
 }
