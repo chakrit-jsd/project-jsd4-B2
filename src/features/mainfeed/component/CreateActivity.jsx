@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
-import schema from "../../../utils/validateCreateActivity"
+import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
 import '../../../assets/styles/createCard.css'
