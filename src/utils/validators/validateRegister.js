@@ -1,6 +1,5 @@
 import * as yup from 'yup'
 
-
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -24,6 +23,30 @@ const schema = yup.object().shape({
     .required('Confirm Password is required')
     .trim(),
 
+  firstname: yup
+    .string()
+    .required('Please input your Firstname')
+    .min(4, 'Firstname 4-20 character')
+    .max(20, 'Firstname 4-20 character')
+    .matches(/^[a-zA-Z\s]+$/, 'Firstname accept only a-z, A-Z')
+    .lowercase()
+    .trim(),
+
+  lastname: yup
+    .string()
+    .required('Please input your Lastname')
+    .min(4, 'Lastname 4-20 character')
+    .max(20, 'Lastname 4-20 character')
+    .matches(/^[a-zA-Z\s]+$/, 'Lastname accept only a-z, A-Z')
+    .lowercase()
+    .trim(),
+
+  birthdate: yup
+    .date()
+    .typeError('Please select Birth Date')
+    .min(1924, 'invalid min')
+    .max(new Date(), 'invalid max')
+    .required('Please select Birth Date')
 })
 
 export default schema
