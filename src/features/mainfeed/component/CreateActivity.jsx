@@ -5,6 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../../../utils/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
+import '../../../assets/styles/createCard.css'
 
 const CreateActivity = () => {
 
@@ -52,7 +53,6 @@ const CreateActivity = () => {
 
   const [ duration, setDuration ] = useState(30)
   const handleDuration = ({target}) => {
-    console.log(typeof target.value)
     setDuration(target.value)
   }
 
@@ -71,7 +71,6 @@ const CreateActivity = () => {
 
   const [ classDrop, setClassDrop ] = useState('classDropDefult')
   const customValidation = (file) => {
-    console.log(file)
     const maxSize = 10485760
     const accept = ['image/jpeg', 'image/png']
     if (!accept.includes(file.type) && classDrop !== 'classDropReject') {
