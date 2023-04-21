@@ -1,5 +1,5 @@
 * {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,6 +13,7 @@ body {
   height: 100vh;
   width: 100vw;
   overflow-x: hidden;
+  overflow-y: scroll !important;
 }
 
 .container {
@@ -42,7 +43,6 @@ body {
 }
 
 .container-main-feed {
-  /* position: relative; */
   margin: auto;
 
 }
@@ -51,20 +51,4 @@ body {
   position: fixed;
   right: 0;
   height: 100%;
-}
-
-.container-create-activity {
-  height: 80px;
-}
-
-.container-switch-feed {
-  height: 60px;
-}
-
-.container-card-activity {
-  height: 100%;
-}
-
-.card-activity {
-  height: 600px;
 }

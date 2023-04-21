@@ -1,19 +1,8 @@
 import { useForm } from "react-hook-form"
-import { ErrorMessage } from '@hookform/error-message'
 import { yupResolver } from '@hookform/resolvers/yup'
-import schema from "../utils/validators"
-import * as yup from 'yup'
+import schema from "../utils/validateRegister"
+import { Input } from "../components/shared/Input"
 
-
-const Input = ({ label, field, register, errors, placeholder, type, id }) => (
-  <>
-    <label>
-      <p>{label}</p>
-      <span><ErrorMessage errors={errors} name={field} /></span>
-      <input {...register(field)} placeholder={placeholder} type={type} />
-    </label>
-  </>
-)
 
 const Register = () => {
 
