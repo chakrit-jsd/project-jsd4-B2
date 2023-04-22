@@ -1,3 +1,7 @@
+:root {
+  --main: #FAC031;
+}
+
 .container-create-activity {
   height: 80px;
 }
@@ -10,12 +14,9 @@
   height: 100%;
 }
 
-.card-activity {
-  height: 600px;
-}
-
 .dropzone {
-  height: 200px;
+  height: 360px;
+  width: 100%;
   text-align: center;
   display: flex;
   align-items: center;
@@ -23,7 +24,7 @@
 }
 
 .classDropReject {
-  border: 2px dashed red;
+  border: 2px dashed rgb(250, 189, 189);
   background-color: rgba(255, 0, 0, 0.048);
 }
 
@@ -42,7 +43,7 @@
 }
 
 .image-preview {
-  max-height: 200px;
+  /* max-height: 600px; */
   height: 100%;
   width: 100%;
   display: flex;
@@ -52,7 +53,14 @@
   position: relative;
 }
 
-.image-preview img {
+.container-form-create-card{
+  height: 70%;
+}
+.container-image-input {
+  height: 100%;
+}
+
+.container-image-input img {
   height: 100%;
   width: 100%;
   z-index: 100;
@@ -72,4 +80,148 @@
 .container-image-input p {
   position: absolute;
   z-index: 10;
+}
+
+.cropper {
+  max-height: 480px;
+  max-width: 480px;
+}
+
+.container-image-position-btn {
+ position: relative;
+}
+
+.container-image-position-btn:hover .position-btn-image-1 {
+  display: block;
+  background: black;
+  color: white;
+  font-size: 1.5rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.container-image-position-btn:hover .position-btn-image-2 {
+  display: block;
+  background: black;
+  color: white;
+  font-size: 1.2rem;
+  padding: 3px 5px;
+  border-radius: 10px;
+}
+
+.position-btn-image-1 {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: none;
+  border: none;
+
+}
+
+.position-btn-image-2 {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+}
+
+.modal-footer {
+  /* display: flex; */
+  gap: 20px;
+}
+
+.btn-card-create {
+  background-color: var(--main) ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: none;
+  color: white;
+  padding: 10px 0px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  /* font-display: auto; */
+}
+
+.btn-card-close {
+  background-color: #fff ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: 2px solid var(--main);
+  color: white;
+  padding: 8px 0px;
+  font-size: 1.1rem;
+  color: black;
+  letter-spacing: 1px;
+}
+
+.container-create-card-text {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-create-card-text label p.label {
+  font-size: 1.2rem;
+}
+
+.container-create-card-text label:nth-child(2) p.label {
+  font-size: 1rem;
+}
+
+.container-input-text-component input{
+  border: none;
+  border-bottom: 1px dashed var(--main);
+}
+
+.input-img-message-err {
+  font-size: 0.9rem;
+  color: red;
+}
+
+.input-img-message-succ {
+  color: rgba(0, 128, 0, 0.767);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #FAC031;
+}
+
+.modal-title span {
+  color: white;
+  background-color: var(--main);
+  padding: 2px 5px;
+}
+
+.container-select-activity {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   /* margin: 0px; */
+   margin-top: 10px;
+}
+
+.container-range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* gap: 15px; */
+  text-align: center;
+}
+
+.container-range input {
+  /* display: block; */
+  width: 200px;
+}
+
+.container-range p {
+  /* display: inline; */
+  width: 50%;
 }

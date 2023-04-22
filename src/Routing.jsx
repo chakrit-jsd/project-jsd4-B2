@@ -4,6 +4,7 @@ import Register from './pages/Register'
 import Test from './pages/Test'
 // import TestInput from './pages/TestInput'
 import Main from './pages/Main'
+import CropImage from './features/mainfeed/component/CropImage'
 
 function Routing() {
 
@@ -16,6 +17,7 @@ function Routing() {
       </Route>
       <Route path='/register' element={<Register />} />
       <Route path='/test' element={<Test />} />
+      <Route path='/testcrop' element={<CropImage />} />
     </Routes>
   )
 }

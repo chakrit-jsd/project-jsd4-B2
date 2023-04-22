@@ -1,14 +1,14 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { provincesThailand } from '../../assets/data/provinceList'
 
-export const Input = ({ label, field, register, errors, placeholder, type, id, className }) => {
+export const Input = ({ label, field, register, errors, placeholder, type, id, className, autocomplete }) => {
 
   return (
     <>
-      <label>
-        <p>{label}</p>
+      <label className='container-input-text-component'>
+        <p className='label'>{label}</p>
         <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
-        <input {...register(field)} placeholder={placeholder} type={type} className={className} />
+        <input {...register(field)} placeholder={placeholder} type={type} className={className} autoComplete={autocomplete} />
       </label>
     </>
   )
