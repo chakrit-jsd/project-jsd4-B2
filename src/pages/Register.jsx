@@ -9,7 +9,7 @@ const Register = () => {
 
   const navigate = useNavigate()
 
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm({ mode: 'onBlur', reValidateMode: 'onChange', resolver: yupResolver(schema), defaultValues: {gender: 'other'}})
+  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onChange', resolver: yupResolver(schema), defaultValues: {gender: 'other'}})
   const onSubmit = (data) => {
     console.log(data)
   }

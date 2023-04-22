@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import { provincesThailand } from '../../assets/data/provinceList'
 
 const schema = yup.object().shape({
   email: yup
@@ -44,9 +45,20 @@ const schema = yup.object().shape({
   birthdate: yup
     .date()
     .typeError('Please select Birth Date')
-    .min(1924, 'invalid min')
-    .max(new Date(), 'invalid max')
-    .required('Please select Birth Date')
+    .min(1924, 'Birth invalid')
+    .max(new Date(), 'Birth invalid')
+    .required('Please select Birth Date'),
+
+  gender: yup
+    .string()
+    .oneOf(['male', 'female', 'other'], 'Please select gender')
+    .required('Please select gender'),
+
+  city: yup
+    .string()
+    .oneOf(provincesThailand, 'Please select City')
+    .required('Please select City')
+
 })
 
 export default schema
