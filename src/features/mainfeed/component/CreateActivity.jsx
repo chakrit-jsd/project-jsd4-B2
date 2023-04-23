@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useEffect, useState } from 'react';
+import { get, useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
+import Cropper from "react-cropper";
+import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
 const CreateActivity = () => {
@@ -15,7 +17,7 @@ const CreateActivity = () => {
     formState: { errors },
     reset,
     getValues
-  } = useForm({ mode: 'onSubmit', reValidateMode: 'onSubmit', resolver: yupResolver(schema)})
+  } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange', resolver: yupResolver(schema)})
 
   const resetData = () => {
     setClassDrop('classDropDefult')
@@ -56,7 +58,8 @@ const CreateActivity = () => {
     setDuration(target.value)
   }
 
-  const handleSelectImgAgain = () => {
+  const handleSelectImgAgain = (event) => {
+    event.preventDefault()
     setImgFile('')
     setImgPreview('')
     setImgMessage('')
@@ -99,27 +102,63 @@ const CreateActivity = () => {
 
   const [ imgFile, setImgFile ] =  useState('')
   const [ imgMessage, setImgMessage ] = useState('')
+  const [ formData, setFormData] = useState({})
   const onSubmit = (dataForm) =>{
-    if (!imgFile) return setImgMessage('Please Select Your Image')
+    if (!imgFile && !imgPreview) {
+      setImgMessage('Please Select Your Image')
+      setClassDrop('classDropReject')
+      return
+    }
     const data = {
       ...dataForm,
       file: imgFile
     }
-    console.log(data)
+    setFormData((prev) => (
+      {
+        ...prev,
+        ...data
+      }
+    ))
+    if (typeof cropper !== "undefined" && !imgFile) {
+      const imgBase64 = async () => await cropper.getCroppedCanvas().toDataURL()
+      imgBase64().then((data) => {
+        setFormData((prev) => (
+          {
+            ...prev,
+            file: data
+          }
+        ))
+      })
+    }
     resetData()
     setShow(false)
   }
 
-  const [ imgPreview, setImgPreview ] = useState()
+  const [ imgPreview, setImgPreview ] = useState(null)
   const onDrop = (acceptedFiles, fileRejections) => {
     if (fileRejections.length > 1) setClassDrop('classDropReject')
     if (fileRejections.length) return
-    const url = URL.createObjectURL(acceptedFiles[0])
-    setImgPreview(<img src={url} alt='preview profile image' />)
-    setImgFile(acceptedFiles[0])
+    if (acceptedFiles[0] === undefined) return
+    const reader = new FileReader();
+    reader.onload = () => {
+      setImgPreview(reader.result);
+      // console.log(reader.result)
+    };
+    reader.readAsDataURL(acceptedFiles[0]);
+    // const url = URL.createObjectURL(acceptedFiles[0])
+    // setImgPreview(<img src={url} alt='preview profile image' />)
+    // setImgFile(acceptedFiles[0])
     setClassDrop('classDropNone')
-
   }
+
+  const getCropData = (event) => {
+    event.preventDefault()
+    if (typeof cropper !== "undefined") {
+      setImgFile(cropper.getCroppedCanvas().toDataURL());
+    }
+  };
+
+  const [cropper, setCropper] = useState(null);
 
   return (
     <div className="container-create-activity">
@@ -127,13 +166,13 @@ const CreateActivity = () => {
         Create Activity
       </button>
 
-      <Modal show={show} onHide={handleClose} animation={true}>
+      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true }>
         <Modal.Header closeButton>
-          <Modal.Title>Create Activity</Modal.Title>
+          <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className='container'>
-            <section className='row container-image-input'>
+          <form className='container-form-create-card'>
+            <section className='container-image-input'>
               <Dropzone
                 onDrop={onDrop}
                 accept={{'image/*': ['.jpeg', '.png']}}
@@ -156,67 +195,75 @@ const CreateActivity = () => {
 
                   return (
                     <>
-                      {/* {imgPreview ?
-                        <div onClick={handleSelectImgAgain} className='image-preview'>
-                          {imgPreview}
-                          <span>Click to browse Again</span>
-                        </div> :
-                        <div {...getRootProps()} className={`${classDrop} dropzone`}>
-                          <div onClick={handleSelectImgAgain} className='image-preview'>
-                            {imgPreview}
-                            <span>Click to browse Again</span>
-                          </div>
-                          <input {...getInputProps()} />
-                          {isDragActive ? (
-                            <p>Drop your files here...</p>
-                          ) : (
-                            <p>Drag and drop files here or click to browse</p>
-                          )}
-                        </div>
-                      } */}
-                        <div {...getRootProps()} className={`${classDrop} dropzone`}>
-                          {imgPreview &&
-                          <div onClick={handleSelectImgAgain} className='image-preview'>
-                            {imgPreview}
-                            <span>Click to browse Again</span>
+                      <div className='container-image-position-btn'>
+                        {!imgPreview &&
+                          <div {...getRootProps()} className={`${classDrop} dropzone`}>
+                            <div onClick={handleSelectImgAgain} className='image-preview'>
+                              {/* <span>Click to browse Again</span> */}
+                            </div>
+                            <input {...getInputProps()} />
+                            {isDragActive ?
+                              (<p>Drop your file here...<br />Accept file .jpg / .png</p>) :
+                              (<p>Drag and drop file here or click to browse<br />Accept file .jpg / .png</p>)
+                            }
                           </div>}
-                          <input {...getInputProps()} />
-                          {isDragActive ? (
-                            <p>Drop your files here...</p>
-                          ) : (
-                            <p>Drag and drop files here or click to browse</p>
-                          )}
-                        </div>
-                      <span>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span>
-                      <span>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span>
-                      <span>{imgMessage}</span>
+                        {imgFile && <img className='image-croped' src={imgFile} /> }
+                        {imgPreview && !imgFile &&
+                          <>
+                            <Cropper
+                              className="cropper"
+                              zoomTo={0}
+                              initialAspectRatio={1}
+                              aspectRatio={1}
+                              src={imgPreview}
+                              viewMode={1}
+                              minCropBoxHeight={10}
+                              minCropBoxWidth={10}
+                              background={false}
+                              responsive={true}
+                              autoCropArea={1}
+                              checkOrientation={false}
+                              // cropBoxResizable={false}
+                              onInitialized={(instance) => {
+                                setCropper(instance);
+                              }}
+                              guides={true}
+                            />
+                            {!imgFile && <button className='position-btn-image-1' onClick={getCropData}>Crop & Preview</button>}
+                          </>
+                        }
+                        {imgPreview || imgFile ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
+                      </div>
+                      <span className='input-img-message-err'>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span>
+                      <span className='input-img-message-succ'>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span>
+                      <span className='input-img-message-err'>{imgMessage}</span>
                     </>
                   )
                 }}
 
               </Dropzone>
             </section>
-            <section className='row'>
-              <Input label='Title' register={register} field='title' errors={errors} type='text' className='col-12' />
-              <Input label='Description' register={register} field='description' errors={errors} type='text' className='col-12' />
+            <section className='container-create-card-text'>
+              <Input label='Title' register={register} field='title' errors={errors} type='text' className='col-12' autocomplete='off' />
+              <Input label='Description' register={register} field='description' errors={errors} type='text' className='col-12 des' autocomplete='off' />
             </section>
-            <section className='row'>
+            <section className='container-select-activity'>
               <Select label='Activity' register={register} field='activity' errors={errors} />
-              <label>
+              <label className='container-range-out'>
                 <p>Duration</p>
-                <span>{duration} minute</span>
-                <div>
+                <div className='container-range'>
                   <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}/>
+                  <p>{duration} minute.</p>
                 </div>
               </label>
             </section>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose}>
+          <button onClick={handleClose} className='col-2 btn-card-close'>
             Close
           </button>
-          <button onClick={handleSubmit(onSubmit)}>
+          <button onClick={handleSubmit(onSubmit)} disabled={!imgPreview && true} className='col-4 btn-card-create'>
             Create
           </button>
         </Modal.Footer>
@@ -230,15 +277,14 @@ const CreateActivity = () => {
           You have unsaved content, and will be lost unless you save it.
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleShowResume}>
+          <button onClick={handleShowResume} >
             Resume
           </button>
-          <button onClick={handleCloseLeave}>
+          <button onClick={handleCloseLeave} >
             Leave
           </button>
         </Modal.Footer>
       </Modal>
-
     </div>
   )
 }

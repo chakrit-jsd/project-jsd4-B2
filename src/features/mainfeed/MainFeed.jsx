@@ -1,13 +1,13 @@
-import CardActivity from "./component/CardActivity"
+import CardFeed from "./component/CardFeed"
 import CreateActivity from "./component/CreateActivity"
 import SwitchFeed from "./component/SwitchFeed"
 
 const MainFeed = () => {
   return (
-    <article className="container-main-feed col-8">
+    <article className="container-main-feed col-auto">
       <CreateActivity />
       <SwitchFeed />
-      <CardActivity />
+      <CardFeed />
     </article>
   )
 }
