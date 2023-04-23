@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { get, useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../../../utils/validators/validateCreateActivity"
@@ -166,7 +166,7 @@ const CreateActivity = () => {
         Create Activity
       </button>
 
-      <Modal show={show} onHide={handleClose} animation={false} backdrop='static'>
+      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true }>
         <Modal.Header closeButton>
           <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>
@@ -253,7 +253,7 @@ const CreateActivity = () => {
                 <p>Duration</p>
                 <div className='container-range'>
                   <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}/>
-                  <p>{duration} minute</p>
+                  <p>{duration} minute.</p>
                 </div>
               </label>
             </section>
