@@ -162,9 +162,12 @@ const CreateActivity = () => {
 
   return (
     <div className="container-create-activity">
-      <button onClick={handleShow}>
-        Create Activity
-      </button>
+      <section className='container-btn-create-activity'>
+        <img src="https://images.freeimages.com/images/previews/cdc/venus-1221361.jpg" alt="profile-img-sm" />
+        <button onClick={handleShow}>
+          Create Activity .....
+        </button>
+      </section>
 
       <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true }>
         <Modal.Header closeButton>

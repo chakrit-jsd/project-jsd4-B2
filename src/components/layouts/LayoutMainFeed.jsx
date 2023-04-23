@@ -6,7 +6,7 @@ import Navbar from "../shared/Navbar"
 
 const LayoutMainFeed = ({ children }) => {
   return (
-    <div className="container-fulid">
+    <div className="container">
       <nav className="container-navbar row">
         <Navbar />
       </nav>
