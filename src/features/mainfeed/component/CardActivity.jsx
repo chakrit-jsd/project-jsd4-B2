@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import '../../../assets/styles/activityCard.css'
+import '../../../assets/styles/feedCard.css'
 
 const CardActivity = ({ post }) => {
 
@@ -21,16 +21,21 @@ const CardActivity = ({ post }) => {
   const likedCount = liked.length
 
   return (
-    <figure key={id} className="container-card-activity">
+    <figure key={authorID} className="container-card-activity">
       <section className="container-head-card">
-        <Link><img src={authorImg} alt="profile-sm" />{authorName}</Link>
-        <p>{timePost}</p>
-      </section>
+        <div className="head-card-top">
+          <Link><img src={authorImg} alt="profile-sm" /><span>{authorName}</span></Link>
+          <p>{timePost}</p>
+        </div>
 
-      <section className="container-image-card">
+      </section>
+      <section className="container-title-card">
+        <figcaption>
+            {title}
+        </figcaption>
         <div className="container-dropdown-menu">
-          <button type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ...
+          <button className="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-gear-fill"></i>
           </button>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Edit</a></li>
@@ -39,11 +44,13 @@ const CardActivity = ({ post }) => {
             <li><a className="dropdown-item" href="#">Delete</a></li>
           </ul>
         </div>
-
+      </section>
+      <section className="container-image-card">
         <img src={image} alt="img-activity" />
         <div className="container-text-activity">
           <div className="liked">
-            <span>Like {likedCount}</span>
+            <span>{likedCount}</span>
+            <i class={`bi bi-heart`}></i>
           </div>
           <p className="activity">{activity}</p>
           <p className="duration">{duration} min.</p>
@@ -51,11 +58,8 @@ const CardActivity = ({ post }) => {
       </section>
 
       <section className="container-text-card">
-        <figcaption>
-          {title}
-        </figcaption>
         <p>
-          {description}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At soluta laboriosam eius error nisi? Quibusdam illum eos libero nostrum necessitatibus voluptas sed. Sit architecto explicabo enim quo ipsa provident totam.
         </p>
       </section>
     </figure>

@@ -4,7 +4,7 @@ import SwitchFeed from "./component/SwitchFeed"
 
 const MainFeed = () => {
   return (
-    <article className="container-main-feed col-8">
+    <article className="container-main-feed col-auto">
       <CreateActivity />
       <SwitchFeed />
       <CardFeed />

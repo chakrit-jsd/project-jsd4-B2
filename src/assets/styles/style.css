@@ -8,20 +8,27 @@
   font-family: 'Ubuntu', sans-serif;
 }
 
-body, #root, .container, html {
+body, #root, .container-fulid, html {
   border: 0px;
+  /* background-color: #1c1e21; */
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
+  height: calc(200vh - 60px);
+  /* width: 100vw; */
+  /* overflow-x: hidden; */
   overflow-y: scroll !important;
+  /* min-width: fit-content; */
+  background-color: #1c1e21;
 }
 
-.container {
+.modal-open {
+  padding: 0px !important;
+}
+.container-fulid {
   position: relative;
   width: 100%;
+  background-color: rgb(245, 245, 245);
 }
 
 .container-navbar {
@@ -37,23 +44,33 @@ body {
   height: 100%;
   margin-top: 60px !important;
   width: 100%;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  /* background-color: #1c1e21; */
+  background: none;
 }
 
 .container-profile {
   position: fixed;
   left: 0;
   height: 100%;
+  padding: 0px !important;
+  /* background-color: red; */
 }
 
 .container-main-feed {
   margin: auto;
-
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  max-width: 600px !important;
 }
 
 .container-dashboard {
   position: fixed;
   right: 0;
   height: 100%;
+  padding: 0px !important;
+  /* background-color: green; */
 }
 
 .error-input {
