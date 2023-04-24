@@ -21,7 +21,7 @@ const CardActivity = ({ post }) => {
   const likedCount = liked.length
 
   return (
-    <figure key={authorID} className="container-card-activity">
+    <figure key={id} className="container-card-activity">
       <section className="container-head-card">
         <div className="head-card-top">
           <Link><img src={authorImg} alt="profile-sm" /><span>{authorName}</span></Link>

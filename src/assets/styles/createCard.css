@@ -247,7 +247,17 @@
   background-color: var(--main);
   padding: 0 0.8rem;
   border-radius: 15px;
+  position: fixed;
+    top: 65px;
+  z-index: 99;
+  max-width: 600px;
+  width: 100%;
 }
+
+.active-class {
+  display: none;
+}
+
 .container-btn-create-activity img {
   width: 35px;
   height: 35px;
