@@ -17,7 +17,7 @@ const CreateActivity = ({ activeClass }) => {
     formState: { errors },
     reset,
     getValues
-  } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange', resolver: yupResolver(schema)})
+  } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange', resolver: yupResolver(schema) })
 
   const resetData = () => {
     setClassDrop('classDropDefult')
@@ -169,7 +169,7 @@ const CreateActivity = ({ activeClass }) => {
         </button>
       </section>
 
-      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true }>
+      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } className='sss'>
         <Modal.Header closeButton>
           <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>

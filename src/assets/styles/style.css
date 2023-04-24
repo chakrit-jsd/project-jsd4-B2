@@ -58,7 +58,7 @@ body {
   left: 0;
   height: 100%;
   padding: 0px !important;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .container-main-feed {
@@ -90,5 +90,3 @@ p {
   padding: 0px !important;
   margin: 0px !important;
 }
-
-

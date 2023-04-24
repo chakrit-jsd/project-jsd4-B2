@@ -145,13 +145,24 @@
   /* font-display: auto; */
 }
 
+.btn-card-create:disabled {
+  background-color: #fac13198 ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: none;
+  color: white;
+  padding: 10px 0px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
 .btn-card-close {
   background-color: #fff ;
   border-radius: 10px;
   box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
   border: 2px solid var(--main);
   color: white;
-  padding: 8px 0px;
+  padding: 7px 0px;
   font-size: 1.1rem;
   color: black;
   letter-spacing: 1px;
