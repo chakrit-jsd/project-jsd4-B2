@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import CardFeed from "./component/CardFeed"
-import CreateActivity from "./component/CreateActivity"
-import SwitchFeed from "./component/SwitchFeed"
+import CardFeed from "./components/CardFeed"
+import CreateActivity from "./components/CreateActivity"
+import SwitchFeed from "./components/SwitchFeed"
 
 
 const MainFeed = () => {
