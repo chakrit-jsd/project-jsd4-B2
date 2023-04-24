@@ -21,7 +21,7 @@ const CardActivity = ({ post }) => {
   const likedCount = liked.length
 
   return (
-    <figure key={authorID} className="container-card-activity">
+    <figure key={id} className="container-card-activity">
       <section className="container-head-card">
         <div className="head-card-top">
           <Link><img src={authorImg} alt="profile-sm" /><span>{authorName}</span></Link>
@@ -35,7 +35,7 @@ const CardActivity = ({ post }) => {
         </figcaption>
         <div className="container-dropdown-menu">
           <button className="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-gear-fill"></i>
+            <i className="bi bi-gear-fill"></i>
           </button>
           <ul className="dropdown-menu">
             <li><a className="dropdown-item" href="#">Edit</a></li>
@@ -50,7 +50,7 @@ const CardActivity = ({ post }) => {
         <div className="container-text-activity">
           <div className="liked">
             <span>{likedCount}</span>
-            <i class={`bi bi-heart`}></i>
+            <i className={`bi bi-heart`}></i>
           </div>
           <p className="activity">{activity}</p>
           <p className="duration">{duration} min.</p>

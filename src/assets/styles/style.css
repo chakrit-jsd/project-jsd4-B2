@@ -38,6 +38,8 @@ body {
   left: 0;
   margin-left: 0 !important;
   width: 100%;
+  background-color: white;
+  z-index: 100;
 }
 
 .container-main {
@@ -46,6 +48,7 @@ body {
   width: 100%;
   margin-left: 0px !important;
   margin-right: 0px !important;
+  padding-top: 45px;
   /* background-color: #1c1e21; */
   background: none;
 }
@@ -55,7 +58,7 @@ body {
   left: 0;
   height: 100%;
   padding: 0px !important;
-  /* background-color: red; */
+  background-color: red;
 }
 
 .container-main-feed {

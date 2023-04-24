@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { get, useForm } from 'react-hook-form';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../../../utils/validators/validateCreateActivity"
@@ -9,7 +9,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = () => {
+const CreateActivity = ({ activeClass }) => {
 
   const {
     register,
@@ -22,7 +22,7 @@ const CreateActivity = () => {
   const resetData = () => {
     setClassDrop('classDropDefult')
     setDuration(30)
-    reset({ title: '', description: '', activity: 'hiit', duration: 30 })
+    reset({ title: '', description: '', activity: 'Yoga', duration: 30 })
     setShow(false)
     setShowLeave(false)
     setImgPreview('')
@@ -162,9 +162,12 @@ const CreateActivity = () => {
 
   return (
     <div className="container-create-activity">
-      <button onClick={handleShow}>
-        Create Activity
-      </button>
+      <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
+        <img src="https://images.freeimages.com/images/previews/cdc/venus-1221361.jpg" alt="profile-img-sm" />
+        <button onClick={handleShow}>
+          Create Activity .....
+        </button>
+      </section>
 
       <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true }>
         <Modal.Header closeButton>
@@ -240,7 +243,6 @@ const CreateActivity = () => {
                     </>
                   )
                 }}
-
               </Dropzone>
             </section>
             <section className='container-create-card-text'>

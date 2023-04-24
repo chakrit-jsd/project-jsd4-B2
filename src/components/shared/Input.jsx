@@ -23,11 +23,11 @@ export const Select = ({label, register, field, errors, id, className }) => {
       <p>{label}</p>
       <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
       <select {...register(field)}>
+        <option value="yoga">Yoga</option>
         <option value="hiit">HITT</option>
         <option value="pilates">Pilates</option>
-        <option value="strength">Strngth Training</option>
         <option value="weight">Weight Training</option>
-        <option value="yoga">Yoga</option>
+        <option value="strength">Strngth Training</option>
       </select>
     </label>
   )
