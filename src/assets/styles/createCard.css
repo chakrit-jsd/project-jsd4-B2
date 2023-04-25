@@ -1,0 +1,283 @@
+:root {
+  --main: #FAC031;
+}
+
+.container-create-activity {
+  height: 80px;
+}
+
+.container-switch-feed {
+  height: 60px;
+}
+
+.container-card-activity {
+  height: 100%;
+}
+
+.dropzone {
+  height: 360px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.classDropReject {
+  border: 2px dashed rgb(250, 189, 189);
+  background-color: rgba(255, 0, 0, 0.048);
+}
+
+.classDropActive {
+  border: 2px dashed green;
+  background-color: rgba(0, 128, 0, 0.082);
+}
+
+.classDropDefult {
+  border: 2px dashed gray;
+}
+
+.classDropNone {
+  border: 0;
+  background-color: white;
+}
+
+.image-preview {
+  /* max-height: 600px; */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container-form-create-card{
+  height: 70%;
+}
+.container-image-input {
+  height: 100%;
+}
+
+.container-image-input img {
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+}
+
+.image-preview span {
+  position: fixed;
+  display: none;
+  font-size: 2rem;
+  z-index: 1000;
+}
+
+.image-preview:hover span {
+  display: block;
+}
+
+.container-image-input p {
+  position: absolute;
+  z-index: 10;
+}
+
+.cropper {
+  max-height: 480px;
+  max-width: 480px;
+}
+
+.container-image-position-btn {
+ position: relative;
+}
+
+.container-image-position-btn:hover .position-btn-image-1 {
+  display: block;
+  background: black;
+  color: white;
+  font-size: 1.5rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+.container-image-position-btn:hover .position-btn-image-2 {
+  display: block;
+  background: black;
+  color: white;
+  font-size: 1.2rem;
+  padding: 3px 5px;
+  border-radius: 10px;
+}
+
+.position-btn-image-1 {
+  display: none;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: none;
+  border: none;
+
+}
+
+.position-btn-image-2 {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+}
+
+.modal-footer {
+  /* display: flex; */
+  gap: 20px;
+}
+
+.btn-card-create {
+  background-color: var(--main) ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: none;
+  color: white;
+  padding: 10px 0px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  /* font-display: auto; */
+}
+
+.btn-card-create:disabled {
+  background-color: #fac13198 ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: none;
+  color: white;
+  padding: 10px 0px;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.btn-card-close {
+  background-color: #fff ;
+  border-radius: 10px;
+  box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
+  border: 2px solid var(--main);
+  color: white;
+  padding: 7px 0px;
+  font-size: 1.1rem;
+  color: black;
+  letter-spacing: 1px;
+}
+
+.container-create-card-text {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.container-create-card-text label p.label {
+  font-size: 1.2rem;
+}
+
+.container-create-card-text label:nth-child(2) p.label {
+  font-size: 1rem;
+}
+
+.input-img-message-err {
+  font-size: 0.9rem;
+  color: red;
+}
+
+.input-img-message-succ {
+  color: rgba(0, 128, 0, 0.767);
+}
+
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #FAC031;
+}
+
+.modal-title span {
+  color: white;
+  background-color: var(--main);
+  padding: 2px 5px;
+}
+
+.container-select-activity {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   /* margin: 0px; */
+   margin-top: 10px;
+}
+
+.container-range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  /* gap: 15px; */
+  text-align: end;
+}
+
+.container-range input {
+  /* display: block; */
+  width: 200px;
+}
+
+.container-range p {
+  /* display: inline; */
+  width: 30%;
+}
+
+.container-range-out {
+  width: 65%;
+}
+
+.container-range-out p:nth-child(1) {
+  margin-left: 5px !important;
+}
+
+.container-create-activity {
+  height: inherit;
+  margin-top: 0.8rem;
+}
+
+.container-btn-create-activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.8rem;
+  background-color: var(--main);
+  padding: 0 0.8rem;
+  border-radius: 15px;
+  position: fixed;
+    top: 65px;
+  z-index: 99;
+  max-width: 600px;
+  width: 100%;
+}
+
+.active-class {
+  display: none;
+}
+
+.container-btn-create-activity img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.container-btn-create-activity button {
+  width: 92%;
+  height: 65%;
+  border: none;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  text-align: start;
+  padding-left: 0.8rem;
+  color: gray;
+}
+

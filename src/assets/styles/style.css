@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+* {
+  /* border: 1px solid red; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body, #root, .container-fulid, html {
+  border: 0px;
+  /* background-color: #1c1e21; */
+}
+
+body {
+  height: calc(200vh - 60px);
+  /* width: 100vw; */
+  /* overflow-x: hidden; */
+  overflow-y: scroll !important;
+  /* min-width: fit-content; */
+  background-color: #1c1e21;
+}
+
+.modal-open {
+  padding: 0px !important;
+}
+.container-fulid {
+  position: relative;
+  width: 100%;
+  background-color: rgb(245, 245, 245);
+}
+
+.container-navbar {
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: 0 !important;
+  width: 100%;
+  background-color: white;
+  z-index: 100;
+}
+
+.container-main {
+  height: 100%;
+  margin-top: 60px !important;
+  width: 100%;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-top: 45px;
+  /* background-color: #1c1e21; */
+  background: none;
+}
+
+.container-profile {
+  position: fixed;
+  left: 0;
+  height: 100%;
+  padding: 0px !important;
+  /* background-color: red; */
+}
+
+.container-main-feed {
+  margin: auto;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  max-width: 600px !important;
+}
+
+.container-dashboard {
+  position: fixed;
+  right: 0;
+  height: 100%;
+  padding: 0px !important;
+  /* background-color: green; */
+}
+
+.error-input {
+  font-size: 0.9rem;
+  color: red;
+}
+
+.container-input-text-component {
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  padding: 0px !important;
+  margin: 0px !important;
+}
