@@ -5,7 +5,7 @@ import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/dropzone.css'
 
 
-const DropAndCrop = () => {
+const DropAndCrop = ({ setImgFile, imgFile }) => {
 
   const handleSelectImgAgain = (event) => {
     event.preventDefault()
@@ -49,7 +49,7 @@ const DropAndCrop = () => {
     }
   }
 
-  const [ imgFile, setImgFile ] =  useState('')
+  // const [ imgFile, setImgFile ] =  useState('')
   const [ imgMessage, setImgMessage ] = useState('')
 
   const [ imgPreview, setImgPreview ] = useState(null)

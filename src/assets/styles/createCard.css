@@ -183,11 +183,6 @@
   font-size: 1rem;
 }
 
-.container-input-text-component input{
-  border: none;
-  border-bottom: 1px dashed var(--main);
-}
-
 .input-img-message-err {
   font-size: 0.9rem;
   color: red;

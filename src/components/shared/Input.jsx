@@ -1,15 +1,19 @@
 import { ErrorMessage } from '@hookform/error-message'
 import { provincesThailand } from '../../assets/data/provinceList'
 
-export const Input = ({ label, field, register, errors, placeholder, type, id, className, autocomplete }) => {
+export const Input = ({ label, field, register, errors, placeholder, type, id, className, autocomplete, children }) => {
 
   return (
     <>
       <label className='container-input-text-component'>
         <p className='label'>{label}</p>
         <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
-        <input {...register(field)} placeholder={placeholder} type={type} className={className} autoComplete={autocomplete} />
+        <div>
+          <input {...register(field)} placeholder={placeholder} type={type} className={className} autoComplete={autocomplete} />
+          {children}
+        </div>
       </label>
+
     </>
   )
 }
@@ -37,7 +41,7 @@ export const Radio = ({register, errors}) => {
 
   return (
     <label htmlFor='none'>
-      <p>Gender</p>
+      <p className='radio-title'>Gender</p>
       <p className='error-input' ><ErrorMessage errors={errors} name='gender' /></p>
       <input id="male" type="radio" {...register('gender')} value='male' />
       <label htmlFor="male">Male</label>
