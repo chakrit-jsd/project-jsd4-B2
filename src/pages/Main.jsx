@@ -1,4 +1,4 @@
-import LayoutMainFeed from "../components/layouts/LayoutMainFeed"
+import LayoutMainFeed from "../features/layouts/LayoutMainFeed"
 
 const Main = () => {
   return (

@@ -1,34 +1,16 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Input, Select } from '../../../components/shared/Input';
-import { yupResolver } from '@hookform/resolvers/yup'
-import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
-import Dropzone from 'react-dropzone';
-import Cropper from "react-cropper";
-import "cropperjs/dist/cropper.css";
-import FormEditProfile from './FormEditProfile';
 
-
-const ModalEditProfile = ({ show, handleClose }) => {
+const ModalEditProfile = ({ show, handleClose, children }) => {
 
 
   return (
-    <Modal show={show} onHide={handleClose} animation={false}>
-      <Modal.Header closeButton>
-        <Modal.Title>Profile Edit</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <FormEditProfile />
-      </Modal.Body>
-      <Modal.Footer>
-        <button onClick={handleClose}>
-          Close
-        </button>
-        <button onClick={handleClose}>
-          Save Changes
-        </button>
-      </Modal.Footer>
+    <Modal show={show} onHide={handleClose} animation={false} backdrop='static' className='modal-edit-profile'>
+        <Modal.Header closeButton className='modal-edit-profile-header'>
+          <Modal.Title>Profile Edit</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className='modal-edit-profile-body'>
+          {children}
+        </Modal.Body>
     </Modal>
   )
 }

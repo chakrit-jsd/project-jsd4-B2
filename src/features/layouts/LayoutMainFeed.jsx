@@ -1,8 +1,8 @@
-import Dashboard from "../../features/dashboard/Dashboard"
-import MainFeed from "../../features/mainfeed/MainFeed"
-import Profile from "../../features/profile/Profile"
-import { Footer } from "../shared/Footer"
-import Navbar from "../shared/Navbar"
+import Dashboard from "../dashboard/Dashboard"
+import MainFeed from "../mainfeed/MainFeed"
+import Profile from "../profile/Profile"
+import { Footer } from "../../components/shared/Footer"
+import Navbar from "../../components/shared/Navbar"
 
 const LayoutMainFeed = ({ children }) => {
   return (

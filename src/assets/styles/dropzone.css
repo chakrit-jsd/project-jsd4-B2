@@ -89,3 +89,9 @@
 .input-img-message-succ {
   color: rgba(0, 128, 0, 0.767);
 }
+
+.container-image-position-btn .image-croped {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
