@@ -159,7 +159,6 @@ const CreateActivity = ({ activeClass }) => {
   };
 
   const [cropper, setCropper] = useState(null);
-
   return (
     <div className="container-create-activity">
       <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
@@ -169,7 +168,7 @@ const CreateActivity = ({ activeClass }) => {
         </button>
       </section>
 
-      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } className='sss'>
+      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } >
         <Modal.Header closeButton>
           <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>
