@@ -1,4 +1,5 @@
 import LayoutMainFeed from "../features/layouts/LayoutMainFeed"
+import '../assets/styles/style.css'
 
 const Main = () => {
   return (

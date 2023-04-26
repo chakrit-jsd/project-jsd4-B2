@@ -1,13 +1,21 @@
 import { useForm } from 'react-hook-form';
 import { CityList, Input, Radio, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
-// import schema from '../../../utils/validators/validateRegister';
+import schema from '../../../utils/validators/validateEditProfile';
 import '../../../assets/styles/formEditProfile.css'
 
 
-const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPreview, getCropData }) => {
+const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPreview, getCropData, setShow }) => {
 
-  const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onChange' })
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
+    resolver: yupResolver(schema)
+  })
 
   const onSubmit = (data) => {
     if (imgPreview && !imgFile) {
@@ -18,7 +26,9 @@ const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPrevie
         ...data,
         file: imgFile
       }
-      return setFormData(formData)
+      setFormData(formData)
+      setShow(false)
+      return
     }
     setFormData((prev) => (
       {
@@ -27,6 +37,7 @@ const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPrevie
         file: imgFile
       }
     ))
+    setShow(false)
   }
 
   return (

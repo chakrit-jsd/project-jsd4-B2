@@ -1,10 +1,6 @@
-import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 
 const ModalEditProfile = ({ show, setShow, handleClose, showLeave, setShowLeave, setImgFile, setImgPreview, children }) => {
-
-
-
 
   const handleCloseLeave = () => {
     setImgFile('')

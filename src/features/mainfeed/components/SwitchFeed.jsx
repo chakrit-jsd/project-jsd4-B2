@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../../../assets/styles/switchFeed.css'
 
 
@@ -11,11 +12,13 @@ const SwitchFeed = () => {
   return (
     <div className="container-switch-feed">
       <button onClick={() => setSwitcher('feed')}
-        className={switcher === 'feed' ? 'button-switch-active' : null}
-        >Feed</button>
+        className={switcher === 'feed' ? 'button-switch-active' : null}>
+        <Link to='/main/me'>Feed</Link>
+      </button>
       <button onClick={() => setSwitcher('home')}
-        className={switcher === 'home' ? 'button-switch-active' : null}
-      >My Home</button>
+        className={switcher === 'home' ? 'button-switch-active' : null}>
+        <Link to='/main/other'>My home</Link>
+      </button>
     </div>
   )
 }

@@ -9,7 +9,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ activeClass }) => {
+const EditActivity = ({ show, setShow }) => {
 
   const {
     register,
@@ -17,12 +17,7 @@ const CreateActivity = ({ activeClass }) => {
     formState: { errors },
     reset,
     getValues
-  } = useForm({
-    mode: 'onSubmit',
-    reValidateMode: 'onChange',
-    resolver: yupResolver(schema),
-    defaultValues: {activity: 'yoga'}
-  })
+  } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange', resolver: yupResolver(schema) })
 
   const resetData = () => {
     setClassDrop('classDropDefult')
@@ -45,7 +40,7 @@ const CreateActivity = ({ activeClass }) => {
     setShow(true)
   }
 
-  const [ show, setShow ] = useState(false);
+  // const [ show, setShow ] = useState(false);
   const handleClose = () => {
     const values = getValues()
     if (values.title || values.description || imgPreview) {
@@ -166,12 +161,12 @@ const CreateActivity = ({ activeClass }) => {
   const [cropper, setCropper] = useState(null);
   return (
     <div className="container-create-activity">
-      <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
+      {/* <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
         <img src="https://images.freeimages.com/images/previews/cdc/venus-1221361.jpg" alt="profile-img-sm" />
         <button onClick={handleShow}>
           Create Activity .....
         </button>
-      </section>
+      </section> */}
 
       <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } >
         <Modal.Header closeButton>
@@ -295,4 +290,4 @@ const CreateActivity = ({ activeClass }) => {
   )
 }
 
-export default CreateActivity
+export default EditActivity
