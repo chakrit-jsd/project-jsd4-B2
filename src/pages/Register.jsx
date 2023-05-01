@@ -40,7 +40,7 @@ const Register = () => {
       } catch (error) {
         const res = httpErrorCode(error)
         if (res.status !== 200) {
-          navigate('/user')
+          navigate('/users')
         }
       }
     }

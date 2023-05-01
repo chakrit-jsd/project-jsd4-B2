@@ -10,7 +10,7 @@ function Routing() {
   return (
     <Routes>
       <Route path='/' element={<LandingPage />} />
-      <Route path='/user' element={<Main />} >
+      <Route path='/users' element={<Main />} >
         {/* <Route index path='/user/:userId' element={<Main />} />
         <Route path='/user/other' element={<Main />} /> */}
       </Route>

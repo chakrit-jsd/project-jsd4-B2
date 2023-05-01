@@ -4,7 +4,8 @@ import Profile from "../profile/Profile"
 import { Footer } from "../../components/shared/Footer"
 import Navbar from "../../components/shared/Navbar"
 
-const LayoutMainFeed = ({ children }) => {
+const LayoutMainFeed = ({ user, setUser, children }) => {
+  // console.log(user)
   return (
     <div className="container-fulid">
       <nav className="container-navbar row">
@@ -12,7 +13,7 @@ const LayoutMainFeed = ({ children }) => {
       </nav>
 
       <main className="container-main row">
-        <Profile />
+        <Profile user={user} setUser={setUser} />
         <MainFeed />
         <Dashboard />
       </main>

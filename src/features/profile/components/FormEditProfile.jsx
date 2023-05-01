@@ -3,9 +3,37 @@ import { CityList, Input, Radio, Select } from '../../../components/shared/Input
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from '../../../utils/validators/validateEditProfile';
 import '../../../assets/styles/formEditProfile.css'
+import { setFormat } from '../../../utils/setFormatDate/setFormatDate';
 
 
-const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPreview, getCropData, setShow }) => {
+const FormEditProfile = ({ user, setSend, children, setFormData, handleClose, imgFile, imgPreview, getCropData, setShow }) => {
+  const {
+    _id,
+    email,
+    firstname,
+    lastname,
+    gender,
+    birthdate,
+    city,
+    profilename,
+    aboutme,
+    interest,
+    weight,
+    height
+  } = user
+
+  const defaultForm = {
+    profilename,
+    aboutme,
+    firstname,
+    lastname,
+    birthdate: setFormat(birthdate),
+    gender,
+    city,
+    interest,
+    weight,
+    height
+  }
 
   const {
     register,
@@ -14,21 +42,13 @@ const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPrevie
   } = useForm({
     mode: 'onBlur',
     reValidateMode: 'onChange',
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    defaultValues: defaultForm
   })
 
   const onSubmit = (data) => {
     if (imgPreview && !imgFile) {
       getCropData()
-    }
-    if (imgFile) {
-      const formData = {
-        ...data,
-        file: imgFile
-      }
-      setFormData(formData)
-      setShow(false)
-      return
     }
     setFormData((prev) => (
       {
@@ -37,14 +57,14 @@ const FormEditProfile = ({children, setFormData, handleClose, imgFile, imgPrevie
         file: imgFile
       }
     ))
-    setShow(false)
+    setSend(true)
   }
 
   return (
     <form id='form-edit-profile'>
       <section className='container-edit-profile-left'>
         {children}
-        <p>email</p>
+        <p>Email: {email}</p>
         <Input field='profilename' label='Profile Name' register={register} errors={errors} type='text' />
       </section>
       <div className='edit-profile-vl'></div>
