@@ -207,7 +207,7 @@
 
 .container-select-activity {
    display: flex;
-   justify-content: space-around;
+   justify-content: space-between;
    align-items: center;
    /* margin: 0px; */
    margin-top: 10px;
@@ -215,25 +215,26 @@
 
 .container-range {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   /* gap: 15px; */
   text-align: end;
+  width: 100%;
 }
 
 .container-range input {
   /* display: block; */
-  width: 200px;
+  width: 180px;
 }
 
 .container-range p {
   /* display: inline; */
-  width: 30%;
+  width: 50%;
 }
 
 .container-range-out {
-  width: 65%;
+  width: 60%;
 }
 
 .container-range-out p:nth-child(1) {
@@ -281,3 +282,36 @@
   color: gray;
 }
 
+.container-form-create-card input, textarea, select  {
+  border-radius: 8px;
+  margin-top: 0.4rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  border: 1px solid gray;
+}
+
+
+.container-form-create-card input[type='radio'] {
+  width: auto;
+  margin-right: 0.2rem;
+}
+
+.container-form-create-card label[for='none'] label {
+  margin-right: 0.4rem;
+}
+
+.edit-input-radio {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.radio-title {
+  margin-bottom: 0.3rem !important;
+}
+
+.edit-input-radio select {
+  border-radius: 8px;
+  padding-left: 0.2rem;
+  width: 75%;
+}

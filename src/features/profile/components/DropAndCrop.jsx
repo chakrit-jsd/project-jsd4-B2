@@ -1,24 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/dropzone.css'
 
 
-const DropAndCrop = ({ setImgFile, imgFile }) => {
-
-  const handleSelectImgAgain = (event) => {
-    event.preventDefault()
+const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCropper, getCropData }) => {
+  const reset = () => {
     setImgFile('')
     setImgPreview('')
     setImgMessage('')
+  }
+
+  const handleSelectImgAgain = (event) => {
+    event.preventDefault()
+    reset()
     setClassDrop('classDropDefult')
   }
 
   const handleOnDragEnter = () => {
-    setImgMessage('')
-    setImgFile('')
-    setImgPreview('')
+    reset()
   }
 
   const [ classDrop, setClassDrop ] = useState('classDropDefult')
@@ -52,7 +53,7 @@ const DropAndCrop = ({ setImgFile, imgFile }) => {
   // const [ imgFile, setImgFile ] =  useState('')
   const [ imgMessage, setImgMessage ] = useState('')
 
-  const [ imgPreview, setImgPreview ] = useState(null)
+  // const [ imgPreview, setImgPreview ] = useState(null)
   const onDrop = (acceptedFiles, fileRejections) => {
     if (fileRejections.length > 1) setClassDrop('classDropReject')
     if (fileRejections.length) return
@@ -68,16 +69,7 @@ const DropAndCrop = ({ setImgFile, imgFile }) => {
     // setImgFile(acceptedFiles[0])
     setClassDrop('classDropNone')
   }
-
-  const getCropData = (event) => {
-    event.preventDefault()
-    if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
-    }
-  };
-
-  const [cropper, setCropper] = useState(null);
-
+  // const [cropper, setCropper] = useState(null);
 
   return (
 
