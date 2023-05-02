@@ -31,7 +31,7 @@ const Profile = ({ user, setUser }) => {
     setShowLeave(true)
     setShow(false)
   }
-  const [ imgPreview, setImgPreview ] = useState('')
+  const [ imgPreview, setImgPreview ] = useState(profileImgUrl)
   const [ cropper, setCropper ] = useState(null);
   const [ imgFile, setImgFile ] =  useState('')
   const [ formData, setFormData ] = useState({})

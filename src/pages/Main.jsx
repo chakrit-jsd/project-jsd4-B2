@@ -24,7 +24,7 @@ const Main = () => {
       }
     }
     getPage()
-  }, [])
+  }, [user])
   return (
     <LayoutMainFeed user={user} setUser={setUser} >
 

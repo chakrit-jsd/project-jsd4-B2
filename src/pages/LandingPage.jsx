@@ -32,6 +32,7 @@ const LandingPage = () => {
         // console.log(res.status)
       } catch (error) {
         const res = httpErrorCode(error)
+        console.log(res.message)
         if (res.status !== 200)
         navigate('/users')
       }
