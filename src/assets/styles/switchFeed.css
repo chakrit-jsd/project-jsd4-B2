@@ -1,0 +1,22 @@
+.container-switch-feed {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.6rem 0;
+  height: 2rem;
+}
+
+.button-switch-active {
+  background-color: var(--main) !important;
+}
+
+.container-switch-feed a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+  border-radius: 15px;
+  width: 49%;
+  height: 100%;
+  border: 2px solid var(--main);
+  background-color: white;
+  text-align: center;
+}
