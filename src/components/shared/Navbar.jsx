@@ -1,5 +1,5 @@
 import { NavLink, Link } from "react-router-dom";
-import "../../assets/navbar.css";
+import "../../assets/styles/navbar.css";
 const Navbar = () => {
   return (
     <>
@@ -31,7 +31,7 @@ const Navbar = () => {
               />
             </button>
           </form>
-          
+
           <div className="dropdown container-dropdown">
             <button
               className="image-button"
