@@ -1,36 +1,35 @@
-import { Link } from "react-router-dom"
-import '../../../assets/styles/feedCard.css'
-import EditActivity from "./EditActivity"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import EditActivity from "./EditActivity"
+import ModalQuestion from "../../../components/shared/ModalQuestion"
+import '../../../assets/styles/feedCard.css'
 
 const CardActivity = ({ post }) => {
 
   const {
-    id,
-    authorID,
-    authorName,
-    authorImg,
-    image,
+    _id,
+    author,
+    imgUrl,
     title,
     description,
     activity,
     duration,
-    liked,
+    likedCount,
     createAt
   } = post
 
-  const timePost = createAt
-  const likedCount = liked.length
-
   const [ show, setShow ] = useState(false);
+  const [ showDel, setShowDel ] = useState(false)
+
+  const { years, days, hours, minutes } = createAt?.duration
 
   return (
     <>
-      <figure key={id} className="container-card-activity">
+      <figure key={_id} className="container-card-activity">
         <section className="container-head-card">
           <div className="head-card-top">
-            <Link><img src={authorImg} alt="profile-sm" /><span>{authorName}</span></Link>
-            <p>{timePost}</p>
+            <Link><img src={author.smallImgUrl} alt="profile-sm" /><span>{author.profilename}</span></Link>
+            <p>{ years && `${years} year` || days && `${days} day` || hours && `${hours} hour` || minutes && `${minutes.toFixed(0)} minute` } ago.</p>
           </div>
 
         </section>
@@ -39,19 +38,19 @@ const CardActivity = ({ post }) => {
               {title}
           </figcaption>
           <div className="container-dropdown-menu">
-            <button className="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
               <i className="bi bi-gear-fill"></i>
             </button>
             <ul className="dropdown-menu">
-              <li><a onClick={() => setShow(true)} className="dropdown-item" href="#">Edit</a></li>
-              <li><a className="dropdown-item" href="#">Hide</a></li>
+              <li><button onClick={() => setShow(true)} className="dropdown-item">Edit</button></li>
+              {/* <li><button className="dropdown-item" href="#">Hide</button></li> */}
               <li><hr className="dropdown-divider" /></li>
-              <li><a className="dropdown-item" href="#">Delete</a></li>
+              <li><button className="dropdown-item" onClick={() => setShowDel(true)}>Delete</button></li>
             </ul>
           </div>
         </section>
         <section className="container-image-card">
-          <img src={image} alt="img-activity" />
+          <img src={imgUrl} alt="img-activity" />
           <div className="container-text-activity">
             <div className="liked">
               <span>{likedCount}</span>
@@ -64,11 +63,12 @@ const CardActivity = ({ post }) => {
 
         <section className="container-text-card">
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. At soluta laboriosam eius error nisi? Quibusdam illum eos libero nostrum necessitatibus voluptas sed. Sit architecto explicabo enim quo ipsa provident totam.
+            {description}
           </p>
         </section>
       </figure>
-      {<EditActivity show={show} setShow={setShow} />}
+      {<EditActivity show={show} setShow={setShow} post={post} />}
+      {<ModalQuestion showDel={showDel} setShowDel={setShowDel} id={_id} />}
     </>
   )
 }

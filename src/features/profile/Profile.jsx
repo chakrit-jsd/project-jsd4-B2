@@ -5,7 +5,7 @@ import { putProfileEdit } from '../../services/API/usersAPI';
 import DropAndCrop from './components/DropAndCrop';
 import '../../assets/styles/profile.css'
 
-const Profile = ({ user, setUser }) => {
+const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
   const {
     _id,
     email,
@@ -31,7 +31,7 @@ const Profile = ({ user, setUser }) => {
     setShowLeave(true)
     setShow(false)
   }
-  const [ imgPreview, setImgPreview ] = useState(profileImgUrl)
+  const [ imgPreview, setImgPreview ] = useState('')
   const [ cropper, setCropper ] = useState(null);
   const [ imgFile, setImgFile ] =  useState('')
   const [ formData, setFormData ] = useState({})
@@ -55,6 +55,8 @@ const Profile = ({ user, setUser }) => {
         const res = await putProfileEdit(data)
         if (res.status === 201) {
           setUser(res.data.user)
+          setImgUrl(res.data.user.profileImgUrl)
+          setSend(false)
           return setShow(false)
         }
       } catch (error) {
@@ -72,11 +74,11 @@ const Profile = ({ user, setUser }) => {
     <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
       <section className='profile-head'>
         <div className='profile-img-btn'>
-          <img src={profileImgUrl || 'https://via.placeholder.com/150'} alt="profiel-img" />
+          <img src={imgUrl || 'https://via.placeholder.com/150'} alt="profiel-img" />
           <i className="bi bi-pencil-square edit-profile-icon" onClick={handleShow}></i>
           <ModalEditProfile show={show} setShow={setShow} handleClose={handleClose} showLeave={showLeave} setShowLeave={setShowLeave} setImgFile={setImgFile} setImgPreview={setImgPreview} >
             <FormEditProfile user={user} setSend={setSend} setFormData={setFormData} handleClose={handleClose} imgFile={imgFile} imgPreview={imgPreview} getCropData={getCropData} setShow={setShow} >
-              <DropAndCrop setImgFile={setImgFile} imgFile={imgFile} imgPreview={imgPreview} setImgPreview={setImgPreview} cropper={cropper} setCropper={setCropper} getCropData={getCropData} />
+              <DropAndCrop imgUrl={imgUrl} setImgUrl={setImgUrl} setImgFile={setImgFile} imgFile={imgFile} imgPreview={imgPreview} setImgPreview={setImgPreview} cropper={cropper} setCropper={setCropper} getCropData={getCropData} />
             </FormEditProfile>
           </ModalEditProfile>
         </div>

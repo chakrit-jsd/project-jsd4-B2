@@ -5,7 +5,7 @@ import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/dropzone.css'
 
 
-const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCropper, getCropData }) => {
+const DropAndCrop = ({ imgUrl, setImgUrl, setImgFile, imgFile, imgPreview, setImgPreview, setCropper, getCropData }) => {
   const reset = () => {
     setImgFile('')
     setImgPreview('')
@@ -15,6 +15,7 @@ const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCroppe
   const handleSelectImgAgain = (event) => {
     event.preventDefault()
     reset()
+    setImgUrl('')
     setClassDrop('classDropDefult')
   }
 
@@ -70,7 +71,6 @@ const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCroppe
     setClassDrop('classDropNone')
   }
   // const [cropper, setCropper] = useState(null);
-
   return (
 
     <Dropzone
@@ -96,7 +96,7 @@ const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCroppe
         return (
           <>
             <div className='container-image-position-btn'>
-              {!imgPreview &&
+              {!imgPreview && !imgUrl ?
                 <div {...getRootProps()} className={`${classDrop} dropzone`}>
 
                   <input {...getInputProps()} />
@@ -104,8 +104,8 @@ const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCroppe
                     (<p>Drop your file here...<br />Accept file .jpg / .png</p>) :
                     (<p>Drag and drop file here or click to browse<br />Accept file .jpg / .png</p>)
                   }
-                </div>}
-              {imgFile && <img className='image-croped' src={imgFile} /> }
+                </div> : null}
+              {imgFile || imgUrl ? <img className='image-croped' src={imgFile || imgUrl} /> : null }
               {imgPreview && !imgFile &&
                 <>
                   <Cropper
@@ -130,7 +130,7 @@ const DropAndCrop = ({ setImgFile, imgFile, imgPreview, setImgPreview, setCroppe
                   {!imgFile && <button className='position-btn-image-1' onClick={getCropData}>Crop & Preview</button>}
                 </>
               }
-              {imgPreview || imgFile ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
+              {imgPreview || imgFile || imgUrl ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
             </div>
             <span className='input-img-message-err'>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span>
             <span className='input-img-message-succ'>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span>

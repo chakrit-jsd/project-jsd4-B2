@@ -1,12 +1,32 @@
 import { useEffect, useState } from "react"
+import { getFeedHome } from "../../services/API/usersAPI"
 import CardFeed from "./components/CardFeed"
 import CreateActivity from "./components/CreateActivity"
 import SwitchFeed from "./components/SwitchFeed"
 
 
-const MainFeed = () => {
+const MainFeed = ({ user }) => {
 
-  const [activeClass, setActiveClass] = useState(true)
+  const [ activeClass, setActiveClass ] = useState(true)
+  const [ switcher, setSwitcher ] = useState('home')
+  const [ posts, setPosts ] = useState([])
+
+  useEffect(() => {
+    const getFeeds = async () => {
+      if(switcher === 'home') {
+        try {
+          const res = await getFeedHome()
+          console.log(res.data.posts)
+          setPosts(res.data.posts)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    }
+    getFeeds()
+  }, [switcher])
+
+
   window.onscroll = () => {
     const prev = window.pageYOffset
     const lg = (prev, curr) => {
@@ -26,9 +46,9 @@ const MainFeed = () => {
 
   return (
     <article className="container-main-feed">
-      <CreateActivity activeClass={activeClass} />
-      <SwitchFeed />
-      <CardFeed />
+      <CreateActivity user={user} activeClass={activeClass} />
+      <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
+      <CardFeed posts={posts} />
     </article>
   )
 }

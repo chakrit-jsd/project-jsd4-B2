@@ -4,12 +4,12 @@ const getMe = () => {
   return http.get('/users')
 }
 
-const getFeedHome = (userID) => {
-  return http.get(`/users/${userID}/feed/gethome`)
+const getFeedHome = () => {
+  return http.get(`/users/feed/gethome`)
 }
 
-const getFeedAll = (userID) => {
-  return http.get(`/users/${userID}/feed/getall`)
+const getFeedAll = () => {
+  return http.get(`/users/feed/getall`)
 }
 
 const putProfileEdit = (data) => {

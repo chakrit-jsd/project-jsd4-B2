@@ -5,9 +5,9 @@ import Routing from './Routing'
 
 ReactDOM.createRoot(document.getElementById('root'))
   .render(
-    <React.StrictMode>
+
       <Router>
         <Routing />
       </Router>
-    </React.StrictMode>,
+
   )

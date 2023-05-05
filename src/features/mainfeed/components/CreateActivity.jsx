@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { postCreateCard } from '../../../services/API/cardsAPI';
+import { httpErrorCode } from '../../../utils/errorsHandle/httpStatuscode';
 import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
@@ -9,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ activeClass }) => {
+const CreateActivity = ({ user, activeClass }) => {
 
   const {
     register,
@@ -33,6 +35,7 @@ const CreateActivity = ({ activeClass }) => {
     setImgPreview('')
     setImgFile('')
     setImgMessage('')
+    setResMessage('')
   }
 
   const [showLeave, setShowLeave] = useState(false);
@@ -107,34 +110,35 @@ const CreateActivity = ({ activeClass }) => {
 
   const [ imgFile, setImgFile ] =  useState('')
   const [ imgMessage, setImgMessage ] = useState('')
-  const [ formData, setFormData] = useState({})
-  const onSubmit = (dataForm) =>{
+  const [ formData, setFormData ] = useState({})
+  const [ resMessage, setResMessage ] = useState('')
+  const onSubmit = async (dataForm) =>{
     if (!imgFile && !imgPreview) {
       setImgMessage('Please Select Your Image')
       setClassDrop('classDropReject')
       return
     }
+    let imgBase64 = ''
+    if (typeof cropper !== "undefined" && !imgFile) {
+      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+    }
     const data = {
       ...dataForm,
-      file: imgFile
+      file: imgFile || imgBase64
     }
-    setFormData((prev) => (
-      {
-        ...prev,
-        ...data
-      }
-    ))
-    if (typeof cropper !== "undefined" && !imgFile) {
-      const imgBase64 = async () => await cropper.getCroppedCanvas().toDataURL()
-      imgBase64().then((data) => {
-        setFormData((prev) => (
-          {
-            ...prev,
-            file: data
-          }
-        ))
-      })
+    try {
+      const res = await postCreateCard(data)
+      // console.log(res)
+    } catch (error) {
+      const res = httpErrorCode(error)
+      return setResMessage(res?.message)
     }
+    // setFormData((prev) => (
+    //   {
+    //     ...prev,
+    //     ...data
+    //   }
+    // ))
     resetData()
     setShow(false)
   }
@@ -159,7 +163,7 @@ const CreateActivity = ({ activeClass }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
+      setImgFile(cropper.getCroppedCanvas().toDataURL('jpeg'));
     }
   };
 
@@ -167,7 +171,7 @@ const CreateActivity = ({ activeClass }) => {
   return (
     <div className="container-create-activity">
       <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
-        <img src="https://images.freeimages.com/images/previews/cdc/venus-1221361.jpg" alt="profile-img-sm" />
+        <img src={user.smallImgUrl} alt="profile-img-sm" />
         <button onClick={handleShow}>
           Create Activity .....
         </button>
@@ -179,6 +183,7 @@ const CreateActivity = ({ activeClass }) => {
         </Modal.Header>
         <Modal.Body>
           <form className='container-form-create-card'>
+            <p>{resMessage}</p>
             <section className='container-image-input'>
               <Dropzone
                 onDrop={onDrop}

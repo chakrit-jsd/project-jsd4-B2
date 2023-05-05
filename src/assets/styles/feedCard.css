@@ -46,7 +46,7 @@
   align-items: end;
 }
 
-.head-card-top img:hover {
+.head-card-top a:hover img {
   border: 1px solid black;
 }
 
@@ -57,7 +57,7 @@
 
 }
 
-.head-card-top a span:hover {
+.head-card-top a:hover span {
   text-decoration: underline;
 }
 

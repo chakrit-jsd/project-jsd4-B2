@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 const Main = () => {
   const [ user, setUser ] = useState('')
+  const [ imgUrl, setImgUrl ] =useState('')
   const navigate = useNavigate()
   useEffect(() => {
     if (user) return
@@ -15,6 +16,7 @@ const Main = () => {
       try {
         const res = await getMe()
         setUser(res.data.user)
+        setImgUrl(res.data.user.profileImgUrl)
         console.log(res.data.user._id)
       } catch (error) {
         const res = httpErrorCode(error)
@@ -24,9 +26,9 @@ const Main = () => {
       }
     }
     getPage()
-  }, [user])
+  }, [])
   return (
-    <LayoutMainFeed user={user} setUser={setUser} >
+    <LayoutMainFeed user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
 
     </LayoutMainFeed>
   )
