@@ -4,7 +4,7 @@ import EditActivity from "./EditActivity"
 import ModalQuestion from "../../../components/shared/ModalQuestion"
 import '../../../assets/styles/feedCard.css'
 
-const CardActivity = ({ post }) => {
+const CardActivity = ({ post, user }) => {
 
   const {
     _id,
@@ -15,6 +15,7 @@ const CardActivity = ({ post }) => {
     activity,
     duration,
     likedCount,
+    isLiked,
     createAt
   } = post
 
@@ -28,7 +29,7 @@ const CardActivity = ({ post }) => {
       <figure key={_id} className="container-card-activity">
         <section className="container-head-card">
           <div className="head-card-top">
-            <Link><img src={author.smallImgUrl} alt="profile-sm" /><span>{author.profilename}</span></Link>
+            <Link><img src={author.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-sm" /><span>{author.profilename}</span></Link>
             <p>{ years && `${years} year` || days && `${days} day` || hours && `${hours} hour` || minutes && `${minutes.toFixed(0)} minute` } ago.</p>
           </div>
 
@@ -37,6 +38,7 @@ const CardActivity = ({ post }) => {
           <figcaption>
               {title}
           </figcaption>
+          { author._id === user._id &&
           <div className="container-dropdown-menu">
             <button className="btn-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
               <i className="bi bi-gear-fill"></i>
@@ -47,14 +49,14 @@ const CardActivity = ({ post }) => {
               <li><hr className="dropdown-divider" /></li>
               <li><button className="dropdown-item" onClick={() => setShowDel(true)}>Delete</button></li>
             </ul>
-          </div>
+          </div> }
         </section>
         <section className="container-image-card">
           <img src={imgUrl} alt="img-activity" />
           <div className="container-text-activity">
             <div className="liked">
               <span>{likedCount}</span>
-              <i className={`bi bi-heart`}></i>
+              <i className={`bi bi-heart${isLiked ? '-fill' : ''}`}></i>
             </div>
             <p className="activity">{activity}</p>
             <p className="duration">{duration} min.</p>

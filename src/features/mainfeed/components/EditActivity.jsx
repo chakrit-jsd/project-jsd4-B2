@@ -287,7 +287,7 @@ const EditActivity = ({ show, setShow, post }) => {
             Close
           </button>
           <button onClick={handleSubmit(onSubmit)} className='col-4 btn-card-create'>
-            Create
+            Save Change
           </button>
         </Modal.Footer>
       </Modal>

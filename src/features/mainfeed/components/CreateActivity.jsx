@@ -171,7 +171,7 @@ const CreateActivity = ({ user, activeClass }) => {
   return (
     <div className="container-create-activity">
       <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
-        <img src={user.smallImgUrl} alt="profile-img-sm" />
+        <img src={user.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-img-sm" />
         <button onClick={handleShow}>
           Create Activity .....
         </button>

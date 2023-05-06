@@ -11,8 +11,8 @@ function Routing() {
     <Routes>
       <Route path='/' element={<LandingPage />} />
       <Route path='/users' element={<Main />} >
-        {/* <Route index path='/user/:userId' element={<Main />} />
-        <Route path='/user/other' element={<Main />} /> */}
+        <Route index path='/users/home' element={<Main />} />
+        <Route path='/users/feed' element={<Main />} />
       </Route>
       <Route path='/register' element={<Register />} />
       <Route path='/test' element={<Test />} />
