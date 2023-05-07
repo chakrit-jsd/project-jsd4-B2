@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ user, activeClass }) => {
+const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
 
   const {
     register,
@@ -122,6 +122,7 @@ const CreateActivity = ({ user, activeClass }) => {
     if (typeof cropper !== "undefined" && !imgFile) {
       imgBase64 = cropper.getCroppedCanvas().toDataURL()
     }
+
     const data = {
       ...dataForm,
       file: imgFile || imgBase64
@@ -129,6 +130,7 @@ const CreateActivity = ({ user, activeClass }) => {
     try {
       const res = await postCreateCard(data)
       // console.log(res)
+      setPostsByCreateAndUpdate()
     } catch (error) {
       const res = httpErrorCode(error)
       return setResMessage(res?.message)

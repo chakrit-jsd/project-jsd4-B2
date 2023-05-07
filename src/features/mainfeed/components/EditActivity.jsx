@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const EditActivity = ({ show, setShow, post }) => {
+const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
 
   const {
     _id,
@@ -146,6 +146,7 @@ const EditActivity = ({ show, setShow, post }) => {
     try {
       const res = await putEditCard(data)
       // console.log(res)
+      setPostsByCreateAndUpdate()
       resetData()
       setShow(false)
     } catch (error) {

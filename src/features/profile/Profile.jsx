@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import ModalEditProfile from './components/ModalEditProfile';
 import FormEditProfile from './components/FormEditProfile';
-import { putProfileEdit } from '../../services/API/usersAPI';
+import { postFollows, putProfileEdit } from '../../services/API/usersAPI';
 import DropAndCrop from './components/DropAndCrop';
 import '../../assets/styles/profile.css'
 
-const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
+const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
   const {
     _id,
     email,
@@ -16,14 +16,16 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
     city,
     follower,
     following,
+    isFollowing,
     profilename,
     aboutme,
     interest,
     weight,
     height,
-    profileImgUrl
+    profileImgUrl,
+    thisme
   } = user
-  // console.log(profileImgUrl)
+  console.log(follower)
   const [ show, setShow ] = useState(false);
   const [ showLeave, setShowLeave ] = useState(false);
   const handleShow = () => setShow(true);
@@ -42,20 +44,13 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
       try {
         if (!send) return
         if (Object.keys(formData).length === 0) return
-        console.log(
-          {
-            ...formData,
-            file: imgFile
-          }
-        )
         const data = {
           ...formData,
           file: imgFile
         }
         const res = await putProfileEdit(data)
         if (res.status === 201) {
-          setUser(res.data.user)
-          setImgUrl(res.data.user.profileImgUrl)
+          await getUserByUpdate()
           setSend(false)
           return setShow(false)
         }
@@ -70,18 +65,53 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
       setImgFile(cropper.getCroppedCanvas().toDataURL());
     }
   };
+
+  const postFollow = async () => {
+    try {
+      const res = await postFollows({ userId: _id })
+      getUserByUpdate()
+      console.log(res)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+
   return (
     <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
       <section className='profile-head'>
         <div className='profile-img-btn'>
           <img src={imgUrl || 'https://via.placeholder.com/150'} alt="profiel-img" />
-          <i className="bi bi-pencil-square edit-profile-icon" onClick={handleShow}></i>
-          <ModalEditProfile show={show} setShow={setShow} handleClose={handleClose} showLeave={showLeave} setShowLeave={setShowLeave} setImgFile={setImgFile} setImgPreview={setImgPreview} >
-            <FormEditProfile user={user} setSend={setSend} setFormData={setFormData} handleClose={handleClose} imgFile={imgFile} imgPreview={imgPreview} getCropData={getCropData} setShow={setShow} >
-              <DropAndCrop imgUrl={imgUrl} setImgUrl={setImgUrl} setImgFile={setImgFile} imgFile={imgFile} imgPreview={imgPreview} setImgPreview={setImgPreview} cropper={cropper} setCropper={setCropper} getCropData={getCropData} />
-            </FormEditProfile>
-          </ModalEditProfile>
+          { !thisme ?
+          <>
+            <i className="bi bi-pencil-square edit-profile-icon" onClick={handleShow}></i>
+            <ModalEditProfile show={show} setShow={setShow} handleClose={handleClose} showLeave={showLeave} setShowLeave={setShowLeave} setImgFile={setImgFile} setImgPreview={setImgPreview} >
+              <FormEditProfile user={user} setSend={setSend} setFormData={setFormData} handleClose={handleClose} imgFile={imgFile} imgPreview={imgPreview} getCropData={getCropData} setShow={setShow} >
+                <DropAndCrop imgUrl={imgUrl} setImgUrl={setImgUrl} setImgFile={setImgFile} imgFile={imgFile} imgPreview={imgPreview} setImgPreview={setImgPreview} cropper={cropper} setCropper={setCropper} getCropData={getCropData} />
+              </FormEditProfile>
+            </ModalEditProfile>
+          </> : null}
         </div>
+        { thisme ?
+        (
+          <div>
+            {isFollowing ?
+            <span className='following-show'>Following</span> : null}
+            {!isFollowing ?
+            (<button onClick={postFollow} className={!isFollowing ? 'button-follow': 'button-unfollow'} >
+              Follow
+            </button>) : null}
+            {isFollowing ?
+            <div className="container-dropdown-menu-unfollow">
+              <button className="btn-dropdown-follow" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
+                ...
+              </button>
+              <ul className="dropdown-menu">
+                <li><button onClick={postFollow} className="dropdown-item">UnFollow</button></li>
+              </ul>
+            </div> : null}
+          </div>
+        ): null}
         <div>
           <p>{profilename || `${firstname}  ${lastname}`}</p>
           <p>{aboutme || 'About Me'}</p>
@@ -95,8 +125,25 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl }) => {
       </section>
       <section>
         <div>
+          <button>following</button>
           <ul>
-            <li></li>
+            {following?.length !== 0 && following?.map((userFollowing) => (
+              <li key={userFollowing.target._id}>
+                <img src={userFollowing.target.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
+                <span>{userFollowing.target.profilename || `${userFollowing.target.firstname} ${userFollowing.target.lastname}`}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <button>follower</button>
+          <ul>
+          {follower?.length !== 0 && follower?.map((userFollower) => (
+              <li key={userFollower.author._id}>
+                <img src={userFollower.author.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
+                <span>{userFollower.author.profilename || `${userFollower.author.firstname} ${userFollower.author.lastname}`}</span>
+              </li>
+            ))}
           </ul>
         </div>
       </section>

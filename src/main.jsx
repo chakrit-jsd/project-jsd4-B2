@@ -5,9 +5,7 @@ import Routing from './Routing'
 
 ReactDOM.createRoot(document.getElementById('root'))
   .render(
-
-      <Router>
-        <Routing />
-      </Router>
-
+    <Router>
+      <Routing />
+    </Router>
   )

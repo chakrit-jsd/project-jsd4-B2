@@ -11,12 +11,12 @@ const SwitchFeed = ({ switcher, setSwitcher}) => {
 
   return (
     <div className="container-switch-feed">
-      <Link to='#' onClick={() => setSwitcher('feed')}
-        className={switcher === 'feed' ? 'button-switch-active' : null}>
+      <Link to='/me/feed' onClick={() => setSwitcher('feed')}
+        className={location.pathname === '/me/feed' || location.pathname === '/me' ? 'button-switch-active' : null}>
         Feed
       </Link>
-      <Link to='#' onClick={() => setSwitcher('home')}
-        className={switcher === 'home' ? 'button-switch-active' : null}>
+      <Link to='/me/home' onClick={() => setSwitcher('home')}
+        className={location.pathname === '/me/home' ? 'button-switch-active' : null}>
         Home
       </Link>
     </div>

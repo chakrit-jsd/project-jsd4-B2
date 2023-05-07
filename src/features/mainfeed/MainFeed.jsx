@@ -10,19 +10,37 @@ const MainFeed = ({ user }) => {
   const [ activeClass, setActiveClass ] = useState(true)
   const [ switcher, setSwitcher ] = useState('feed')
   const [ posts, setPosts ] = useState([])
-
+  const setPostsByCreateAndUpdate = async () => {
+    if (location.pathname === '/me/home') {
+      try {
+        const res = await getFeedHome()
+        setPosts(res.data?.posts)
+        // console.log(res.data.posts)
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      try {
+        const res = await getFeedAll()
+        setPosts(res.data?.posts)
+        // console.log(res.data.posts)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
   useEffect(() => {
     const getFeeds = async () => {
-      if(switcher === 'home') {
+      if(location.pathname === '/me/home') {
         try {
           const res = await getFeedHome()
           setPosts(res.data?.posts)
-          // console.log(res.data.posts)
+          // console.log('home')
         } catch (error) {
           console.log(error)
         }
       }
-      if(switcher === 'feed') {
+      if(location.pathname === '/me/feed' || location.pathname === '/me') {
         try {
           const res = await getFeedAll()
           setPosts(res.data?.posts)
@@ -56,10 +74,11 @@ const MainFeed = ({ user }) => {
 
   return (
     <article className="container-main-feed">
-      <CreateActivity user={user} activeClass={activeClass} />
+      <CreateActivity user={user} activeClass={activeClass} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
-      {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
-      {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null}
+      {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
+      {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
+      {<CardFeed posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
     </article>
   )
 }

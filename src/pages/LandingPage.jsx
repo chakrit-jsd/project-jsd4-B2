@@ -14,7 +14,7 @@ const LandingPage = () => {
       if (res.status === 200) {
         setResMessage(res.data.message)
         setTimeout(() => {
-          navigate('/users')
+          navigate('/me')
         }, 1000)
       }
     } catch (error) {
@@ -34,7 +34,7 @@ const LandingPage = () => {
         const res = httpErrorCode(error)
         console.log(res.message)
         if (res.status !== 200)
-        navigate('/users')
+        navigate('/me')
       }
     }
     getPage()
