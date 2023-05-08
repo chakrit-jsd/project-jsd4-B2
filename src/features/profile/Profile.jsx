@@ -25,7 +25,8 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
     profileImgUrl,
     thisme
   } = user
-  console.log(follower)
+
+  // console.log(follower)
   const [ show, setShow ] = useState(false);
   const [ showLeave, setShowLeave ] = useState(false);
   const handleShow = () => setShow(true);
@@ -33,6 +34,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
     setShowLeave(true)
     setShow(false)
   }
+
   const [ imgPreview, setImgPreview ] = useState('')
   const [ cropper, setCropper ] = useState(null);
   const [ imgFile, setImgFile ] =  useState('')
@@ -75,7 +77,6 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
       console.error(error)
     }
   }
-
 
   return (
     <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
