@@ -1,23 +1,24 @@
 import LayoutMainFeed from "../features/layouts/LayoutMainFeed"
 import { useEffect, useState } from "react"
-import { getMe } from "../services/API/usersAPI"
+import { getAnother } from "../services/API/usersAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import '../assets/styles/style.css'
 
 
-const Main = () => {
+const MainAnother = () => {
+  const { userId } = useParams()
+
   const [ user, setUser ] = useState('')
   const [ imgUrl, setImgUrl ] =useState('')
   const navigate = useNavigate()
 
-  const getUserByUpdate =  async () => {
+  const getUserByUpdate = async () => {
     try {
-      const res = await getMe()
+      const res = await getAnother(userId)
       setUser(res.data.user)
-      setImgUrl(res.data.user.profileImgUrl)
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
   }
 
@@ -25,14 +26,15 @@ const Main = () => {
     if (user) return
     const getPage = async () => {
       try {
-        const res = await getMe()
+        const res = await getAnother(userId)
         setUser(res.data.user)
         setImgUrl(res.data.user.profileImgUrl)
         console.log(res.data.user._id)
       } catch (error) {
         const res = httpErrorCode(error)
-        if(res.status !== 200) {
-          navigate('/')
+        if (res.status === 500) return
+        if (res.status !== 200) {
+          navigate('/notfound')
         }
       }
     }
@@ -45,4 +47,4 @@ const Main = () => {
   )
 }
 
-export default Main
+export default MainAnother

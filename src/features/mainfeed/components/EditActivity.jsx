@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
+import { putEditCard } from '../../../services/API/cardsAPI';
+import { httpErrorCode } from '../../../utils/errorsHandle/httpStatuscode';
 import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
@@ -9,7 +11,16 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const EditActivity = ({ show, setShow }) => {
+const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
+
+  const {
+    _id,
+    imgUrl,
+    title,
+    description,
+    activity,
+    duration,
+  } = post
 
   const {
     register,
@@ -17,17 +28,29 @@ const EditActivity = ({ show, setShow }) => {
     formState: { errors },
     reset,
     getValues
-  } = useForm({ mode: 'onSubmit', reValidateMode: 'onChange', resolver: yupResolver(schema) })
+  } = useForm({
+    mode: 'onSubmit',
+    reValidateMode: 'onChange',
+    resolver: yupResolver(schema),
+    defaultValues: {
+      title,
+      description,
+      activity,
+      // duration: duration
+    }
 
+  })
+  const [ imgUrlS, setImgUrlS ] = useState(imgUrl)
   const resetData = () => {
     setClassDrop('classDropDefult')
-    setDuration(30)
-    reset({ title: '', description: '', activity: 'Yoga', duration: 30 })
+    // setDuration(30)
+    // reset({ title: '', description: '', activity: 'Yoga'})
     setShow(false)
     setShowLeave(false)
     setImgPreview('')
     setImgFile('')
     setImgMessage('')
+    setImgUrlS(imgUrl)
   }
 
   const [showLeave, setShowLeave] = useState(false);
@@ -53,13 +76,14 @@ const EditActivity = ({ show, setShow }) => {
 
   const handleShow = () => setShow(true);
 
-  const [ duration, setDuration ] = useState(30)
+  const [ durationS, setDuration ] = useState(duration)
   const handleDuration = ({target}) => {
     setDuration(target.value)
   }
 
   const handleSelectImgAgain = (event) => {
     event.preventDefault()
+    setImgUrlS('')
     setImgFile('')
     setImgPreview('')
     setImgMessage('')
@@ -102,36 +126,34 @@ const EditActivity = ({ show, setShow }) => {
 
   const [ imgFile, setImgFile ] =  useState('')
   const [ imgMessage, setImgMessage ] = useState('')
-  const [ formData, setFormData] = useState({})
-  const onSubmit = (dataForm) =>{
-    if (!imgFile && !imgPreview) {
-      setImgMessage('Please Select Your Image')
-      setClassDrop('classDropReject')
-      return
+  const [ resMessage, setResMessage ] = useState('')
+  const onSubmit = async (dataForm) =>{
+    // if (!imgFile && !imgPreview) {
+    //   setImgMessage('Please Select Your Image')
+    //   setClassDrop('classDropReject')
+    //   return
+    // }
+    let imgBase64 = ''
+    if (typeof cropper !== "undefined" && !imgFile && imgPreview) {
+      imgBase64 = cropper.getCroppedCanvas().toDataURL()
     }
     const data = {
+      cardId: _id,
       ...dataForm,
-      file: imgFile
+      file: imgFile || imgBase64
     }
-    setFormData((prev) => (
-      {
-        ...prev,
-        ...data
-      }
-    ))
-    if (typeof cropper !== "undefined" && !imgFile) {
-      const imgBase64 = async () => await cropper.getCroppedCanvas().toDataURL()
-      imgBase64().then((data) => {
-        setFormData((prev) => (
-          {
-            ...prev,
-            file: data
-          }
-        ))
-      })
+    console.log(data)
+    try {
+      const res = await putEditCard(data)
+      // console.log(res)
+      setPostsByCreateAndUpdate()
+      resetData()
+      setShow(false)
+    } catch (error) {
+      const res = httpErrorCode(error)
+      return setResMessage(res?.message)
     }
-    resetData()
-    setShow(false)
+
   }
 
   const [ imgPreview, setImgPreview ] = useState(null)
@@ -174,6 +196,7 @@ const EditActivity = ({ show, setShow }) => {
         </Modal.Header>
         <Modal.Body>
           <form className='container-form-create-card'>
+            <p>{resMessage}</p>
             <section className='container-image-input'>
               <Dropzone
                 onDrop={onDrop}
@@ -198,7 +221,7 @@ const EditActivity = ({ show, setShow }) => {
                   return (
                     <>
                       <div className='container-image-position-btn'>
-                        {!imgPreview &&
+                        {!imgPreview && !imgUrlS ?
                           <div {...getRootProps()} className={`${classDrop} dropzone`}>
                             <div onClick={handleSelectImgAgain} className='image-preview'>
                               {/* <span>Click to browse Again</span> */}
@@ -208,8 +231,8 @@ const EditActivity = ({ show, setShow }) => {
                               (<p>Drop your file here...<br />Accept file .jpg / .png</p>) :
                               (<p>Drag and drop file here or click to browse<br />Accept file .jpg / .png</p>)
                             }
-                          </div>}
-                        {imgFile && <img className='image-croped' src={imgFile} /> }
+                          </div> : null}
+                        {imgFile || imgUrlS ? <img className='image-croped' src={imgFile || imgUrlS} /> : null }
                         {imgPreview && !imgFile &&
                           <>
                             <Cropper
@@ -234,7 +257,7 @@ const EditActivity = ({ show, setShow }) => {
                             {!imgFile && <button className='position-btn-image-1' onClick={getCropData}>Crop & Preview</button>}
                           </>
                         }
-                        {imgPreview || imgFile ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
+                        {imgPreview || imgFile || imgUrlS ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
                       </div>
                       <span className='input-img-message-err'>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span>
                       <span className='input-img-message-succ'>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span>
@@ -253,8 +276,8 @@ const EditActivity = ({ show, setShow }) => {
               <label className='container-range-out'>
                 <p>Duration</p>
                 <div className='container-range'>
-                  <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}/>
-                  <p>{duration} minute.</p>
+                  <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={durationS}/>
+                  <p>{durationS} minute.</p>
                 </div>
               </label>
             </section>
@@ -264,8 +287,8 @@ const EditActivity = ({ show, setShow }) => {
           <button onClick={handleClose} className='col-2 btn-card-close'>
             Close
           </button>
-          <button onClick={handleSubmit(onSubmit)} disabled={!imgPreview && true} className='col-4 btn-card-create'>
-            Create
+          <button onClick={handleSubmit(onSubmit)} className='col-4 btn-card-create'>
+            Save Change
           </button>
         </Modal.Footer>
       </Modal>

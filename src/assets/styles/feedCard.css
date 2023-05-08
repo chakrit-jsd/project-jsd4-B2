@@ -2,6 +2,15 @@
 
 } */
 
+/* .container-cards-feed {
+  height: 200vh;
+} */
+
+.container-none-card-feed {
+  height: 190vh;
+
+}
+
 .container-head-card {
 
   border-top-left-radius: 15px;
@@ -37,27 +46,29 @@
   width: 2.5rem;
   border-radius: 50%;
 }
-.head-card-top a {
+.head-card-top button {
   /* width: 50%; */
   text-decoration: none;
-  /* display: block; */
+  display: block;
   display: flex;
   justify-content: start;
   align-items: end;
+  border: none;
+  background: none;
 }
 
-.head-card-top img:hover {
+.head-card-top button:hover img {
   border: 1px solid black;
 }
 
-.head-card-top a span {
+.head-card-top button span {
   color: black;
   font-size: 1.4rem;
   padding: 0 0 0 0.6rem ;
 
 }
 
-.head-card-top a span:hover {
+.head-card-top button:hover span {
   text-decoration: underline;
 }
 

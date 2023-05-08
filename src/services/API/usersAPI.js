@@ -4,22 +4,36 @@ const getMe = () => {
   return http.get('/users')
 }
 
-const getFeedHome = (userID) => {
-  return http.get(`/users/${userID}/feed/gethome`)
+const getAnother = (userId) => {
+  return http.get(`/users/another/${userId}`)
 }
 
-const getFeedAll = (userID) => {
-  return http.get(`/users/${userID}/feed/getall`)
+const getAnotherFeed = (userId) => {
+  return http.get(`/users/another/${userId}/feed`)
+}
+
+const getFeedHome = () => {
+  return http.get(`/users/feed/gethome`)
+}
+
+const getFeedAll = () => {
+  return http.get(`/users/feed/getall`)
 }
 
 const putProfileEdit = (data) => {
   return http.put(`/users/profile/edit`, data)
 }
 
+const postFollows = (data) => {
+  return http.post('/users/follows', data)
+}
 
 export {
   getMe,
+  getAnother,
+  getAnotherFeed,
   getFeedHome,
   getFeedAll,
-  putProfileEdit
+  putProfileEdit,
+  postFollows
 }
