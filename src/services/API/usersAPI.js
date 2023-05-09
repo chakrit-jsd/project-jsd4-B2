@@ -8,16 +8,16 @@ const getAnother = (userId) => {
   return http.get(`/users/another/${userId}`)
 }
 
-const getAnotherFeed = (userId) => {
-  return http.get(`/users/another/${userId}/feed`)
+const getAnotherFeed = (userId, page) => {
+  return http.get(`/users/another/${userId}/feed/${page || 1}`)
 }
 
-const getFeedHome = () => {
-  return http.get(`/users/feed/gethome`)
+const getFeedHome = (page) => {
+  return http.get(`/users/feed/gethome/${page || 1}`)
 }
 
-const getFeedAll = () => {
-  return http.get(`/users/feed/getall`)
+const getFeedAll = (page) => {
+  return http.get(`/users/feed/getall/${page || 1}`)
 }
 
 const putProfileEdit = (data) => {
@@ -28,6 +28,11 @@ const postFollows = (data) => {
   return http.post('/users/follows', data)
 }
 
+const getSearchUsers = (text) => {
+  return http.get(`/search?text=${text}`)
+}
+
+
 export {
   getMe,
   getAnother,
@@ -35,5 +40,6 @@ export {
   getFeedHome,
   getFeedAll,
   putProfileEdit,
-  postFollows
+  postFollows,
+  getSearchUsers
 }
