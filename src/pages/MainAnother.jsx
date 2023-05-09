@@ -10,7 +10,7 @@ const MainAnother = () => {
   const { userId } = useParams()
 
   const [ user, setUser ] = useState('')
-  const [ imgUrl, setImgUrl ] =useState('')
+  const [ imgUrl, setImgUrl ] = useState('')
   const navigate = useNavigate()
 
   const getUserByUpdate = async () => {
@@ -23,23 +23,29 @@ const MainAnother = () => {
   }
 
   useEffect(() => {
-    if (user) return
+    // if (user) return
     const getPage = async () => {
       try {
         const res = await getAnother(userId)
+        console.log(res)
+        if (res.status !== 200) throw res
         setUser(res.data.user)
         setImgUrl(res.data.user.profileImgUrl)
-        console.log(res.data.user._id)
+        // console.log(res.data.user._id)
       } catch (error) {
         const res = httpErrorCode(error)
+
+        if (res.status === 307) {
+          return navigate('/me/home')
+        }
         if (res.status === 500) return
         if (res.status !== 200) {
-          navigate('/notfound')
+          return navigate('/notfound')
         }
       }
     }
     getPage()
-  }, [])
+  }, [userId])
   return (
     <LayoutMainFeed getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
 
