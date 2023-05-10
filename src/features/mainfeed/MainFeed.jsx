@@ -38,42 +38,33 @@ const MainFeed = ({ user }) => {
     return cal + 1
   }
 
-  const nextPosts = async () => {
-    if (location.pathname === '/me/home') {
-      const page = calPages()
-      console.log(page)
-      try {
-        const res = await getFeedHome(page)
-        setNextGet(res.data?.next)
-        setPosts((prevPosts) => {
-          const newPosts = [
-            ...prevPosts,
-            ...res.data?.posts
-          ]
-          return newPosts
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    if (location.pathname === '/me/feed' || location.pathname === '/me') {
-      const page = calPages()
-      console.log(page)
-      try {
-        const res = await getFeedAll(page)
-        setNextGet(res.data?.next)
-        setPosts((prevPosts) => {
-          const newPosts = [
-            ...prevPosts,
-            ...res.data?.posts
-          ]
-          return newPosts
-        })
-      } catch (error) {
-        console.log(error)
-      }
+  const getFeedInfinite = async (getFeedAxios) => {
+    const page = calPages()
+    console.log(page)
+    try {
+      const res = await getFeedAxios(page)
+      setNextGet(res.data?.next)
+      setPosts((prevPosts) => {
+        const newPosts = [
+          ...prevPosts,
+          ...res.data?.posts
+        ]
+        return newPosts
+      })
+    } catch (error) {
+      console.log(error)
     }
   }
+
+  const nextPosts = async () => {
+    if (location.pathname === '/me/home') {
+      await getFeedInfinite(getFeedHome)
+    }
+    if (location.pathname === '/me/feed' || location.pathname === '/me') {
+      await getFeedInfinite(getFeedAll)
+    }
+  }
+
   const setPostsByCreateAndUpdate = async () => {
     if (location.pathname === '/me/home') {
       await getHome()
