@@ -1,0 +1,44 @@
+.outter-nav {
+  border-bottom: 1px solid black;
+  position: relative;
+}
+
+.search-nav {
+  box-sizing: border-box;
+
+  width: 400px;
+  height: 40px;
+  padding-left: 15px;
+  padding-right: 15px;
+
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 27.5px;
+}
+
+.image-button {
+    border: none;
+}
+
+.image-search-button {
+  margin-left: 5px;
+  border: 1px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  background-color: rgb(184, 184, 184);
+  box-shadow: 1px 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.drop-list {
+  position: absolute;
+  margin-right: 0px;
+  right: 0;
+  top: 0;
+  z-index: 0;
+  background-color: white;
+}
+
+.container-dropdown {
+  position: relative;
+}

@@ -1,22 +1,22 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import '../../../assets/styles/switchFeed.css'
 
 
-const SwitchFeed = () => {
-  const [ switcher, setSwitcher ] = useState('feed')
+const SwitchFeed = ({ switcher, setSwitcher}) => {
 
   const handleSwitch = () => {
   }
 
+
+
   return (
     <div className="container-switch-feed">
-      <Link to='/main/me' onClick={() => setSwitcher('feed')}
-        className={switcher === 'feed' ? 'button-switch-active' : null}>
+      <Link to='/me/feed' onClick={() => setSwitcher('feed')}
+        className={location.pathname === '/me/feed' || location.pathname === '/me' ? 'button-switch-active' : null}>
         Feed
       </Link>
-      <Link to='/main/other' onClick={() => setSwitcher('home')}
-        className={switcher === 'home' ? 'button-switch-active' : null}>
+      <Link to='/me/home' onClick={() => setSwitcher('home')}
+        className={location.pathname === '/me/home' ? 'button-switch-active' : null}>
         Home
       </Link>
     </div>

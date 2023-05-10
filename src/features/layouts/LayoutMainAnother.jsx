@@ -5,9 +5,8 @@ import { Footer } from "../../components/shared/Footer"
 import Navbar from "../../components/shared/Navbar"
 import MainFeedAnother from "../mainfeed/MainFeedAnother"
 
-const LayoutMainFeed = ({ getUserByUpdate, user, setUser, children, imgUrl ,setImgUrl }) => {
+const LayoutMainAnother = ({ user, setUser, children, imgUrl ,setImgUrl }) => {
   // console.log(user)
-  const { pathname } = location
   return (
     <div className="container-fulid">
       <nav className="container-navbar row">
@@ -15,10 +14,8 @@ const LayoutMainFeed = ({ getUserByUpdate, user, setUser, children, imgUrl ,setI
       </nav>
 
       <main className="container-main row">
-        <Profile getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} />
-        {pathname === '/me' || pathname === '/me/feed' || pathname === '/me/home'
-        ? <MainFeed user={user} />
-        : <MainFeedAnother user={user} /> }
+        <Profile user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} />
+        <MainFeedAnother user={user} />
         <Dashboard />
       </main>
 
@@ -29,4 +26,4 @@ const LayoutMainFeed = ({ getUserByUpdate, user, setUser, children, imgUrl ,setI
   )
 }
 
-export default LayoutMainFeed
+export default LayoutMainAnother
