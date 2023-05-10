@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import { postFollows, putProfileEdit } from '../../services/API/usersAPI';
+import { Link } from 'react-router-dom';
 import ModalEditProfile from './components/ModalEditProfile';
 import FormEditProfile from './components/FormEditProfile';
-import { postFollows, putProfileEdit } from '../../services/API/usersAPI';
 import DropAndCrop from './components/DropAndCrop';
 import '../../assets/styles/profile.css'
 
@@ -78,6 +79,10 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
     }
   }
 
+  const linkToFollowProfile = (userID) => {
+
+  }
+
   return (
     <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
       <section className='profile-head'>
@@ -130,8 +135,10 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
           <ul>
             {following?.length !== 0 && following?.map((userFollowing) => (
               <li key={userFollowing.target._id}>
-                <img src={userFollowing.target.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
-                <span>{userFollowing.target.profilename || `${userFollowing.target.firstname} ${userFollowing.target.lastname}`}</span>
+                <Link to={`/another/${userFollowing.target._id}`}>
+                  <img src={userFollowing.target.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
+                  <span>{userFollowing.target.profilename || `${userFollowing.target.firstname} ${userFollowing.target.lastname}`}</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -141,8 +148,10 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
           <ul>
           {follower?.length !== 0 && follower?.map((userFollower) => (
               <li key={userFollower.author._id}>
-                <img src={userFollower.author.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
-                <span>{userFollower.author.profilename || `${userFollower.author.firstname} ${userFollower.author.lastname}`}</span>
+                <Link to={`/another/${userFollower.author._id}`}>
+                  <img src={userFollower.author.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
+                  <span>{userFollower.author.profilename || `${userFollower.author.firstname} ${userFollower.author.lastname}`}</span>
+                </Link>
               </li>
             ))}
           </ul>
