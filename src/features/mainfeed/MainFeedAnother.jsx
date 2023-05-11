@@ -22,14 +22,16 @@ const MainFeedAnother = ({ user }) => {
       const page = calPages()
       console.log(page)
       try {
+        if(!user) return
         const res = await getAnotherFeed(user._id, page)
         setNextGet(res.data?.next)
         setPosts((prevPosts) => {
-          const newPosts = [
-            ...prevPosts,
-            ...res.data?.posts
-          ]
-          return newPosts
+          const newPostId = []
+          for (const post of res.data?.posts) newPostId.push(post._id)
+          const prev = prevPosts.filter((post) => {
+            return !newPostId.includes(post._id)
+          })
+          return [ ...prev, ...res.data?.posts]
         })
       } catch (error) {
         console.log(error)
@@ -48,6 +50,12 @@ const MainFeedAnother = ({ user }) => {
     }
   }
 
+  const updateSinglePost = (newPost) => {
+    setPosts((prevPosts) => prevPosts.map((post) => {
+    return post._id === newPost._id ? newPost : post
+    }))
+  }
+
   useEffect(() => {
     const getFeeds = async () => {
       if(switcher === 'home') {
@@ -62,7 +70,7 @@ const MainFeedAnother = ({ user }) => {
       }
     }
     getFeeds()
-    console.log(posts)
+
   }, [switcher, user])
 
 
@@ -89,7 +97,7 @@ const MainFeedAnother = ({ user }) => {
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} /> */}
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<CardFeed updateSinglePost={updateSinglePost} nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
     </article>
   )
 }

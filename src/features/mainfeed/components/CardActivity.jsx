@@ -5,7 +5,7 @@ import EditActivity from "./EditActivity"
 import ModalQuestion from "../../../components/shared/ModalQuestion"
 import '../../../assets/styles/feedCard.css'
 
-const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
+const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
 
   const {
     _id,
@@ -30,8 +30,7 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
   const postLiked = async () => {
     try {
       const res = await postLikedCard(_id)
-      // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateSinglePost(res.data.post)
     } catch (error) {
       console.log(error)
     }
@@ -92,8 +91,8 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
           </p>
         </section>
       </figure>
-      {<EditActivity show={show} setShow={setShow} post={post} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
-      {<ModalQuestion showDel={showDel} setShowDel={setShowDel} cardId={_id} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<EditActivity show={show} setShow={setShow} post={post} updateSinglePost={updateSinglePost} />}
+      {<ModalQuestion showDel={showDel} setShowDel={setShowDel} cardId={_id} deletePost={deletePost} />}
     </>
   )
 }

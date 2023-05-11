@@ -30,7 +30,6 @@ const schema = yup.object().shape({
     .min(4, 'Firstname 4-20 character')
     .max(20, 'Firstname 4-20 character')
     .matches(/^[a-zA-Z\s]+$/, 'Firstname accept only a-z, A-Z')
-    .lowercase()
     .trim(),
 
   lastname: yup
@@ -39,7 +38,6 @@ const schema = yup.object().shape({
     .min(4, 'Lastname 4-20 character')
     .max(20, 'Lastname 4-20 character')
     .matches(/^[a-zA-Z\s]+$/, 'Lastname accept only a-z, A-Z')
-    .lowercase()
     .trim(),
 
   birthdate: yup

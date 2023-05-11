@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
+const CreateActivity = ({ user, activeClass, updateNewPost }) => {
 
   const {
     register,
@@ -29,7 +29,7 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
   const resetData = () => {
     setClassDrop('classDropDefult')
     setDuration(30)
-    reset({ title: '', description: '', activity: 'Yoga', duration: 30 })
+    reset({ title: '', description: '', activity: 'yoga', duration: 30 })
     setShow(false)
     setShowLeave(false)
     setImgPreview('')
@@ -130,19 +130,13 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
     try {
       const res = await postCreateCard(data)
       // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateNewPost(res.data?.post)
+      resetData()
+      setShow(false)
     } catch (error) {
       const res = httpErrorCode(error)
       return setResMessage(res?.message)
     }
-    // setFormData((prev) => (
-    //   {
-    //     ...prev,
-    //     ...data
-    //   }
-    // ))
-    resetData()
-    setShow(false)
   }
 
   const [ imgPreview, setImgPreview ] = useState(null)

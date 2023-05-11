@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
+const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
 
   const {
     _id,
@@ -142,11 +142,11 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
       ...dataForm,
       file: imgFile || imgBase64
     }
-    console.log(data)
+
     try {
       const res = await putEditCard(data)
       // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateSinglePost(res.data?.post)
       resetData()
       setShow(false)
     } catch (error) {

@@ -27,7 +27,7 @@ const MainAnother = () => {
     const getPage = async () => {
       try {
         const res = await getAnother(userId)
-        console.log(res)
+
         if (res.status !== 200) throw res
         setUser(res.data.user)
         setImgUrl(res.data.user.profileImgUrl)

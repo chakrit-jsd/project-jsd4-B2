@@ -2,7 +2,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CardActivity from "./CardActivity";
 import NoneCardFeed from "./NoneCardFeed";
 
-const CardFeed = ({ nextPosts, nextGet, posts, user, setPostsByCreateAndUpdate }) => {
+const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, user }) => {
 
 
   return (
@@ -28,7 +28,7 @@ const CardFeed = ({ nextPosts, nextGet, posts, user, setPostsByCreateAndUpdate }
         //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
         // }
       >
-        {posts?.length !== 0 ? posts?.map((post) => <CardActivity post={post} key={post._id} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />) : <NoneCardFeed />}
+        {posts?.length !== 0 ? posts?.map((post) => <CardActivity post={post} key={post._id} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />) : <NoneCardFeed />}
       </InfiniteScroll>
     </section>
   );

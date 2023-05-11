@@ -45,18 +45,21 @@ const MainFeed = ({ user }) => {
       const res = await getFeedAxios(page)
       setNextGet(res.data?.next)
       setPosts((prevPosts) => {
-        const newPosts = [
-          ...prevPosts,
-          ...res.data?.posts
-        ]
-        return newPosts
+        const newPostId = []
+        for (const post of res.data?.posts) newPostId.push(post._id)
+        const prev = prevPosts.filter((post) => {
+          return !newPostId.includes(post._id)
+        })
+        return [ ...prev, ...res.data?.posts]
       })
+
     } catch (error) {
       console.log(error)
     }
   }
 
   const nextPosts = async () => {
+    setNextGet(true)
     if (location.pathname === '/me/home') {
       await getFeedInfinite(getFeedHome)
     }
@@ -72,6 +75,23 @@ const MainFeed = ({ user }) => {
       await getAll()
     }
   }
+
+  const updateNewPost = (newPost) => {
+    setPosts((prevPosts) => [newPost, ...prevPosts])
+  }
+
+  const updateSinglePost = (newPost) => {
+    setPosts((prevPosts) => prevPosts.map((post) => {
+    return post._id === newPost._id ? newPost : post
+    }))
+  }
+
+  const deletePost = (delPost) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => {
+      return post._id !== delPost._id
+    }))
+  }
+
   useEffect(() => {
     const getFeeds = async () => {
       if (location.pathname === '/me/home') {
@@ -107,11 +127,11 @@ const MainFeed = ({ user }) => {
 
   return (
     <article className="container-main-feed">
-      <CreateActivity user={user} activeClass={activeClass} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />
+      <CreateActivity user={user} activeClass={activeClass} updateSinglePost={updateSinglePost} updateNewPost={updateNewPost} />
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
     </article>
   )
 }

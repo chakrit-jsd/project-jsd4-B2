@@ -4,14 +4,14 @@ import { httpErrorCode } from '../../utils/errorsHandle/httpStatuscode';
 import { useState } from 'react';
 
 
-const ModalQuestion = ({ showDel, setShowDel, cardId, setPostsByCreateAndUpdate }) => {
+const ModalQuestion = ({ showDel, setShowDel, cardId, deletePost }) => {
   const [ resMess, setResMess ] = useState('')
   const onSubmit = async () => {
     try {
       const res = await deleteCard(cardId)
       // console.log(res)
       setShowDel(false)
-      setPostsByCreateAndUpdate()
+      deletePost(res.data?.post)
     } catch (error) {
       const res = httpErrorCode(error)
       setResMess(res.message)

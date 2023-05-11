@@ -5,7 +5,7 @@ const schema = yup.object().shape({
   profilename: yup
     .string()
     // .min(4, 'Profile name 4-20 character')
-    .max(20, 'Profile name 4-20 character')
+    .max(30, 'Profile name 4-20 character')
     .trim(),
 
   aboutme: yup
@@ -53,6 +53,7 @@ const schema = yup.object().shape({
     .oneOf(['hiit', 'pilates', 'strength', 'weight', 'yoga'], 'Please select a valid Activity')
     .required('Please Select Activity')
     .trim(),
+
   weight: yup
     .number()
     .typeError('Please input weight')
