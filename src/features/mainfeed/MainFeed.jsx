@@ -68,14 +68,6 @@ const MainFeed = ({ user }) => {
     }
   }
 
-  const setPostsByCreateAndUpdate = async () => {
-    if (location.pathname === '/me/home') {
-      await getHome()
-    } else {
-      await getAll()
-    }
-  }
-
   const updateNewPost = (newPost) => {
     setPosts((prevPosts) => [newPost, ...prevPosts])
   }
@@ -131,7 +123,7 @@ const MainFeed = ({ user }) => {
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />}
     </article>
   )
 }
