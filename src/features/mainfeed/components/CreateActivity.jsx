@@ -122,7 +122,7 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
     if (typeof cropper !== "undefined" && !imgFile) {
       imgBase64 = cropper.getCroppedCanvas().toDataURL()
     }
-
+    console.log(dataForm)
     const data = {
       ...dataForm,
       file: imgFile || imgBase64
@@ -256,6 +256,8 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
             </section>
             <section className='container-select-activity'>
               <Select label='Activity' register={register} field='activity' errors={errors} />
+              <Input label='Date Activity' field='dateactivity' register={register} errors={errors} placeholder='date' type='date' />
+            </section>
               <label className='container-range-out'>
                 <p>Duration</p>
                 <div className='container-range'>
@@ -263,7 +265,6 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
                   <p>{duration} minute.</p>
                 </div>
               </label>
-            </section>
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -17,6 +17,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
     duration,
     likedCount,
     isLiked,
+    dateactivity,
     createAt
   } = post
 
@@ -82,6 +83,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
             </div>
             <p className="activity">{activity}</p>
             <p className="duration">{duration} min.</p>
+            <p className="date">{dateactivity.dateFormat || null}</p>
           </div>
         </section>
 

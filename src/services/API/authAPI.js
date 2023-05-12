@@ -17,9 +17,14 @@ const postLogin = (data) => {
   return http.post('/login', data)
 }
 
+const getLogout = () => {
+  return http.get('/logout')
+}
+
 export {
   getRegister,
   postRegister,
   getLogin,
-  postLogin
+  postLogin,
+  getLogout
 }

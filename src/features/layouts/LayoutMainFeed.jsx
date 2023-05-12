@@ -11,7 +11,7 @@ const LayoutMainFeed = ({ getUserByUpdate, user, setUser, children, imgUrl ,setI
   return (
     <div className="container-fulid">
       <nav className="container-navbar row">
-        <Navbar />
+        <Navbar user={user} />
       </nav>
 
       <main className="container-main row">

@@ -25,7 +25,14 @@ const schema = yup.object().shape({
     .positive('Please Select Valid Number')
     .required('Please Select Duration')
     .min(10, 'Duration 10 - 180 minute')
-    .max(180, 'Duration 10 - 180 minute')
+    .max(180, 'Duration 10 - 180 minute'),
+
+  dateactivity: yup
+    .date()
+    .typeError('Please select Date Activity')
+    .min(1924, 'Date invalid')
+    .max(new Date(), 'Date invalid')
+    .required('Please select Date'),
 })
 
 export default schema

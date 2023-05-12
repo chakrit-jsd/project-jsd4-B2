@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { getSearchUsers } from "../../services/API/usersAPI";
+import { getLogout } from "../../services/API/authAPI";
 import "../../assets/styles/navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
+  const navigate = useNavigate()
+
   const [ textSearch, setTextSearch ] = useState('');
 
   const [ resultSearch, setResultSearch ] = useState('')
@@ -29,6 +32,15 @@ const Navbar = () => {
     }
   };
 
+  const logout = async () => {
+    try {
+      const res = await getLogout()
+      console.log(res)
+      if (res.status === 200) return navigate('/')
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       <nav className="navbar bg-body-tertiary outter-nav">
@@ -59,7 +71,7 @@ const Navbar = () => {
                       <li key={user._id}>
                         <Link to={`/another/${user._id}`}>
                           <img src={user.smallImgUrl} alt="profile-small" />
-                          <span>{user.profilename || user.firstname +' '+ user.lastname}</span>
+                          <span>{user.profilename || `${user.firstname}  ${user.lastname}`}</span>
                         </Link>
                       </li>
                     )) : <li>{resultSearch}</li>}
@@ -83,26 +95,21 @@ const Navbar = () => {
               aria-expanded="false"
             >
               <img
-                src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png"
-                alt=""
-                width={30}
+                src={(user.thisme ? user.thisme?.smallImgUrl : user.smallImgUrl) || 'https://via.placeholder.com/40'}
+                alt="profile-img-small"
+                width={40}
               />
             </button>
             <ul className="dropdown-menu drop-list">
               <li>
-                <a className="dropdown-item" href="#">
-                  Action
-                </a>
+                <Link to={'/me/home'} className="dropdown-item">
+                  {user.thisme?.profilename || (user.profilename || `${user.firstname}  ${user.lastname}`)}
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Another action
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#">
-                  Something else here
-                </a>
+                <button onClick={logout} className="dropdown-item">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

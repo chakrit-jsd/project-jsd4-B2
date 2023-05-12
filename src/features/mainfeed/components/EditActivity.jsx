@@ -4,6 +4,7 @@ import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { putEditCard } from '../../../services/API/cardsAPI';
 import { httpErrorCode } from '../../../utils/errorsHandle/httpStatuscode';
+import { setFormat } from '../../../utils/setFormatDate/setFormatDate';
 import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
@@ -20,6 +21,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
     description,
     activity,
     duration,
+    dateactivity,
   } = post
 
   const {
@@ -36,6 +38,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
       title,
       description,
       activity,
+      dateactivity: setFormat(dateactivity.date)
       // duration: duration
     }
 
@@ -273,6 +276,8 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
             </section>
             <section className='container-select-activity'>
               <Select label='Activity' register={register} field='activity' errors={errors} />
+              <Input label='Date Activity' field='dateactivity' register={register} errors={errors} placeholder='date' type='date' />
+            </section>
               <label className='container-range-out'>
                 <p>Duration</p>
                 <div className='container-range'>
@@ -280,7 +285,6 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
                   <p>{durationS} minute.</p>
                 </div>
               </label>
-            </section>
           </form>
         </Modal.Body>
         <Modal.Footer>

@@ -58,6 +58,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
           return setShow(false)
         }
       } catch (error) {
+        setSend(false)
         console.log(error)
       }
     }

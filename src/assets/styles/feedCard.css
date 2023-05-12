@@ -100,11 +100,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10%;
+  gap: 3%;
   position: absolute;
     bottom: 0;
-  width: 90%;
+  width: 94%;
   height: auto;
+  margin-bottom: 0.7rem !important
 }
 
 .container-text-activity p {
@@ -114,7 +115,7 @@
   color: var(--main);
   background-color: rgba(240, 248, 255, 0.247);
   border-radius: 20px;
-  padding: 0 0.5rem !important;
+  padding: 0 0.7rem !important;
 }
 
 .duration {
@@ -151,7 +152,8 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
-  width: 15%;
+
+  width: 13%;
 }
 
 .liked i {
@@ -165,8 +167,13 @@
 .liked span {
   font-size: 1.3rem;
   align-self: end;
-  opacity: 70%;
+  opacity: 100%;
+  /* color: var(--main); */
+  background-color: rgba(240, 248, 255, 0.247);
+  border-radius: 10px;
   width: 50%;
+  margin-bottom: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 .liked i:hover {
