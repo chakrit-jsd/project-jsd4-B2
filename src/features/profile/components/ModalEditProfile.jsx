@@ -32,10 +32,10 @@ const ModalEditProfile = ({ show, setShow, handleClose, showLeave, setShowLeave,
         You have unsaved content, and will be lost unless you save it.
       </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleShowResume} >
+          <button className='btn-resume' onClick={handleShowResume} >
             Resume
           </button>
-          <button onClick={handleCloseLeave} >
+          <button className='btn-leave' onClick={handleCloseLeave} >
             Leave
           </button>
         </Modal.Footer>

@@ -140,15 +140,18 @@
   background-color: var(--main) ;
   border-radius: 10px;
   box-shadow: 0 2px 0px 0px rgb(168, 168, 168);
-  border: none;
+  border: 2px solid var(--main);
   color: white;
-  padding: 10px 0px;
-  font-size: 1.1rem;
+  padding: 6px 0px;
+  font-size: 1.2rem;
   letter-spacing: 1px;
   width: 140px;
   /* font-display: auto; */
 }
 
+.container-btn-form-edit-profile button:hover {
+  box-shadow: 1px 2px 1px black;
+}
 
 @media (width <= 700px) {
   .modal-edit-profile .modal-dialog {

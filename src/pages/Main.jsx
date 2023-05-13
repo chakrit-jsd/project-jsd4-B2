@@ -39,7 +39,7 @@ const Main = () => {
     getPage()
   }, [])
   return (
-    <LayoutMainFeed getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
+    <LayoutMainFeed title='Me Feed' getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
 
     </LayoutMainFeed>
   )

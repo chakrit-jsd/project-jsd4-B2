@@ -2,12 +2,7 @@ import { Link } from 'react-router-dom'
 import '../../../assets/styles/switchFeed.css'
 
 
-const SwitchFeed = ({ switcher, setSwitcher}) => {
-
-  const handleSwitch = () => {
-  }
-
-
+const SwitchFeed = ({ setSwitcher }) => {
 
   return (
     <div className="container-switch-feed">

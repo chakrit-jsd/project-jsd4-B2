@@ -23,13 +23,13 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     resolver: yupResolver(schema),
-    defaultValues: {activity: 'yoga'}
+    defaultValues: {activity: 'Yoga'}
   })
 
   const resetData = () => {
     setClassDrop('classDropDefult')
     setDuration(30)
-    reset({ title: '', description: '', activity: 'yoga', duration: 30 })
+    reset({ title: '', description: '', activity: 'Yoga', duration: 30 })
     setShow(false)
     setShowLeave(false)
     setImgPreview('')
@@ -259,10 +259,14 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
               <Input label='Date Activity' field='dateactivity' register={register} errors={errors} placeholder='date' type='date' />
             </section>
               <label className='container-range-out'>
-                <p>Duration</p>
-                <div className='container-range'>
-                  <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}/>
-                  <p>{duration} minute.</p>
+                <div className='parent-rage-out'>
+                  <p>Duration</p>
+                  <div className='container-range'>
+                    <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}
+                      style={{background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`}}
+                    />
+                    <p>{duration} minute.</p>
+                  </div>
                 </div>
               </label>
           </form>
@@ -285,10 +289,10 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
           You have unsaved content, and will be lost unless you save it.
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleShowResume} >
+          <button className='btn-resume' onClick={handleShowResume} >
             Resume
           </button>
-          <button onClick={handleCloseLeave} >
+          <button className='btn-leave' onClick={handleCloseLeave} >
             Leave
           </button>
         </Modal.Footer>

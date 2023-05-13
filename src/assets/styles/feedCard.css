@@ -8,11 +8,9 @@
 
 .container-none-card-feed {
   height: 190vh;
-
 }
 
 .container-head-card {
-
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-color: var(--main);
@@ -46,6 +44,7 @@
   width: 2.5rem;
   border-radius: 50%;
 }
+
 .head-card-top button {
   /* width: 50%; */
   text-decoration: none;
@@ -57,9 +56,9 @@
   background: none;
 }
 
-.head-card-top button:hover img {
+/* .head-card-top button:hover img {
   border: 1px solid black;
-}
+} */
 
 .head-card-top button span {
   color: black;
@@ -83,6 +82,7 @@
   max-width: 600px;
   max-height: 600px;
 }
+
 .container-image-card img {
   width: calc(100%);
   /* height: 100%; */
@@ -113,7 +113,7 @@
   font-weight: 700;
   align-self: end;
   color: var(--main);
-  background-color: rgba(240, 248, 255, 0.247);
+  background-color: rgb(240, 248, 255);
   border-radius: 20px;
   padding: 0 0.7rem !important;
 }
@@ -144,6 +144,7 @@
   justify-content: space-between;
   align-items: end;
 }
+
 .container-title-card figcaption {
   font-size: 1.2rem;
 }
@@ -165,18 +166,21 @@
 }
 
 .liked span {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   align-self: end;
+  text-align: center;
   opacity: 100%;
-  /* color: var(--main); */
-  background-color: rgba(240, 248, 255, 0.247);
+  color: var(--main);
+  background-color: rgb(240, 248, 255);
   border-radius: 10px;
-  width: 50%;
+  /* width: ; */
+  padding: 0 0.2rem;
   margin-bottom: 0.5rem;
-  margin-left: 0.2rem;
+  margin-left: 0.5rem;
 }
 
 .liked i:hover {
   font-size: 2.5rem;
   cursor: pointer;
+  z-index: 100;
 }

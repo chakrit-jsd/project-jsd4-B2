@@ -80,9 +80,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
     }
   }
 
-  const linkToFollowProfile = (userID) => {
-
-  }
+  const [ classFollow, setClassFollow ] = useState('left')
 
   return (
     <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
@@ -99,40 +97,46 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
             </ModalEditProfile>
           </> : null}
         </div>
-        { thisme ?
-        (
-          <div>
-            {isFollowing ?
-            <span className='following-show'>Following</span> : null}
-            {!isFollowing ?
-            (<button onClick={postFollow} className={!isFollowing ? 'button-follow': 'button-unfollow'} >
-              Follow
-            </button>) : null}
-            {isFollowing ?
-            <div className="container-dropdown-menu-unfollow">
-              <button className="btn-dropdown-follow" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
-                ...
-              </button>
-              <ul className="dropdown-menu">
-                <li><button onClick={postFollow} className="dropdown-item">UnFollow</button></li>
-              </ul>
-            </div> : null}
+        <div className='container-info'>
+          <h4>{profilename || `${firstname}  ${lastname}`}</h4>
+          {/* <hr/> */}
+          { thisme ?
+          (
+            <div className='container-btn-follow'>
+              {isFollowing ?
+                <div className="following-show">
+                  <button className="btn-dropdown-follow" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
+                    Following
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-end">
+                    <li><button onClick={postFollow} className="dropdown-item">Unfollowing</button></li>
+                  </ul>
+                </div> : null}
+              {!isFollowing ?
+              (<button onClick={postFollow} className={!isFollowing ? 'button-follow': 'button-unfollow'} >
+                Follow
+              </button>) : null}
+            </div>
+          ): null}
+          <div className='container-sub-info'>
+            <p className='info-p'>About Me.</p>
+            <p className='about-text'>{aboutme || 'This me ..........'}</p>
+            {/* <p>{gender}</p> */}
+            <div className='container-sub-info-sec'>
+              <p className='info-p'>Interest :<span> {interest || 'KangFU'}</span></p>
+              {/* <p>{weight}</p>
+              <p>{height}</p> */}
+              <p className='info-p'>City :<span>  {city}</span></p>
+            </div>
           </div>
-        ): null}
-        <div>
-          <p>{profilename || `${firstname}  ${lastname}`}</p>
-          <p>{aboutme || 'About Me'}</p>
-          <p>{gender}</p>
-          <p>{interest}</p>
-          <p>{weight}</p>
-          <p>{height}</p>
-          <p></p>
-          <p>{city}</p>
         </div>
       </section>
-      <section>
-        <div>
-          <button>following</button>
+      <section className='container-follow'>
+        <div className='container-btn-follow'>
+          <button onClick={() => setClassFollow('left')} className={`list-follow follow-btn-left ${classFollow !== 'left' ? 'inactive' : ''}`}>following</button>
+          <button onClick={() => setClassFollow('right')} className={`list-follow follow-btn-right ${classFollow !== 'right' ? 'inactive' : ''}`}>followers</button>
+        </div>
+        <div className={`following ${classFollow !== 'left' && 'follow-none'}`}>
           <ul>
             {following?.length !== 0 && following?.map((userFollowing) => (
               <li key={userFollowing.target._id}>
@@ -144,8 +148,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
             ))}
           </ul>
         </div>
-        <div>
-          <button>follower</button>
+        <div className={`followers ${classFollow !== 'right' && 'follow-none'}`}>
           <ul>
           {follower?.length !== 0 && follower?.map((userFollower) => (
               <li key={userFollower.author._id}>

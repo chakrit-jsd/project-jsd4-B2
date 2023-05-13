@@ -50,7 +50,7 @@ const schema = yup.object().shape({
 
   interest: yup
     .string()
-    .oneOf(['hiit', 'pilates', 'strength', 'weight', 'yoga'], 'Please select a valid Activity')
+    .oneOf(['Hiit', 'Pilates', 'Strength', 'Weight', 'Yoga'], 'Please select a valid Activity')
     .required('Please Select Activity')
     .trim(),
 

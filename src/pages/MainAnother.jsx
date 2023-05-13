@@ -47,7 +47,7 @@ const MainAnother = () => {
     getPage()
   }, [userId])
   return (
-    <LayoutMainFeed getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
+    <LayoutMainFeed title='Another Feed' getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
 
     </LayoutMainFeed>
   )
