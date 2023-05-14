@@ -340,6 +340,7 @@ input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   height: 6px;
+  border: 1px solid rgba(128, 128, 128, 0.404);
 }
 
 ::-webkit-slider-thumb {
@@ -350,11 +351,12 @@ input[type="range"] {
   height: 20px;
   border-radius: 50%;
   cursor: pointer;
-
+  /* border: none; */
 }
 
 ::-webkit-slider-track {
   background: var(--main);
+  /* border: none; */
 }
 
 .btn-resume {

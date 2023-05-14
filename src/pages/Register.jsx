@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../utils/validators/validateRegister"
+import DocumentTitle from 'react-document-title'
 import { Input, Radio, CityList } from "../components/shared/Input"
 import { postRegister, getRegister } from "../services/API/authAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
-
+import '../assets/styles/register.css'
 
 const Register = () => {
   const [ resMessage, setResMessage] = useState('')
@@ -48,22 +49,32 @@ const Register = () => {
   }, [])
 
   return (
-    <div>
-      <h1>Welcome to NestFit</h1>
-      <form className="container-form-register">
-        <p>{resMessage}</p>
-        <Input label='Email' field='email' register={register} errors={errors} placeholder='email' type='text' />
-        <Input label='Password' field='password' register={register} errors={errors} placeholder='password' type='password' />
-        <Input label='Confirm password' field='passwordConfirm' register={register} errors={errors} placeholder='confirm password' type='password' />
-        <Input label='First Name' field='firstname' register={register}  errors={errors} placeholder='firstname' type='text' />
-        <Input label='Last Name' field='lastname' register={register} errors={errors} placeholder='lastname' type='text' />
-        <Input label='Birth Date' field='birthdate' register={register} errors={errors} placeholder='birthdate' type='date' />
-        <Radio register={register} errors={errors} />
-        <CityList register={register} errors={errors} />
-        <button onClick={onCancel} type="button">Cancel</button>
-        <button onClick={handleSubmit(onSubmit)} type="submit">Sign up</button>
-      </form>
-    </div>
+    <>
+      <DocumentTitle title='Register | Nest-Fit by JSD#4 B2'/>
+      <header className="nav-register">
+        <img src="" alt="Logo-Nest-Fit" />
+        <Link to='/'>Log in</Link>
+      </header>
+      <main className="container-register">
+        <h1>Welcome to, <span className="nest">Nest</span><span className="fit">Fit</span></h1>
+        <form className="container-form-register">
+          <p>{resMessage}</p>
+          <Input label='Email' field='email' register={register} errors={errors} placeholder='email' type='text' />
+          <Input label='Password' field='password' register={register} errors={errors} placeholder='password' type='password' />
+          <Input label='Confirm password' field='passwordConfirm' register={register} errors={errors} placeholder='confirm password' type='password' />
+          <Input label='First Name' field='firstname' register={register}  errors={errors} placeholder='firstname' type='text' />
+          <Input label='Last Name' field='lastname' register={register} errors={errors} placeholder='lastname' type='text' />
+          <Input label='Birth Date' field='birthdate' register={register} errors={errors} placeholder='birthdate' type='date' />
+          <Radio register={register} errors={errors} />
+          <CityList register={register} errors={errors} />
+          <div className="container-btn-register">
+            <button className="cancel-register" onClick={onCancel} type="button">Cancel</button>
+            <button className="submit-register" onClick={handleSubmit(onSubmit)} type="submit">Sign up</button>
+          </div>
+        </form>
+      </main>
+
+    </>
   )
 }
 

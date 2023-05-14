@@ -263,7 +263,10 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
                   <p>Duration</p>
                   <div className='container-range'>
                     <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}
-                      style={{background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`}}
+                      style={{
+                        background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`,
+                        // backgroundImage: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, black ${duration/1.80}%, black 100%)`,
+                      }}
                     />
                     <p>{duration} minute.</p>
                   </div>
