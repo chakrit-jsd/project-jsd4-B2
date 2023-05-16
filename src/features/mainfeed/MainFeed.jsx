@@ -86,6 +86,7 @@ const MainFeed = ({ user }) => {
 
   useEffect(() => {
     const getFeeds = async () => {
+      window.scrollTo(0, 0)
       if (location.pathname === '/me/home') {
         setNextGet(true)
         await getHome()

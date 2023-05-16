@@ -22,6 +22,7 @@ const Main = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     if (user) return
     const getPage = async () => {
       try {

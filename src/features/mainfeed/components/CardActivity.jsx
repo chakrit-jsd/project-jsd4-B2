@@ -41,7 +41,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
     if (location.pathname === `/another/${author._id}`) return
     if (author._id !== user._id) {
       navigate(`/another/${author._id}`)
-      window.scrollTo(0, 0)
+
       return
     }
   }

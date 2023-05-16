@@ -3,10 +3,10 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import { yupResolver } from '@hookform/resolvers/yup'
 import schema from "../utils/validators/validateRegister"
-import DocumentTitle from 'react-document-title'
 import { Input, Radio, CityList } from "../components/shared/Input"
 import { postRegister, getRegister } from "../services/API/authAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
+import HelmetTitle from "../components/shared/Helmet"
 import '../assets/styles/register.css'
 
 const Register = () => {
@@ -49,11 +49,13 @@ const Register = () => {
   }, [])
 
   return (
-    <>
-      <DocumentTitle title='Register | Nest-Fit by JSD#4 B2'/>
+    <div className="container-main-register">
+      <HelmetTitle title='Register | Nest-Fit by JSD#4 B2'/>
       <header className="nav-register">
-        <img src="" alt="Logo-Nest-Fit" />
-        <Link to='/'>Log in</Link>
+        <div>
+          <Link to='/'><img src="src\assets\img\Nest-fit-logo.png" alt="Logo-Nest-Fit" style={{ width: 100}}/></Link>
+        </div>
+        <Link to='/' className="nav-link-login">Log in</Link>
       </header>
       <main className="container-register">
         <h1>Welcome to, <span className="nest">Nest</span><span className="fit">Fit</span></h1>
@@ -74,7 +76,7 @@ const Register = () => {
         </form>
       </main>
 
-    </>
+    </div>
   )
 }
 

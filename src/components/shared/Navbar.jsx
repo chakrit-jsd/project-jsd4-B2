@@ -44,17 +44,15 @@ const Navbar = ({ user }) => {
   return (
     <>
       <nav className="navbar bg-body-tertiary outter-nav">
-        <div className="container">
-          <NavLink className="navbar-brand" to="/me">
+        <div className="container-main-nav">
+          <Link className="navbar-brand" to="/me">
             <img
-              src="https://placehold.co/600x400/orange/white"
+              src="\src\assets\img\Nest-fit-logo.png"
               alt="NestFit"
-              width={30}
-              height={24}
             />
-          </NavLink>
+          </Link>
 
-          <form className="d-flex" role="search">
+          <form className="d-flex nav-form-input" role="search">
             <div className="search-">
               <input
                 className="search-nav"
@@ -65,30 +63,27 @@ const Navbar = ({ user }) => {
                 onChange={({ target }) => setTextSearch(target.value)}
               />
               <div className={`collapse ${resultSearch && textSearch ? 'show' : '' }`} id="collapseExample">
-                <div className="card card-body">
+                <div className="card card-body search-result">
                   <ul>
                     {Array.isArray(resultSearch) ? resultSearch?.map((user) => (
                       <li key={user._id}>
                         <Link to={`/another/${user._id}`}>
-                          <img src={user.smallImgUrl} alt="profile-small" />
+                          <img src={user.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-small" />
                           <span>{user.profilename || `${user.firstname}  ${user.lastname}`}</span>
                         </Link>
                       </li>
                     )) : <li>{resultSearch}</li>}
+                    <li className="cancel-ul" onClick={() => setTextSearch('')}><i className="bi bi-x-circle-fill"></i></li>
                   </ul>
                 </div>
               </div>
             </div>
             <button className="image-search-button" onClick={searchUsers}>
-              <img
-                src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-search-strong-256.png"
-                alt=""
-                width={30}
-              />
+              <i className="bi bi-search"></i>
             </button>
           </form>
 
-          <div className="dropdown container-dropdown">
+          <div className="dropdown container-dropdown nav-profile-menu">
             <button
               className="image-button"
               data-bs-toggle="dropdown"

@@ -4,14 +4,14 @@ import Profile from "../profile/Profile"
 import { Footer } from "../../components/shared/Footer"
 import Navbar from "../../components/shared/Navbar"
 import MainFeedAnother from "../mainfeed/MainFeedAnother"
-import DocumentTitle from 'react-document-title'
+import HelmetTitle from "../../components/shared/Helmet"
 
 const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUrl ,setImgUrl }) => {
   // console.log(user)
   const { pathname } = location
   return (
     <>
-      <DocumentTitle title={title + ' | Nest-Fit by JSD#4 B2'} />
+      <HelmetTitle title={title + ' | Nest-Fit by JSD#4 B2'} />
       <div className="container-fulid">
         <nav className="container-navbar row">
           <Navbar user={user} />

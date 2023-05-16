@@ -58,6 +58,7 @@ const MainFeedAnother = ({ user }) => {
 
   useEffect(() => {
     const getFeeds = async () => {
+      window.scrollTo(0, 0)
       if(switcher === 'home') {
         try {
           if (!user) return

@@ -15,7 +15,7 @@ body, #root, .container-fulid, html {
 
 body {
 
-  height: calc(200vh - 60px);
+  /* height: calc(200vh - 60px); */
   /* width: 100vw; */
   /* overflow-y: hidden; */
   overflow-y: overlay !important;

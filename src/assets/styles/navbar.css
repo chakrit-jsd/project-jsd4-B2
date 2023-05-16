@@ -1,8 +1,29 @@
 .outter-nav {
   border-bottom: 1px solid black;
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  height: 60px;
+  border: none;
+  background: none;
 }
-
+.navbar-brand img {
+  width: 100px;
+  transform: translate(0, 10%);
+}
+.container-main-nav {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0, auto;
+}
+.nav-form-input {
+  transform: translate(-7%);
+  justify-content: center;
+}
 .search-nav {
   box-sizing: border-box;
 
@@ -16,6 +37,11 @@
   border-radius: 27.5px;
 }
 
+.nav-form-input .collapse {
+  position: absolute;
+  width: 80%;
+  transform: translate(7%, 2%);
+}
 .image-button {
     border: none;
 }
@@ -26,19 +52,80 @@
   height: 40px;
   width: 40px;
   border-radius: 100%;
-  background-color: rgb(184, 184, 184);
+  background-color: rgb(216, 216, 216);
   box-shadow: 1px 3px 3px 0 rgba(0,0,0,0.19);
 }
-
+.image-search-button i {
+  font-size: 1.4rem;
+  text-align: center;
+}
+.search-result {
+  padding: 0px, 20px;
+  padding-bottom: 0px;
+}
+.search-result a {
+  text-decoration: none;
+  color: black;
+}
+.search-result ul {
+  height: 100%;
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  gap: 10px;
+  margin: 0;
+}
+.search-result img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.cancel-ul {
+  align-self: flex-end;
+  transform: translate(40%, -20%);
+  cursor: pointer;
+}
+/* .cancel-ul:hover {
+  font-size: 2rem;
+} */
 .drop-list {
-  position: absolute;
   margin-right: 0px;
-  right: 0;
-  top: 0;
   z-index: 0;
+  right: 0;
   background-color: white;
+  transform: translate(-80%, 5%);
 }
 
 .container-dropdown {
   position: relative;
+}
+
+.nav-profile-menu img {
+  border-radius: 50%;
+}
+
+.nav-profile-menu ul {
+  width: 120px;
+}
+
+.nav-profile-menu ul a {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.nav-profile-menu ul a:hover {
+  background-color: black;
+  color: white;
+}
+
+.nav-profile-menu ul button {
+  background-color: rgba(128, 128, 128, 0.521);
+}
+
+.nav-profile-menu ul button:hover {
+  background-color: black;
+  color: white;
 }

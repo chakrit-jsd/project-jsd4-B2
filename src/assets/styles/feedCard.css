@@ -117,7 +117,10 @@
   border-radius: 20px;
   padding: 0 0.7rem !important;
 }
-
+.dropdown-menu button:hover {
+  background-color: black;
+  color: white;
+}
 .duration {
   display: flex;
 }
