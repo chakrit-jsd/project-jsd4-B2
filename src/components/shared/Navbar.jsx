@@ -57,7 +57,7 @@ const Navbar = ({ user }) => {
               <input
                 className="search-nav"
                 type="search"
-                placeholder="Search"
+                placeholder="Find Friends"
                 aria-label="Search"
                 value={textSearch}
                 onChange={({ target }) => setTextSearch(target.value)}

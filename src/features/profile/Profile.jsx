@@ -63,6 +63,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
       }
     }
     sendData()
+
   }, [send])
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
