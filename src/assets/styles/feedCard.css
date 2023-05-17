@@ -2,8 +2,15 @@
 
 } */
 
-.container-head-card {
+/* .container-cards-feed {
+  height: 200vh;
+} */
 
+.container-none-card-feed {
+  height: 190vh;
+}
+
+.container-head-card {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   background-color: var(--main);
@@ -37,27 +44,30 @@
   width: 2.5rem;
   border-radius: 50%;
 }
-.head-card-top a {
+
+.head-card-top button {
   /* width: 50%; */
   text-decoration: none;
-  /* display: block; */
+  display: block;
   display: flex;
   justify-content: start;
   align-items: end;
+  border: none;
+  background: none;
 }
 
-.head-card-top img:hover {
+/* .head-card-top button:hover img {
   border: 1px solid black;
-}
+} */
 
-.head-card-top a span {
+.head-card-top button span {
   color: black;
   font-size: 1.4rem;
   padding: 0 0 0 0.6rem ;
 
 }
 
-.head-card-top a span:hover {
+.head-card-top button:hover span {
   text-decoration: underline;
 }
 
@@ -72,6 +82,7 @@
   max-width: 600px;
   max-height: 600px;
 }
+
 .container-image-card img {
   width: calc(100%);
   /* height: 100%; */
@@ -89,11 +100,12 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10%;
+  gap: 3%;
   position: absolute;
     bottom: 0;
-  width: 90%;
+  width: 94%;
   height: auto;
+  margin-bottom: 0.7rem !important
 }
 
 .container-text-activity p {
@@ -101,11 +113,14 @@
   font-weight: 700;
   align-self: end;
   color: var(--main);
-  background-color: rgba(240, 248, 255, 0.247);
+  background-color: rgb(240, 248, 255);
   border-radius: 20px;
-  padding: 0 0.5rem !important;
+  padding: 0 0.7rem !important;
 }
-
+.dropdown-menu button:hover {
+  background-color: black;
+  color: white;
+}
 .duration {
   display: flex;
 }
@@ -132,6 +147,7 @@
   justify-content: space-between;
   align-items: end;
 }
+
 .container-title-card figcaption {
   font-size: 1.2rem;
 }
@@ -140,7 +156,8 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
-  width: 15%;
+
+  width: 13%;
 }
 
 .liked i {
@@ -152,13 +169,21 @@
 }
 
 .liked span {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   align-self: end;
-  opacity: 70%;
-  width: 50%;
+  text-align: center;
+  opacity: 100%;
+  color: var(--main);
+  background-color: rgb(240, 248, 255);
+  border-radius: 10px;
+  /* width: ; */
+  padding: 0 0.2rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .liked i:hover {
   font-size: 2.5rem;
   cursor: pointer;
+  z-index: 100;
 }

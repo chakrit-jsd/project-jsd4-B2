@@ -15,7 +15,109 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  height: 55%;
+}
+
+.container-info {
+  width: 100%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-info h4 {
+  margin-top: 20px;
+  width: 94%;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.container-btn-follow {
+  margin-bottom: 10px;
+}
+.btn-dropdown-follow {
+  border: 2px solid var(--main);
+  padding: 2px 12px;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.15rem;
+  background: none;
+}
+.dropdown-menu {
+  margin-top: 6px !important;
+  padding: 0;
+}
+
+.dropdown-item:active {
+  background-color: black;
+}
+.container-sub-info {
+  padding-left: 10px;
+  width: 97%;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+}
+.button-follow {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.15rem;
+  border: none;
+  padding: 3px 20px;
+  border-radius: 5px;
+  background-color: var(--main);
+  box-shadow: 1px 1px 1px rgb(165, 165, 165);
+}
+.button-follow:hover {
+  box-shadow: 2px 2px 1px rgb(0, 0, 0);
+}
+
+.container-sub-info p {
+  width: 100%;
+
+}
+.about-text {
+  max-height: 75px;
+  height: auto;
+  word-break: break-all;
+  white-space: normal;
+  overflow-y: hidden;
+  margin-bottom: 10px !important;
+}
+.info-p {
+  width: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.info-p span {
+  max-width: inherit;
+  width: inherit;
+  font-size: 1.1rem;
+}
+.about-text::-webkit-scrollbar {
+  width: 5px;
+}
+.about-text:hover {
+  overflow-y: overlay;
+}
+.container-sub-info-sec {
+  display: flex;
+  /* max-height: 4px; */
+  width: 100%;
+  flex-direction: column;
+  align-items: end;
+  border-top: 1px solid var(--main);
 }
 
 .profile-img-btn {
@@ -32,7 +134,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  box-shadow: 0px 2px 1px 2px rgb(255, 255, 255);
+  box-shadow: 0px 2px 1px 2px var(--main);
 }
 
 .edit-profile-icon {
@@ -48,3 +150,113 @@
 .modal {
   padding: 0 !important;
 }
+
+.container-follow {
+  position: relative;
+  display: flex;
+  /* max-height: 600px; */
+  height: 100%;
+  max-height: 375px;
+  margin: 0 0.5rem;
+  padding-top: 5%;
+
+}
+
+.container-btn-follow .list-follow {
+  position: absolute;
+  /* display: flex; */
+  width: 100%;
+  border: none;
+  background: none;
+  height: 8%;
+  background-color: white;
+  font-weight: 600;
+
+}
+.follow-btn-left {
+  z-index: 1;
+  text-align: start;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding-left: 13%;
+}
+.follow-btn-right {
+  z-index: 1;
+  text-align: end;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-right: 13%;
+  box-shadow: 2px 0px 0px 0px rgba(128, 128, 128, 0.096);
+}
+
+.follow-btn-left.inactive {
+  z-index: 2;
+  max-width: 50%;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 0;
+  background-color: rgb(245, 245, 245);
+  box-shadow: inset -2px -1px 6px 0px rgba(128, 128, 128, 0.226);
+}
+
+.follow-btn-right.inactive {
+  right: 0;
+  z-index: 2;
+  max-width: 50%;
+  background-color: rgb(245, 245, 245);
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 15px;
+  box-shadow: inset 2px -1px 6px 0px rgba(128, 128, 128, 0.226);
+  /* padding-right: 10%; */
+}
+
+.container-follow ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  /* height: 100%; */
+  margin-top: 15px;
+}
+
+.container-follow li {
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 0.5rem;
+}
+
+.container-follow li a {
+  text-decoration: none;
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+}
+
+.container-follow li span {
+  color: black;
+  list-style: none;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.container-follow img {
+  border-radius: 50%;
+  width: 30px;
+}
+
+.following, .followers {
+  position: absolute;
+  margin-top: 1.8rem;
+  padding: 10px 10px;
+  width: 100%;
+  height: 92%;
+  background-color: white;
+  box-shadow: 1px 2px 3px rgba(128, 128, 128, 0.226);
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.follow-none {
+  display: none;
+}
+

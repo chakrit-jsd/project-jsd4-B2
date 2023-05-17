@@ -14,13 +14,32 @@ body, #root, .container-fulid, html {
 }
 
 body {
-  height: calc(200vh - 60px);
+
+  /* height: calc(200vh - 60px); */
   /* width: 100vw; */
-  /* overflow-x: hidden; */
-  overflow-y: scroll !important;
+  /* overflow-y: hidden; */
+  overflow-y: overlay !important;
   /* min-width: fit-content; */
   background-color: #1c1e21;
+  /* scrollbar-width: thin !important; */
 }
+
+::-webkit-scrollbar {
+  /* position: absolute !important; */
+  width: 10px;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--main);
+  border-radius: 10px;
+  border: none;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--main-hover);
+}
+
 
 .modal-open {
   padding: 0px !important;
@@ -57,6 +76,7 @@ body {
   position: fixed;
   left: 0;
   height: 100%;
+  max-height: calc(100vh - 110px);
   padding: 0px !important;
   /* background-color: red; */
 }
@@ -66,6 +86,7 @@ body {
   padding-left: 0px !important;
   padding-right: 0px !important;
   max-width: 600px !important;
+  min-height: 200vh !important;
 }
 
 .container-dashboard {

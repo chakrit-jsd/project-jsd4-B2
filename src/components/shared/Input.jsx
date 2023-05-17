@@ -6,8 +6,10 @@ export const Input = ({ label, field, register, errors, placeholder, type, id, c
   return (
     <>
       <label className='container-input-text-component'>
-        <p className='label'>{label}</p>
-        <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
+        <div className='container-header-input'>
+          <p className='label'>{label}</p>
+          <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
+        </div>
         <div>
           <input {...register(field)} placeholder={placeholder} type={type} className={className} autoComplete={autocomplete} />
           {children}
@@ -27,11 +29,11 @@ export const Select = ({label, register, field, errors, id, className }) => {
       <p>{label}</p>
       <p className='error-input' ><ErrorMessage errors={errors} name={field} /></p>
       <select {...register(field)}>
-        <option value="yoga">Yoga</option>
-        <option value="hiit">HITT</option>
-        <option value="pilates">Pilates</option>
-        <option value="weight">Weight Training</option>
-        <option value="strength">Strngth Training</option>
+        <option value="Yoga">Yoga</option>
+        <option value="Hiit">HITT</option>
+        <option value="Pilates">Pilates</option>
+        <option value="Weight">Weight Training</option>
+        <option value="Strength">Strngth Training</option>
       </select>
     </label>
   )
@@ -40,16 +42,24 @@ export const Select = ({label, register, field, errors, id, className }) => {
 export const Radio = ({register, errors}) => {
 
   return (
-    <label htmlFor='none'>
+    <div className='container-radio-gender'>
       <p className='radio-title'>Gender</p>
       <p className='error-input' ><ErrorMessage errors={errors} name='gender' /></p>
-      <input id="male" type="radio" {...register('gender')} value='male' />
-      <label htmlFor="male">Male</label>
-      <input id="female" type="radio" {...register('gender')} value='female' />
-      <label htmlFor="female">Female</label>
-      <input id="other" type="radio" {...register('gender')} value='other' />
-      <label htmlFor="other" >Other</label>
-    </label>
+      <section className='radio-gender'>
+        <div>
+          <input id="male" type="radio" {...register('gender')} value='male' />
+          <label htmlFor="male">Male</label>
+        </div>
+        <div>
+          <input id="female" type="radio" {...register('gender')} value='female' />
+          <label htmlFor="female">Female</label>
+        </div>
+        <div>
+          <input id="other" type="radio" {...register('gender')} value='other' />
+          <label htmlFor="other" >Other</label>
+        </div>
+      </section>
+    </div>
   )
 }
 
