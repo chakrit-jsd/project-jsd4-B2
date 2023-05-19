@@ -21,11 +21,11 @@ const LandingPage = () => {
       //   setTimeout(() => {
       //   }, 1000)
       // }
-        navigate('/me')
+      navigate('/me')
     } catch (error) {
       const res = httpErrorCode(error)
       setResMessage(res.message || error)
-      console.log(error)
+      // console.log(error)
     }
 
   }
