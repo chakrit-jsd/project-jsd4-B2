@@ -47,7 +47,7 @@ const Navbar = ({ user }) => {
         <div className="container-main-nav">
           <Link className="navbar-brand" to="/me">
             <img
-              src="\src\assets\img\Nest-fit-logo.png"
+              src="static/img/Nest-fit-logo.png"
               alt="NestFit"
             />
           </Link>

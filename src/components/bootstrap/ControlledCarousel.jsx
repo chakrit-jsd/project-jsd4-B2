@@ -13,7 +13,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="src\assets\img\Yoga-card.jpg"
+          src="static/img/Yoga-card.jpg"
           alt="yoga slide"
         />
         <Carousel.Caption>
@@ -24,7 +24,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="src\assets\img\HIIT-card.jpg"
+          src="static/img/HIIT-card.jpg"
           alt="hitt slide"
         />
 
@@ -36,7 +36,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="src\assets\img\Weight training-card.jpg"
+          src="static/img/Weight training-card.jpg"
           alt="weight slide"
         />
 
@@ -50,7 +50,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="src\assets\img\Strangth training-card.jpg"
+          src="static/img/Strangth training-card.jpg"
           alt="strength slide"
         />
 
@@ -64,7 +64,7 @@ function ControlledCarousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="src\assets\img\Pilates-card.jpg"
+          src="static/img/Pilates-card.jpg"
           alt="pilates slide"
         />
 

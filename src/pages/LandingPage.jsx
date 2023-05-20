@@ -60,7 +60,7 @@ const LandingPage = () => {
       <main className="container-main-content-landing">
         <div className="container-content-1">
           <div className="content-1-1">
-            <img src="src\assets\img\Woman-page-1.png" alt="" />
+            <img src="static/img/Woman-page-1.png" alt="" />
           </div>
           <div className="content-1-2">
             <h1>What's <span>Nest</span>Fit</h1>
@@ -68,7 +68,7 @@ const LandingPage = () => {
             <Link to='/register'>Join Our Squad!</Link>
           </div>
           <div className="content-1-3">
-            <img src="src\assets\img\component on page 1-1.png" alt="" />
+            <img src="static/img/component on page 1-1.png" alt="" />
           </div>
         </div>
         <div className="container-content-2">
@@ -85,7 +85,7 @@ const LandingPage = () => {
             <h1>The Ultimate Fitness App</h1>
             <p>"Unlock your full fitness potential with our app's cutting-edge features” </p>
           </div>
-          <img src="src\assets\img\headphones-smartphone-dumbbells.jpg" alt="" />
+          <img src="static/img/headphones-smartphone-dumbbells.jpg" alt="" />
         </div>
         <div className="container-content-4">
           <div className="container-left-content-4">
@@ -94,10 +94,10 @@ const LandingPage = () => {
             <p>Analyze your workout data with easy-to-read graphs and charts</p>
             <p>Stay motivated with visual representations of your progress</p>
           </div>
-          <img src="src\assets\img\img-content-4.png" alt="img-content-4" />
+          <img src="static/img/img-content-4.png" alt="img-content-4" />
         </div>
         <div className="container-content-5">
-          <img src="src\assets\img\img-content-5.jpg" alt="img-content-5" />
+          <img src="static/img/img-content-5.jpg" alt="img-content-5" />
           <div className="container-right-content-5">
             <h2><span>Connect</span> with Others</h2>
             <p>TAccess to a community of like-minded fitness enthusiasts</p>
@@ -112,10 +112,10 @@ const LandingPage = () => {
             <p>Integration with devices to track your progress and keep you active</p>
             <p>Stick to your fitness journey and continue to improve your health and well-bein</p>
           </div>
-          <img src="src\assets\img\img-content-6.jpg" alt="img-content-6" />
+          <img src="static/img/img-content-6.jpg" alt="img-content-6" />
         </div>
         <div className="container-content-7">
-          <img src="src\assets\img\orange juice.jpg" alt="" />
+          <img src="static/img/orange juice.jpg" alt="" />
           <div id='login' className="container-login">
             <form>
               <p className='error-login'>{resMessage}</p>
