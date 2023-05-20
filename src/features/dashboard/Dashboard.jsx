@@ -1,9 +1,33 @@
+import { useState } from "react";
 import "../../assets/styles/dashboard.css";
+import PieChart from "../../../chart";
+// import { ' activityData' }
 
 const Dashboard = () => {
+  const data = {
+    labels: ['Red', 'Blue', 'Yellow', 'Black'],
+    datasets: [
+      {
+        label: 'My First Dataset',
+        data: [300, 50, 100, 0],
+        backgroundColor: [
+          'rgb(255, 99, 132)',
+          'rgb(54, 162, 235)',
+          'rgb(255, 205, 86)',
+          'rgb(0, 0, 0)',
+        ],
+        hoverOffset: 10,
+      },
+    ],
+  };
+
+
+
   return (
     <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
-      <div>Circle Graph</div>
+      <div style = {{width: 200}}>
+        <PieChart chartData={chart}/>
+      </div>
 
       <main className="activity-detail-box">
         <div className="activity-detail" id="act-1-detail">
