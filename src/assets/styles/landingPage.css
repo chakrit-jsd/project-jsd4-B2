@@ -367,6 +367,7 @@ html, body {
 .content-7-input {
   display: flex;
   flex-direction: column;
+  width: 226px;
 }
 
 .content-7-input input {
@@ -404,4 +405,6 @@ html, body {
 .error-login {
   color: red;
   /* align-self: self-start; */
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
 }

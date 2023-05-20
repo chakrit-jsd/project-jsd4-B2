@@ -49,7 +49,7 @@ const LandingPage = () => {
     <div className="container-main-landing">
       <nav className="nav-landing">
         <div onClick={() => window.scrollTo(0, 0)} className="nav-logo">
-          <img src="src/assets/img/Nest-fit-logo.png" alt="logo-nest-fit" style={{ width: 100}}/>
+          <img src="public/img/Nest-fit-logo.png" alt="logo-nest-fit" style={{ width: 100}}/>
         </div>
         <div className="nav-link">
           <a href='#login' className="nav-link-login">Login</a>
