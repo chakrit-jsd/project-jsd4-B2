@@ -4,6 +4,7 @@ import PieChart from "../../../chart";
 // import { ' activityData' }
 
 const Dashboard = () => {
+
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Black'],
     datasets: [
