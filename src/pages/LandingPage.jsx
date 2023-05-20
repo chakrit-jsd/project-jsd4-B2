@@ -100,7 +100,7 @@ const LandingPage = () => {
           <img src="static/img/img-content-5.jpg" alt="img-content-5" />
           <div className="container-right-content-5">
             <h2><span>Connect</span> with Others</h2>
-            <p>TAccess to a community of like-minded fitness enthusiasts</p>
+            <p>Access to a community of like-minded fitness enthusiasts</p>
             <p>Get support and encouragement from your connections to stay on track</p>
             <p>Discover new workout routines, tips, and ideas from other users to spice up your fitness routine.</p>
           </div>

@@ -8,7 +8,7 @@ body {
 
 .container-main-register {
   height: 100% !important;
-  background-image: url(/src/assets/img/picture-register.jpg.jpg) !important;
+  background-image: url(static/img/picture-register.jpg.jpg) !important;
   background-position: center !important;
   background-size: 100% !important;
   /* background-repeat: no-repeat; */
