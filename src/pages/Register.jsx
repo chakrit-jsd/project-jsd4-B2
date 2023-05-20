@@ -53,7 +53,7 @@ const Register = () => {
       <HelmetTitle title='Register | Nest-Fit by JSD#4 B2'/>
       <header className="nav-register">
         <div>
-          <Link to='/'><img src="src\assets\img\Nest-fit-logo.png" alt="Logo-Nest-Fit" style={{ width: 100}}/></Link>
+          <Link to='/'><img src="static/img/Nest-fit-logo.png" alt="Logo-Nest-Fit" style={{ width: 100}}/></Link>
         </div>
         <Link to='/' className="nav-link-login">Log in</Link>
       </header>
