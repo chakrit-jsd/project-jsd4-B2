@@ -120,7 +120,7 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
     }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
     // console.log(dataForm)
     const data = {
@@ -159,10 +159,9 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL('jpeg'));
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
-
   const [cropper, setCropper] = useState(null);
   return (
     <div className="container-create-activity">

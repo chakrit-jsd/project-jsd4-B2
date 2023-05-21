@@ -67,7 +67,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
   }, [send])
   const getCropData = () => {
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
 

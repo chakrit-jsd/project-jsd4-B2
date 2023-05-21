@@ -138,7 +138,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
     // }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile && imgPreview) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
     const data = {
       cardId: _id,
@@ -179,7 +179,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
 
