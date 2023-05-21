@@ -56,17 +56,22 @@ const schema = yup.object().shape({
 
   weight: yup
     .number()
-    .typeError('Please input weight')
+    .optional()
+    // .typeError('Please input weight')
     // .min(10, 'Invalid Weight')
+    .nullable()
     .max(200, 'Invalid Weight')
-    .positive('Invalid Weight'),
+    .positive('Invalid Weight')
+    .transform((_, val) => (val !== "" ? Number(val) : null)),
 
   height: yup
     .number()
-    .typeError('Please input height')
-
+    // .typeError('Please input height')
+    .nullable()
+    .optional()
     .max(250, 'Invalid Height')
-    .positive('Invalid Height'),
+    .positive('Invalid Height')
+    .transform((_, val) => (val !== "" ? Number(val) : null)),
 
 })
 

@@ -61,12 +61,12 @@ const Register = () => {
         <h1>Welcome to, <span className="nest">Nest</span><span className="fit">Fit</span></h1>
         <form className="container-form-register">
           <p>{resMessage}</p>
-          <Input label='Email' field='email' register={register} errors={errors} placeholder='email' type='text' />
-          <Input label='Password' field='password' register={register} errors={errors} placeholder='password' type='password' />
-          <Input label='Confirm password' field='passwordConfirm' register={register} errors={errors} placeholder='confirm password' type='password' />
-          <Input label='First Name' field='firstname' register={register}  errors={errors} placeholder='firstname' type='text' />
-          <Input label='Last Name' field='lastname' register={register} errors={errors} placeholder='lastname' type='text' />
-          <Input label='Birth Date' field='birthdate' register={register} errors={errors} placeholder='birthdate' type='date' />
+          <Input label='Email' field='email' register={register} errors={errors}  type='text' />
+          <Input label='Password' field='password' register={register} errors={errors}  type='password' />
+          <Input label='Confirm password' field='passwordConfirm' register={register} errors={errors}  type='password' />
+          <Input label='First Name' field='firstname' register={register}  errors={errors} p type='text' />
+          <Input label='Last Name' field='lastname' register={register} errors={errors}  type='text' />
+          <Input label='Birth Date' field='birthdate' register={register} errors={errors} type='date' />
           <Radio register={register} errors={errors} />
           <CityList register={register} errors={errors} />
           <div className="container-btn-register">

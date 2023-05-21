@@ -26,7 +26,7 @@ const MainFeed = ({ user }) => {
     try {
       const res = await getFeedAll()
       setPosts(res.data?.posts)
-      console.log(res.data.posts)
+      // console.log(res.data.posts)
     } catch (error) {
       console.log(error)
     }
@@ -40,7 +40,7 @@ const MainFeed = ({ user }) => {
 
   const getFeedInfinite = async (getFeedAxios) => {
     const page = calPages()
-    console.log(page)
+    // console.log(page)
     try {
       const res = await getFeedAxios(page)
       setNextGet(res.data?.next)

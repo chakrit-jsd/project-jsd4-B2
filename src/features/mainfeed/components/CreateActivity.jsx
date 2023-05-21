@@ -122,7 +122,7 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
     if (typeof cropper !== "undefined" && !imgFile) {
       imgBase64 = cropper.getCroppedCanvas().toDataURL()
     }
-    console.log(dataForm)
+    // console.log(dataForm)
     const data = {
       ...dataForm,
       file: imgFile || imgBase64

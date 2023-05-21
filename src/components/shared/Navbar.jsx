@@ -35,7 +35,7 @@ const Navbar = ({ user }) => {
   const logout = async () => {
     try {
       const res = await getLogout()
-      console.log(res)
+      // console.log(res)
       if (res.status === 200) return navigate('/')
     } catch (error) {
       console.log(error)

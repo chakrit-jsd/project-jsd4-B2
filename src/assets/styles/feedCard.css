@@ -46,7 +46,7 @@
 }
 
 .head-card-top button {
-  /* width: 50%; */
+  width: 75%;
   text-decoration: none;
   display: block;
   display: flex;
@@ -61,10 +61,13 @@
 } */
 
 .head-card-top button span {
+  width: 100%;
   color: black;
   font-size: 1.4rem;
   padding: 0 0 0 0.6rem ;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .head-card-top button:hover span {
