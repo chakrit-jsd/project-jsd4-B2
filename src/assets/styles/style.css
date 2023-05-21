@@ -111,3 +111,19 @@ p {
   padding: 0px !important;
   margin: 0px !important;
 }
+
+.refresh {
+  background-color: rgb(240, 240, 240);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.refresh img {
+  max-width: 200px;
+}
+.refresh-hide {
+  display: none;
+}

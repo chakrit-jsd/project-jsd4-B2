@@ -28,10 +28,10 @@ const ModalQuestion = ({ showDel, setShowDel, cardId, deletePost }) => {
         <p>{resMess}</p>
       </Modal.Body>
       <Modal.Footer>
-        <button onClick={onSubmit} >
+        <button onClick={onSubmit} className='btn-del-yes'>
           Yes
         </button>
-        <button onClick={() => setShowDel(false)} >
+        <button onClick={() => setShowDel(false)} className='btn-del-no'>
           No
         </button>
       </Modal.Footer>

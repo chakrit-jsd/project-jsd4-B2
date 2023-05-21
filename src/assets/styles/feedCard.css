@@ -190,3 +190,17 @@
   cursor: pointer;
   z-index: 100;
 }
+
+.btn-del-yes,
+.btn-del-no {
+  width: 50px;
+  border: 1px solid var(--main);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.btn-del-yes:hover,
+.btn-del-no:hover {
+  background-color: var(--main);
+  color: white
+}

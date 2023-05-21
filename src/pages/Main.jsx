@@ -41,7 +41,6 @@ const Main = () => {
   }, [])
   return (
     <LayoutMainFeed title='Me Feed' getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
-
     </LayoutMainFeed>
   )
 }
