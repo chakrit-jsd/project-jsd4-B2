@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "../../assets/styles/dashboard.css";
 import PieChart from "../../../chart";
-// import { ' activityData' }
+// import { ' activityData ' } from Database here
 
 const Dashboard = () => {
 
+  // Add data and customize chart here
   const data = {
     labels: ['Red', 'Blue', 'Yellow', 'Black'],
     datasets: [
@@ -24,7 +25,7 @@ const Dashboard = () => {
 
   return (
     <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
-      <div style = {{width: 200}}>
+      <div className="pieChart" style = {{width: 200}}>
         <PieChart chartData={data}/>
       </div>
 
