@@ -1,0 +1,18 @@
+.activity-detail-box {
+    padding: 30px 0px 30px 0px;
+}
+
+.activity-detail {
+    padding: 4px 0px 4px 0px;
+    border-style: solid;
+    border-width: 2px;
+    margin-top: 10px;
+}
+
+.act-name {
+    padding-left: 5px;
+}
+
+.act-time {
+    padding-left: 15px;
+}
