@@ -34,7 +34,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
     }
   }
 
-  console.log(nameLegend);
+  // console.log(nameLegend);
 
   // Apply config here
   return (

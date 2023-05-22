@@ -15,7 +15,7 @@ const LandingPage = () => {
   const [ resMessage, setResMessage ] = useState()
   const onSubmit = async (data) => {
     try {
-      const res = await fetch('http://localhost:3002/api/login', {
+      const res = await fetch('https://nestfit-api.life/api/login', {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin// *default, no-cache, reload, force-cache, only-if-cached
         credentials: "include", // include, *same-origin, omit
