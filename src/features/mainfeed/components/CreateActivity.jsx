@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
+const CreateActivity = ({ user, activeClass, updateNewPost }) => {
 
   const {
     register,
@@ -23,7 +23,7 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
     mode: 'onSubmit',
     reValidateMode: 'onChange',
     resolver: yupResolver(schema),
-    defaultValues: {activity: 'yoga'}
+    defaultValues: {activity: 'Yoga'}
   })
 
   const resetData = () => {
@@ -120,9 +120,9 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
     }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
-
+    // console.log(dataForm)
     const data = {
       ...dataForm,
       file: imgFile || imgBase64
@@ -130,19 +130,13 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
     try {
       const res = await postCreateCard(data)
       // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateNewPost(res.data?.post)
+      resetData()
+      setShow(false)
     } catch (error) {
       const res = httpErrorCode(error)
       return setResMessage(res?.message)
     }
-    // setFormData((prev) => (
-    //   {
-    //     ...prev,
-    //     ...data
-    //   }
-    // ))
-    resetData()
-    setShow(false)
   }
 
   const [ imgPreview, setImgPreview ] = useState(null)
@@ -165,10 +159,9 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL('jpeg'));
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
-
   const [cropper, setCropper] = useState(null);
   return (
     <div className="container-create-activity">
@@ -262,14 +255,22 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
             </section>
             <section className='container-select-activity'>
               <Select label='Activity' register={register} field='activity' errors={errors} />
+              <Input label='Date Activity' field='dateactivity' register={register} errors={errors} placeholder='date' type='date' />
+            </section>
               <label className='container-range-out'>
-                <p>Duration</p>
-                <div className='container-range'>
-                  <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}/>
-                  <p>{duration} minute.</p>
+                <div className='parent-rage-out'>
+                  <p>Duration</p>
+                  <div className='container-range'>
+                    <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}
+                      style={{
+                        background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`,
+                        // backgroundImage: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, black ${duration/1.80}%, black 100%)`,
+                      }}
+                    />
+                    <p>{duration} minute.</p>
+                  </div>
                 </div>
               </label>
-            </section>
           </form>
         </Modal.Body>
         <Modal.Footer>
@@ -290,10 +291,10 @@ const CreateActivity = ({ user, activeClass, setPostsByCreateAndUpdate }) => {
           You have unsaved content, and will be lost unless you save it.
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleShowResume} >
+          <button className='btn-resume' onClick={handleShowResume} >
             Resume
           </button>
-          <button onClick={handleCloseLeave} >
+          <button className='btn-leave' onClick={handleCloseLeave} >
             Leave
           </button>
         </Modal.Footer>

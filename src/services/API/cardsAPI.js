@@ -16,7 +16,7 @@ const postLikedCard = (cardId) => {
   return http.post('/cards/liked', { cardId: cardId })
 }
 
-export  {
+export {
   postCreateCard,
   putEditCard,
   deleteCard,

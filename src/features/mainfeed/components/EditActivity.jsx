@@ -4,6 +4,7 @@ import { Input, Select } from '../../../components/shared/Input';
 import { yupResolver } from '@hookform/resolvers/yup'
 import { putEditCard } from '../../../services/API/cardsAPI';
 import { httpErrorCode } from '../../../utils/errorsHandle/httpStatuscode';
+import { setFormat } from '../../../utils/setFormatDate/setFormatDate';
 import schema from "../../../utils/validators/validateCreateActivity"
 import Modal from 'react-bootstrap/Modal';
 import Dropzone from 'react-dropzone';
@@ -11,7 +12,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
+const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
 
   const {
     _id,
@@ -20,6 +21,7 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
     description,
     activity,
     duration,
+    dateactivity,
   } = post
 
   const {
@@ -36,6 +38,7 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
       title,
       description,
       activity,
+      dateactivity: setFormat(dateactivity.date)
       // duration: duration
     }
 
@@ -135,18 +138,18 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
     // }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile && imgPreview) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
     const data = {
       cardId: _id,
       ...dataForm,
       file: imgFile || imgBase64
     }
-    console.log(data)
+
     try {
       const res = await putEditCard(data)
       // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateSinglePost(res.data?.post)
       resetData()
       setShow(false)
     } catch (error) {
@@ -176,7 +179,7 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
 
@@ -273,14 +276,19 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
             </section>
             <section className='container-select-activity'>
               <Select label='Activity' register={register} field='activity' errors={errors} />
+              <Input label='Date Activity' field='dateactivity' register={register} errors={errors} placeholder='date' type='date' />
+            </section>
               <label className='container-range-out'>
-                <p>Duration</p>
-                <div className='container-range'>
-                  <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={durationS}/>
-                  <p>{durationS} minute.</p>
+                <div className='parent-rage-out'>
+                  <p>Duration</p>
+                  <div className='container-range'>
+                    <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={durationS}
+                      style={{background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${durationS/1.8}%, white ${durationS/1.80}%, white 100%)`}}
+                    />
+                    <p>{durationS} minute.</p>
+                  </div>
                 </div>
               </label>
-            </section>
           </form>
         </Modal.Body>
         <Modal.Footer>
@@ -301,10 +309,10 @@ const EditActivity = ({ show, setShow, post, setPostsByCreateAndUpdate }) => {
           You have unsaved content, and will be lost unless you save it.
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleShowResume} >
+          <button className='btn-resume' onClick={handleShowResume} >
             Resume
           </button>
-          <button onClick={handleCloseLeave} >
+          <button className='btn-leave' onClick={handleCloseLeave} >
             Leave
           </button>
         </Modal.Footer>

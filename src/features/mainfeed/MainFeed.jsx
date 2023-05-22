@@ -26,7 +26,7 @@ const MainFeed = ({ user }) => {
     try {
       const res = await getFeedAll()
       setPosts(res.data?.posts)
-      console.log(res.data.posts)
+      // console.log(res.data.posts)
     } catch (error) {
       console.log(error)
     }
@@ -40,23 +40,26 @@ const MainFeed = ({ user }) => {
 
   const getFeedInfinite = async (getFeedAxios) => {
     const page = calPages()
-    console.log(page)
+    // console.log(page)
     try {
       const res = await getFeedAxios(page)
       setNextGet(res.data?.next)
       setPosts((prevPosts) => {
-        const newPosts = [
-          ...prevPosts,
-          ...res.data?.posts
-        ]
-        return newPosts
+        const newPostId = []
+        for (const post of res.data?.posts) newPostId.push(post._id)
+        const prev = prevPosts.filter((post) => {
+          return !newPostId.includes(post._id)
+        })
+        return [ ...prev, ...res.data?.posts]
       })
+
     } catch (error) {
       console.log(error)
     }
   }
 
   const nextPosts = async () => {
+    setNextGet(true)
     if (location.pathname === '/me/home') {
       await getFeedInfinite(getFeedHome)
     }
@@ -65,15 +68,25 @@ const MainFeed = ({ user }) => {
     }
   }
 
-  const setPostsByCreateAndUpdate = async () => {
-    if (location.pathname === '/me/home') {
-      await getHome()
-    } else {
-      await getAll()
-    }
+  const updateNewPost = (newPost) => {
+    setPosts((prevPosts) => [newPost, ...prevPosts])
   }
+
+  const updateSinglePost = (newPost) => {
+    setPosts((prevPosts) => prevPosts.map((post) => {
+    return post._id === newPost._id ? newPost : post
+    }))
+  }
+
+  const deletePost = (delPost) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => {
+      return post._id !== delPost._id
+    }))
+  }
+
   useEffect(() => {
     const getFeeds = async () => {
+      window.scrollTo(0, 0)
       if (location.pathname === '/me/home') {
         setNextGet(true)
         await getHome()
@@ -107,11 +120,11 @@ const MainFeed = ({ user }) => {
 
   return (
     <article className="container-main-feed">
-      <CreateActivity user={user} activeClass={activeClass} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />
+      <CreateActivity user={user} activeClass={activeClass} updateSinglePost={updateSinglePost} updateNewPost={updateNewPost} />
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />}
     </article>
   )
 }

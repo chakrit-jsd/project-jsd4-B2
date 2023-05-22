@@ -25,9 +25,10 @@ const MainAnother = () => {
   useEffect(() => {
     // if (user) return
     const getPage = async () => {
+      window.scrollTo(0, 0)
       try {
         const res = await getAnother(userId)
-        console.log(res)
+
         if (res.status !== 200) throw res
         setUser(res.data.user)
         setImgUrl(res.data.user.profileImgUrl)
@@ -47,7 +48,7 @@ const MainAnother = () => {
     getPage()
   }, [userId])
   return (
-    <LayoutMainFeed getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
+    <LayoutMainFeed title='Another Feed' getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
 
     </LayoutMainFeed>
   )

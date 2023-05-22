@@ -5,7 +5,7 @@ import EditActivity from "./EditActivity"
 import ModalQuestion from "../../../components/shared/ModalQuestion"
 import '../../../assets/styles/feedCard.css'
 
-const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
+const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
 
   const {
     _id,
@@ -17,6 +17,7 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
     duration,
     likedCount,
     isLiked,
+    dateactivity,
     createAt
   } = post
 
@@ -30,8 +31,7 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
   const postLiked = async () => {
     try {
       const res = await postLikedCard(_id)
-      // console.log(res)
-      setPostsByCreateAndUpdate()
+      updateSinglePost(res.data.post)
     } catch (error) {
       console.log(error)
     }
@@ -41,7 +41,7 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
     if (location.pathname === `/another/${author._id}`) return
     if (author._id !== user._id) {
       navigate(`/another/${author._id}`)
-      window.scrollTo(0, 0)
+
       return
     }
   }
@@ -83,6 +83,7 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
             </div>
             <p className="activity">{activity}</p>
             <p className="duration">{duration} min.</p>
+            <p className="date">{dateactivity.dateFormat || null}</p>
           </div>
         </section>
 
@@ -92,8 +93,8 @@ const CardActivity = ({ post, user, setPostsByCreateAndUpdate }) => {
           </p>
         </section>
       </figure>
-      {<EditActivity show={show} setShow={setShow} post={post} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
-      {<ModalQuestion showDel={showDel} setShowDel={setShowDel} cardId={_id} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<EditActivity show={show} setShow={setShow} post={post} updateSinglePost={updateSinglePost} />}
+      {<ModalQuestion showDel={showDel} setShowDel={setShowDel} cardId={_id} deletePost={deletePost} />}
     </>
   )
 }
