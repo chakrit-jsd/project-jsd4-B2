@@ -2,26 +2,26 @@ import React from 'react'
 import { Chart, Pie } from "react-chartjs-2"
 import { Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js/auto'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { useState } from "react";
 
-function PieChart({chartData}) {
+
+function PieChart({chartData, nameLegend, setNameLegend}) {
+
 
   // Create if statement to compare if the clicked -
   // that the "label" name = label name of the clicked item.
 
-  const legendClickHandler = (_, legendItem, legend) => {
-    if (legend.labels && legend.labels.length > legendItem.index) {
-      const labelText = legend.labels[legendItem.index];
 
-      alert(`Clicked label: ${labelText}`);
-    }
-  };
 
   // Config spec for PieChart
   const config = {
     plugins: {
       legend: {
-        onClick: legendClickHandler,
+        onClick: (e, legendItem) => {
+          setNameLegend(legendItem.text);
+        }
       },
+
       //Change pie label(%)
       datalabels: {
         formatter: ((context, args) => {
@@ -33,6 +33,8 @@ function PieChart({chartData}) {
       }
     }
   }
+
+  console.log(nameLegend);
 
   // Apply config here
   return (
