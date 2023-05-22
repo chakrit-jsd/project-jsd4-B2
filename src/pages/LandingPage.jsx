@@ -15,17 +15,24 @@ const LandingPage = () => {
   const [ resMessage, setResMessage ] = useState()
   const onSubmit = async (data) => {
     try {
-      const res = await postLogin(data)
-      // if (res.status === 200) {
-      //   setResMessage(res.data.message)
-      //   setTimeout(() => {
-      //   }, 1000)
-      // }
+      const res = await fetch('http://localhost:3002/api/login', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        mode: "cors", // no-cors, *cors, same-origin// *default, no-cache, reload, force-cache, only-if-cached
+        credentials: "include", // include, *same-origin, omit
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data), // body data type must match "Content-Type" header
+      });
+      const resData = await res.json()
+      console.log(res.headers)
+      // const res = await postLogin(data)
+      console.log(res.headers.get('Set-Cookie'))
       navigate('/me')
     } catch (error) {
       const res = httpErrorCode(error)
       setResMessage(res.message || error)
-      // console.log(error)
     }
 
   }
@@ -34,7 +41,6 @@ const LandingPage = () => {
     const getPage = async () => {
       try {
         const res = await getLogin()
-        // console.log(res.status)
       } catch (error) {
         const res = httpErrorCode(error)
         console.log(res.message)
