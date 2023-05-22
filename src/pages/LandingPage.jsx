@@ -16,7 +16,12 @@ const LandingPage = () => {
   const onSubmit = async (data) => {
     try {
       document.cookie = 'test'
-      const res = await postLogin(data)
+      if (typeof document.requestStorageAccess === 'function') {
+        await document.requestStorageAccess()
+        // ไม่สามารถขออนุญาติใช้งานได้ในบราวเซอร์ Safari
+        const res = await postLogin(data)
+        // console.log('บราวเซอร์ Safari ไม่รองรับการขออนุญาติใช้งาน');
+      }
       // console.log(res.headers.get('Set-Cookie'))
       navigate('/me')
     } catch (error) {
