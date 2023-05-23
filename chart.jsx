@@ -19,6 +19,13 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
       legend: {
         onClick: (e, legendItem) => {
           setNameLegend(legendItem.text);
+        },
+        position: 'bottom',
+        align: 'start',
+        labels:{
+          boxWidth: 12,
+          padding: 5,
+
         }
       },
 
