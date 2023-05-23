@@ -44,17 +44,17 @@ const LandingPage = () => {
     }
     getPage()
   }, [])
-  const [storageAccessGranted, setStorageAccessGranted] = useState(false);
-  const allowAccess = async (event) => {
-    event.preventDefault()
-    try {
-      await window.navigator.storage.requestPersistent();
-      setStorageAccessGranted(true);
-      // อื่นๆที่คุณต้องการทำหลังจากได้รับอนุญาติ
-    } catch (error) {
-      console.error('ไม่สามารถขออนุญาติใช้งานได้:', error);
-    }
-  }
+  // const [storageAccessGranted, setStorageAccessGranted] = useState(false);
+  // const allowAccess = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     await window.navigator.storage.requestPersistent();
+  //     setStorageAccessGranted(true);
+  //     // อื่นๆที่คุณต้องการทำหลังจากได้รับอนุญาติ
+  //   } catch (error) {
+  //     console.error('ไม่สามารถขออนุญาติใช้งานได้:', error);
+  //   }
+  // }
   return (
     <div className="container-main-landing">
       <nav className="nav-landing">
@@ -140,7 +140,7 @@ const LandingPage = () => {
                 <input type="password" {...register('password')} />
               </div>
               <div className="content-7-btn">
-                {storageAccessGranted ? null : <button onClick={allowAccess}>Allow Cookie</button>}
+                {/* {storageAccessGranted ? null : <button onClick={allowAccess}>Allow Cookie</button>} */}
                 <button type="submit" onClick={handleSubmit(onSubmit)}>LOGIN</button>
                 <Link to='/register'>Register</Link>
               </div>
