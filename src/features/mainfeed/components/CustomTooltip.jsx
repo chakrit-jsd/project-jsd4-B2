@@ -1,7 +1,6 @@
 import Tooltip from '@mui/material/Tooltip';
 import Fade from '@mui/material/Fade';
 import { getWhoLikedCard } from '../../../services/API/cardsAPI';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../../assets/styles/customTooltip.css'
 
@@ -26,8 +25,7 @@ const TooltipTitle = ({ whoLiked }) => {
 }
 
 
-const CustomTooltip = ({ children, cardId, likedCount }) => {
-  const [ whoLiked, setWhoLiked ] = useState([])
+const CustomTooltip = ({ children, cardId, likedCount, whoLiked, setWhoLiked }) => {
   const getWholiked = async () => {
     if (whoLiked.length > 0 && whoLiked.length === likedCount) return
     try {
@@ -38,12 +36,11 @@ const CustomTooltip = ({ children, cardId, likedCount }) => {
       console.log(error)
     }
   }
-
   return (
     <>
       {
       likedCount > 0 ?
-      (<Tooltip
+      <Tooltip
         title={<TooltipTitle whoLiked={whoLiked} />}
         placement="right-end"
         TransitionComponent={Fade}
@@ -52,7 +49,7 @@ const CustomTooltip = ({ children, cardId, likedCount }) => {
         className='container-tooltip'
         >
         { children }
-      </Tooltip>)
+      </Tooltip>
       : children }
     </>
   )
