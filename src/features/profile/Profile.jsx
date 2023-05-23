@@ -75,7 +75,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
     try {
       const res = await postFollows({ userId: _id })
       getUserByUpdate()
-      console.log(res)
+      // console.log(res)
     } catch (error) {
       console.error(error)
     }

@@ -20,7 +20,7 @@ const MainFeedAnother = ({ user }) => {
 
   const nextPosts = async () => {
       const page = calPages()
-      console.log(page)
+      // console.log(page)
       try {
         if(!user) return
         const res = await getAnotherFeed(user._id, page)
