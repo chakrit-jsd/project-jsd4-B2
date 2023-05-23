@@ -10,7 +10,7 @@ const TooltipTitle = ({ whoLiked }) => {
 
   return (
     <div className='tootip-detail'>
-      {whoLiked?.map((who) => {
+      {whoLiked.length > 0 ? whoLiked?.map((who) => {
         const { profilename, firstname, lastname, smallImgUrl, _id } = who
         return (
           <div key={_id} className='who-liked-link'>
@@ -20,7 +20,7 @@ const TooltipTitle = ({ whoLiked }) => {
             </Link>
           </div>
         )
-      })}
+      }) : null}
     </div>
   )
 }
@@ -28,7 +28,6 @@ const TooltipTitle = ({ whoLiked }) => {
 
 const CustomTooltip = ({ children, cardId, likedCount }) => {
   const [ whoLiked, setWhoLiked ] = useState([])
-
   const getWholiked = async () => {
     if (whoLiked.length > 0 && whoLiked.length === likedCount) return
     try {
@@ -38,10 +37,13 @@ const CustomTooltip = ({ children, cardId, likedCount }) => {
     } catch (error) {
       console.log(error)
     }
-
   }
+
   return (
-      <Tooltip
+    <>
+      {
+      likedCount > 0 ?
+      (<Tooltip
         title={<TooltipTitle whoLiked={whoLiked} />}
         placement="right-end"
         TransitionComponent={Fade}
@@ -50,7 +52,9 @@ const CustomTooltip = ({ children, cardId, likedCount }) => {
         className='container-tooltip'
         >
         { children }
-      </Tooltip>
+      </Tooltip>)
+      : children }
+    </>
   )
 }
 
