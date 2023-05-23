@@ -1,12 +1,14 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import CardActivity from "./CardActivity";
 import NoneCardFeed from "./NoneCardFeed";
+import ProgressSwitcher from "./ProgressSwitcher";
 
-const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, user }) => {
+const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, user, isProgress, switcher }) => {
 
 
   return (
     <section className="container-cards-feed">
+      {isProgress ? <ProgressSwitcher switcher={switcher} /> : null}
       <InfiniteScroll
         dataLength={posts.length} //This is important field to render the next data
         next={nextPosts}
@@ -17,6 +19,7 @@ const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, use
             <b>Yay! You have seen it all</b>
           </p>
         }
+        className={isProgress ? 'onProgress' : null}
         // below props only if you need pull down functionality
         // refreshFunction={this.refresh}
         // pullDownToRefresh
@@ -28,6 +31,7 @@ const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, use
         //   <h3 style={{ textAlign: 'center' }}>&#8593; Release to refresh</h3>
         // }
       >
+
         {posts?.length !== 0 ? posts?.map((post) => <CardActivity post={post} key={post._id} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />) : <NoneCardFeed />}
       </InfiniteScroll>
     </section>

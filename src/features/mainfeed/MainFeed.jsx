@@ -9,6 +9,7 @@ const MainFeed = ({ user }) => {
 
   const [ activeClass, setActiveClass ] = useState(true)
   const [ switcher, setSwitcher ] = useState('feed')
+  const [ isProgress, setIsProgress ] = useState(true)
   const [ posts, setPosts ] = useState([])
   const [ nextGet, setNextGet ] = useState(true)
 
@@ -16,6 +17,9 @@ const MainFeed = ({ user }) => {
     try {
       const res = await getFeedHome()
       setPosts(res.data?.posts)
+      setTimeout(() => {
+        setIsProgress(false)
+      }, 800)
       // console.log('home')
     } catch (error) {
       console.log(error)
@@ -26,6 +30,9 @@ const MainFeed = ({ user }) => {
     try {
       const res = await getFeedAll()
       setPosts(res.data?.posts)
+      setTimeout(() => {
+        setIsProgress(false)
+      }, 800)
       // console.log(res.data.posts)
     } catch (error) {
       console.log(error)
@@ -85,6 +92,7 @@ const MainFeed = ({ user }) => {
   }
 
   useEffect(() => {
+    setIsProgress(true)
     const getFeeds = async () => {
       window.scrollTo(0, 0)
       if (location.pathname === '/me/home') {
@@ -124,7 +132,7 @@ const MainFeed = ({ user }) => {
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />}
+      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} isProgress={isProgress} switcher={switcher} updateSinglePost={updateSinglePost} deletePost={deletePost} />}
     </article>
   )
 }
