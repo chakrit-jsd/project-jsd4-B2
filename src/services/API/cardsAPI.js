@@ -16,9 +16,14 @@ const postLikedCard = (cardId) => {
   return http.post('/cards/liked', { cardId: cardId })
 }
 
+const getWhoLikedCard = (cardId) => {
+  return http.get(`/cards/liked/${cardId}`)
+}
+
 export {
   postCreateCard,
   putEditCard,
   deleteCard,
-  postLikedCard
+  postLikedCard,
+  getWhoLikedCard
 }

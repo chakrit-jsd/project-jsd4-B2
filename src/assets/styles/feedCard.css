@@ -232,11 +232,13 @@
   align-items: center;
   gap: 10%;
 }
+
 .progress-circle svg {
   transform: scale(2);
 }
 .progress-circle p {
   font-size: 3rem;
+  text-align: center;
 }
 .onProgress {
   display: none;

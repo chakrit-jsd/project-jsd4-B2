@@ -4,6 +4,7 @@ import { postLikedCard } from "../../../services/API/cardsAPI"
 import EditActivity from "./EditActivity"
 import ModalQuestion from "../../../components/shared/ModalQuestion"
 import '../../../assets/styles/feedCard.css'
+import CustomTooltip from "./CustomTooltip";
 
 const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
 
@@ -78,7 +79,9 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
           <img src={imgUrl} alt="img-activity" />
           <div className="container-text-activity">
             <div className="liked">
-              <span>{likedCount}</span>
+              <CustomTooltip cardId={_id} likedCount={likedCount}>
+                <span className="tooltip-hover">{likedCount}</span>
+              </CustomTooltip>
               <i onClick={postLiked} className={`bi bi-heart${isLiked ? '-fill' : ''}`}></i>
             </div>
             <p className="activity">{activity}</p>
