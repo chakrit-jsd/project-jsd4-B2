@@ -8,7 +8,7 @@ import SwitchFeed from "./components/SwitchFeed"
 const MainFeed = ({ user }) => {
 
   const [ activeClass, setActiveClass ] = useState(true)
-  const [ switcher, setSwitcher ] = useState('feed')
+  const [ switcher, setSwitcher ] = useState('')
   const [ isProgress, setIsProgress ] = useState(true)
   const [ posts, setPosts ] = useState([])
   const [ nextGet, setNextGet ] = useState(true)
