@@ -46,9 +46,9 @@
     color: gray !important;
   }
   .h-svh {
-    top: calc(100svh - 20px);
+    top: calc(100svh - 80px);
   }
   .h-vh {
-    top: calc(100vh - 20px);
+    top: calc(100vh - 80px);
   }
 }
