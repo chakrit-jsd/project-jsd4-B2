@@ -118,7 +118,7 @@ const MainFeed = ({ user, mobileShow, activeClass }) => {
       (<article className="container-main-feed ">
         <div className={`container-create-menu ${activeClass ? 'h-svh' : 'h-vh'}`}>
           <CreateActivity user={user} activeClass={activeClass} updateSinglePost={updateSinglePost} updateNewPost={updateNewPost} />
-          <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
+          <SwitchFeed activeClass={activeClass} setSwitcher={setSwitcher} switcher={switcher} />
         </div>
         <CardFeed mobileShow={mobileShow} nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} isProgress={isProgress} switcher={switcher} updateSinglePost={updateSinglePost} deletePost={deletePost} />
       </article>) : null}

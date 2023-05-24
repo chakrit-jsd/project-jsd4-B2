@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ user, updateNewPost }) => {
+const CreateActivity = ({ user, updateNewPost, activeClass }) => {
 
   const {
     register,
@@ -165,7 +165,7 @@ const CreateActivity = ({ user, updateNewPost }) => {
   const [cropper, setCropper] = useState(null);
   return (
     <div className="container-create-activity">
-      <section className={`container-btn-create-activity`}>
+      <section className={`container-btn-create-activity ${activeClass ? 'h-svh-btn' : 'h-vh' }`}>
         {/* <img src={user.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-img-sm" /> */}
         <button onClick={handleShow}>
           <i className="bi bi-plus-circle-fill"></i>

@@ -438,7 +438,6 @@ input[type="range"] {
   .container-btn-create-activity,
   .container-switch-feed {
     top: calc(81vh - 15px);
-    /* transform: scale() */
   }
   .container-switch-feed {
     /* margin: 0, 20px !important; */
