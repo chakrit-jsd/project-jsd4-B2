@@ -233,6 +233,10 @@ input[type="radio"]:checked + label::after {
     padding-bottom: 10px;
     /* flex-direction: row; */
   }
+  .container-edit-profile-left, .container-edit-profile-right {
+    width: 90%;
+    justify-content: center;
+  }
   #form-edit-profile input {
     border: none;
     border-bottom: 1px solid gray;
