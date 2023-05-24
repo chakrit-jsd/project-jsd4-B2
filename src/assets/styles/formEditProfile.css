@@ -234,7 +234,7 @@ input[type="radio"]:checked + label::after {
     /* flex-direction: row; */
   }
   .container-edit-profile-left, .container-edit-profile-right {
-    width: 90%;
+    width: 100%;
     justify-content: center;
   }
   #form-edit-profile input {
@@ -272,7 +272,7 @@ input[type="radio"]:checked + label::after {
     width: 100%;
   }
   .container-input-text-component {
-    width: 49%;
+    width: 48%;
   }
   .edit-input-radio {
     justify-content: start;
