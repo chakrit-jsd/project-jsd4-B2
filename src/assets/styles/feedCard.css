@@ -245,7 +245,7 @@
   display: none;
 }
 
-@media (width <= 420px) {
+@media (max-width: 421px) {
   .mobile-diplay-none {
     display: none !important;
   }

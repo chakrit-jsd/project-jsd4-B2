@@ -2,7 +2,7 @@
   display: none;
 }
 
-@media (width <= 420px) {
+@media (max-width: 421px) {
   .footer-mobile {
     position: fixed;
     top: calc(94vh - 15px);

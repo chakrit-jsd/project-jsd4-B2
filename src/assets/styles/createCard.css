@@ -427,7 +427,7 @@ input[type="range"] {
   color: white;
 }
 
-@media (width <= 420px) {
+@media (max-width: 421px) {
   .container-create-menu {
     max-width: 420px;
     width: 80%;

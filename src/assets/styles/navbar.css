@@ -138,7 +138,7 @@
 
 }
 
-@media (width <= 420px) {
+@media (max-width: 421px) {
  .nav-form-input {
   width: 200px;
   /* transform: translate(-5%); */

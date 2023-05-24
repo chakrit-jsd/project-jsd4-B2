@@ -27,7 +27,7 @@
   letter-spacing: 0.3rem !important;
 }
 
-@media (width <= 420px) {
+@media (max-width: 421px) {
   .container-switch-feed a {
     width: 36%;
     height: 80%;
