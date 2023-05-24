@@ -434,7 +434,7 @@ input[type="range"] {
   }
   .container-btn-create-activity,
   .container-switch-feed {
-    top: calc(95vh - 15px);
+    top: calc(91vh - 15px);
     /* transform: scale() */
   }
   .container-switch-feed {
