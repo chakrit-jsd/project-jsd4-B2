@@ -84,14 +84,14 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
   const [ classFollow, setClassFollow ] = useState('left')
 
   return (
-    <aside className={`container-profile col-xl-2 col-lg-2 col-md-1 ${mobileShow !== 'profile' ? 'mobile-diplay-none' : null}`}>
+    <aside className={`container-profile col-xxl-2 col-xl-3 col-lg-2 col-md-1 ${mobileShow !== 'profile' ? 'mobile-diplay-none' : null}`}>
       <section className='profile-head'>
         <div className='profile-img-btn'>
           <img src={imgUrl || 'https://via.placeholder.com/150'} alt="profiel-img" />
           { !thisme ?
           <>
             <i className="bi bi-pencil-square edit-profile-icon" onClick={handleShow}></i>
-            <ModalEditProfile show={show} setShow={setShow} handleClose={handleClose} showLeave={showLeave} setShowLeave={setShowLeave} setImgFile={setImgFile} setImgPreview={setImgPreview} >
+            <ModalEditProfile show={show} setShow={setShow} user={user} setImgUrl={setImgUrl} handleClose={handleClose} showLeave={showLeave} setShowLeave={setShowLeave} setImgFile={setImgFile} setImgPreview={setImgPreview} >
               <FormEditProfile user={user} setSend={setSend} setFormData={setFormData} handleClose={handleClose} imgFile={imgFile} imgPreview={imgPreview} getCropData={getCropData} setShow={setShow} >
                 <DropAndCrop imgUrl={imgUrl} setImgUrl={setImgUrl} setImgFile={setImgFile} imgFile={imgFile} imgPreview={imgPreview} setImgPreview={setImgPreview} cropper={cropper} setCropper={setCropper} getCropData={getCropData} />
               </FormEditProfile>

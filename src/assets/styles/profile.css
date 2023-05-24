@@ -8,6 +8,8 @@
 
 .container-profile {
   padding: 0.4rem !important;
+  /* max-width: 420px;
+  width: 100%; */
 }
 
 .profile-head {
@@ -47,6 +49,7 @@
   font-size: 1.1rem;
   letter-spacing: 0.15rem;
   background: none;
+  color: black;
 }
 .dropdown-menu {
   margin-top: 6px !important;
@@ -171,7 +174,7 @@
   height: 10%;
   background-color: white;
   font-weight: 600;
-
+  color: black;
 }
 .follow-btn-left {
   z-index: 1;
@@ -273,6 +276,9 @@
 @media (max-width: 421px) {
   .mobile-diplay-none {
     display: none;
+  }
+  .container-profile {
+    width: 100%;
   }
   .container-profile .profile-head img {
     width: 40%;

@@ -1,12 +1,13 @@
 import Modal from 'react-bootstrap/Modal';
 
-const ModalEditProfile = ({ show, setShow, handleClose, showLeave, setShowLeave, setImgFile, setImgPreview, children }) => {
+const ModalEditProfile = ({ show, setShow, handleClose, user, setImgUrl, showLeave, setShowLeave, setImgFile, setImgPreview, children }) => {
 
   const handleCloseLeave = () => {
     setImgFile('')
     setImgPreview('')
     // resetData()
     setShowLeave(false)
+    setImgUrl(user?.profileImgUrl)
   }
 
   const handleShowResume = () => {

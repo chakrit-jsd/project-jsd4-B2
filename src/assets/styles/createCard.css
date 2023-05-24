@@ -426,7 +426,14 @@ input[type="range"] {
   cursor: pointer;
   color: white;
 }
-
+input[name="dateactivity"],
+select[name="activity"] {
+  color: black;
+  background-color: transparent;
+}
+.modal-footer button {
+  color: black;
+}
 @media (max-width: 421px) {
   .active-class {
     display: flex;

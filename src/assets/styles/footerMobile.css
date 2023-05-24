@@ -42,6 +42,10 @@
     font-weight: 600;
     color: var(--main);
     margin-bottom: 5px !important;
+    max-width: 120px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .color-dis {
     color: gray !important;
