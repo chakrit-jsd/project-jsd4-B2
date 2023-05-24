@@ -428,6 +428,9 @@ input[type="range"] {
 }
 
 @media (max-width: 421px) {
+  .active-class {
+    display: flex;
+  }
   .container-create-menu {
     max-width: 420px;
     width: 80%;
