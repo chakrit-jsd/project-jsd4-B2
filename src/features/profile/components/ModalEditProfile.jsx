@@ -17,7 +17,7 @@ const ModalEditProfile = ({ show, setShow, handleClose, showLeave, setShowLeave,
     <>
       <Modal show={show} onHide={handleClose} animation={false} backdrop='static' className='modal-edit-profile'>
         <Modal.Header closeButton className='modal-edit-profile-header'>
-          <Modal.Title>Profile Edit</Modal.Title>
+          <Modal.Title>Profile <span>Edit</span></Modal.Title>
         </Modal.Header>
         <Modal.Body className='modal-edit-profile-body'>
           {children}

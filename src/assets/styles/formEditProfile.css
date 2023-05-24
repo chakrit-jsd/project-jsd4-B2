@@ -206,6 +206,13 @@ input[type="radio"]:checked + label::after {
 .container-btn-form-edit-profile button:hover {
   box-shadow: 1px 2px 1px black;
 }
+input[name="birtdate"],
+select[name="city"],
+select[name="interest"] {
+  color: black;
+  background-color: transparent;
+}
+
 
 
 @media (width <= 700px) {
