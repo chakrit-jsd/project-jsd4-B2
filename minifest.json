@@ -1,0 +1,11 @@
+{
+  "name": "NestFit",
+  "short_name": "NestFit",
+  "start_url": "https://www.nestfit.life/me",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [{
+    "src": "static/img/nf-icon.ico",
+    "sizes": "any"
+  }]
+}
