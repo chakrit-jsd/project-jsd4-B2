@@ -3,7 +3,7 @@ import '../../assets/styles/footerMobile.css'
 const Footer = ({ mobileShow, setMobileShow, activeClass, user }) => {
   return (
     <>
-      <footer className={`footer-mobile`}>
+      <footer className={`footer-mobile ${activeClass ? 'h-svh' : 'h-vh' }`}>
         <div className='container-btn-footer'>
           <button onClick={() => setMobileShow('profile')}>
             <i className={`bi bi-person${mobileShow === 'profile' ? '-fill' : ' color-dis'}`}></i>
