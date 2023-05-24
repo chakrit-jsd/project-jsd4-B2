@@ -74,11 +74,12 @@ body {
 
 .container-profile {
   position: fixed;
-  left: 0;
-  height: 100%;
-  max-height: calc(100vh - 110px);
-  padding: 0px !important;
-  /* background-color: red; */
+    left: 0;
+    height: 100%;
+    max-height: calc(100vh - 110px);
+    padding-top: 10px !important;
+    background-color: #ffffff !important;
+    border-radius: 0px 25px 0px 0px;
 }
 
 .container-main-feed {
@@ -93,8 +94,9 @@ body {
   position: fixed;
   right: 0;
   height: 100%;
-  padding: 0px !important;
-  /* background-color: green; */
+  padding-top: 10px !important;
+  background-color: #ffffff !important;
+  border-radius: 25px 0px 0px 0px;
 }
 
 .error-input {

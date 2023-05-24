@@ -32,14 +32,14 @@ const dashboard = {
 }
 
 const Dashboard = () => {
-  const [nameLegend, setNameLegend] = useState('');
+  const [nameLegend, setNameLegend] = useState('Yoga');
 
   // Add data and customize chart here
   const data = {
     labels: ['Yoga', 'Hiit', 'Pilates', 'Strength', 'Weight'],
     datasets: [
       {
-        label: 'My First Dataset',
+        label: 'Percentage',
         data: [
           dashboard.Yoga.percentage,
           dashboard.Hiit.percentage,
@@ -48,12 +48,11 @@ const Dashboard = () => {
           dashboard.Weight.percentage
         ],
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(0, 0, 0)',
-          'rgb(10, 10, 120)',
-          'rgb(10, 150, 120)'
+          '#C6D57E',
+          '#FF7878',
+          '#F1935C',
+          '#BAE5E5',
+          '#FFEB99'
         ],
         hoverOffset: 10,
       },
@@ -62,38 +61,39 @@ const Dashboard = () => {
 
   return (
     <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
-      <div className="pieChart" style = {{width: 230.83}}>
+      <div className="pieChart">
         <PieChart chartData={data} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>
 
       <main className="activity-detail-box">
         <div className="activity-detail" id="act-1-detail">
-          <p className="act-name">
-            {nameLegend}
+          <p className="detail-outter-box" id="act-name">
+            <b>Type: &nbsp;
+            {nameLegend}</b>
           </p>
-          <p className="act-percent">
-            Percent:
-            {dashboard[nameLegend]?.percentage}
+          <p className="detail-outter-box">
+            &nbsp;&nbsp;Total time: &nbsp;
+            {dashboard[nameLegend]?.percentage}%
           </p>
-          <p>
-          Count:
-          {dashboard[nameLegend]?.count}
+          <p className="detail-outter-box">
+            &nbsp;&nbsp;Submitted activity: &nbsp;
+            {dashboard[nameLegend]?.count}
           </p>
-          <p>
-          Total Time:
-          {dashboard[nameLegend]?.totalTime}
+          <p className="detail-outter-box">
+           &nbsp;&nbsp;Time spent (min.): &nbsp;
+           {dashboard[nameLegend]?.totalTime}
           </p>
         </div>
 
       </main>
 
-      <footer className="achievement">
+      {/* <footer className="achievement">
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
-      </footer>
+      </footer> */}
     </aside>
   );
 };
