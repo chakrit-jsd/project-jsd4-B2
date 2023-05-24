@@ -5,12 +5,13 @@ import CreateActivity from "./components/CreateActivity"
 import SwitchFeed from "./components/SwitchFeed"
 
 
-const MainFeedAnother = ({ user }) => {
+const MainFeedAnother = ({ user, mobileShow, activeClass }) => {
 
   // const [ activeClass, setActiveClass ] = useState(true)
   const [ switcher, setSwitcher ] = useState('home')
   const [ posts, setPosts ] = useState([])
   const [ nextGet, setNextGet ] = useState(true)
+  const [ isProgress, setIsProgress ] = useState(true)
 
   const calPages = () => {
     const postsPerPage = 3
@@ -57,11 +58,16 @@ const MainFeedAnother = ({ user }) => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    setIsProgress(true)
     const getFeeds = async () => {
-      window.scrollTo(0, 0)
+      setTimeout(() => {
+        setIsProgress(false)
+      }, 800)
       if(switcher === 'home') {
         try {
           if (!user) return
+          if (!user.thisme) return
           const res = await getAnotherFeed(user._id)
           setPosts(res.data?.posts)
           // console.log(res.data.posts)
@@ -70,7 +76,10 @@ const MainFeedAnother = ({ user }) => {
         }
       }
     }
-    getFeeds()
+    setTimeout(() => {
+      getFeeds()
+
+    }, 800)
 
   }, [switcher, user])
 
@@ -98,7 +107,7 @@ const MainFeedAnother = ({ user }) => {
       <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} /> */}
       {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
       {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed updateSinglePost={updateSinglePost} nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
+      {<CardFeed mobileShow={mobileShow} updateSinglePost={updateSinglePost} nextPosts={nextPosts} isProgress={isProgress} nextGet={nextGet} posts={posts} user={user} setPostsByCreateAndUpdate={setPostsByCreateAndUpdate} />}
     </article>
   )
 }

@@ -3,11 +3,11 @@ import CardActivity from "./CardActivity";
 import NoneCardFeed from "./NoneCardFeed";
 import ProgressSwitcher from "./ProgressSwitcher";
 
-const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, user, isProgress, switcher }) => {
-
+const CardFeed = ({ mobileShow, updateSinglePost, deletePost, nextPosts, nextGet, posts, user, isProgress, switcher }) => {
 
   return (
-    <section className="container-cards-feed">
+    <>
+    {mobileShow === 'feed' ? (<section className={`container-cards-feed ${mobileShow !== 'feed' ? 'mobile-display-none' : null}`}>
       {isProgress ? <ProgressSwitcher switcher={switcher} /> : null}
       <InfiniteScroll
         dataLength={posts.length} //This is important field to render the next data
@@ -32,9 +32,10 @@ const CardFeed = ({ updateSinglePost, deletePost, nextPosts, nextGet, posts, use
         // }
       >
 
-        {posts?.length !== 0 ? posts?.map((post) => <CardActivity post={post} key={post._id} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />) : <NoneCardFeed />}
+        {posts?.length !== 0 ? posts?.map((post) => <CardActivity post={post} key={post._id} user={user} updateSinglePost={updateSinglePost} deletePost={deletePost} />) : null}
       </InfiniteScroll>
-    </section>
+    </section>) : null}
+    </>
   );
 };
 

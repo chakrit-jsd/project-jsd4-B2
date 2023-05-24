@@ -6,7 +6,7 @@ import FormEditProfile from './components/FormEditProfile';
 import DropAndCrop from './components/DropAndCrop';
 import '../../assets/styles/profile.css'
 
-const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
+const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow }) => {
   const {
     _id,
     email,
@@ -84,7 +84,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate }) => {
   const [ classFollow, setClassFollow ] = useState('left')
 
   return (
-    <aside className="container-profile col-xl-2 col-lg-2 col-md-1">
+    <aside className={`container-profile col-xl-2 col-lg-2 col-md-1 ${mobileShow !== 'profile' ? 'mobile-diplay-none' : null}`}>
       <section className='profile-head'>
         <div className='profile-img-btn'>
           <img src={imgUrl || 'https://via.placeholder.com/150'} alt="profiel-img" />

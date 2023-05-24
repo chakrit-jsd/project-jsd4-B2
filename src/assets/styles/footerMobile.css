@@ -1,0 +1,48 @@
+.footer-mobile{
+  display: none;
+}
+
+@media (width <= 420px) {
+  .footer-mobile {
+    position: fixed;
+    top: calc(94vh - 15px);
+    width: 100%;
+    height: 68px;
+    /* transform: translate(10%); */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 245, 245);
+  }
+  .footer-none {
+    display: none;
+  }
+  .container-btn-footer {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container-btn-footer button {
+    width: 60px;
+    border: none;
+    background-color: transparent;
+  }
+  .container-btn-footer p {
+    font-size: 0.6rem;
+  }
+  .container-btn-footer i {
+    font-size: 1.3rem;
+    color: var(--main);
+  }
+  .container-btn-footer .profilename {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--main);
+    margin-bottom: 5px !important;
+  }
+  .color-dis {
+    color: gray !important;
+  }
+}

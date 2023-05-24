@@ -46,7 +46,8 @@
 }
 
 .head-card-top button {
-  width: 75%;
+  max-width: fit-content;
+  width: 68%;
   text-decoration: none;
   display: block;
   display: flex;
@@ -105,13 +106,13 @@
 .container-image-card .container-text-activity {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1%;
   position: absolute;
     bottom: 10px;
   width: 94%;
   height: auto;
-  margin-bottom: 0.7rem !important
+
 }
 
 .container-text-activity p {
@@ -243,3 +244,47 @@
 .onProgress {
   display: none;
 }
+
+@media (width <= 420px) {
+  .mobile-diplay-none {
+    display: none !important;
+  }
+  .container-head-card {
+    height: 2.6rem;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+  }
+  .head-card-top {
+    padding-top: 0.3rem;
+  }
+  .head-card-top img {
+    height: 2rem;
+    width: 2rem;
+  }
+  .head-card-top button span {
+    font-size: 1.2rem;
+  }
+  .container-card-activity {
+    border-radius: 1px;
+  }
+  .container-text-activity {
+    gap: 0%;
+  }
+  .container-text-activity p {
+    font-size: 1rem;
+    padding: 0rem 0.7rem !important;
+  }
+  .container-title-card {
+    padding: 0.1rem 0.8rem;
+  }
+  .container-title-card figcaption {
+    font-size: 1.1rem;
+  }
+  .liked {
+    width: 20%;
+  }
+  .liked span {
+    font-size: 0.8rem;
+  }
+}
+

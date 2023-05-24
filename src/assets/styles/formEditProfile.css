@@ -85,6 +85,7 @@ input[type="radio"]:checked + label::after {
   display: flex;
   /* gap: ; */
   justify-content: space-between;
+
 }
 .radio-title {
   margin-bottom: 0.3rem !important;
@@ -219,5 +220,99 @@ input[type="radio"]:checked + label::after {
   }
   .edit-profile-vl {
     display: none;
+  }
+}
+
+@media (width <= 420px) {
+  .modal-edit-profile-body {
+    padding-bottom: 0 ;
+  }
+  #form-edit-profile {
+    gap: 0.5rem;
+    padding-bottom: 10px;
+  }
+  #form-edit-profile input {
+    border: none;
+    border-bottom: 1px solid gray;
+    border-radius: 0;
+    padding: 0 1px;
+    width: 90%;
+  }
+  #form-edit-profile input[name="birthdate"] {
+    width: 90%;
+  }
+  #form-edit-profile input[name="profilename"] {
+    width: 100%;
+  }
+  #form-edit-profile p.label,
+  .edit-input-container-number label:first-child p,
+  .edit-input-radio label:first-child p,
+  .right-in label:first-child p,
+  .radio-title {
+    font-size: 0.8rem;
+  }
+  .container-edit-profile-left .container-input-text-component {
+    width: 100%;
+  }
+  .container-edit-profile-right .right-in {
+    gap: 6px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* width: 100%; */
+    justify-content: space-between;
+    /* align-items: center; */
+  }
+  .right-in label:first-child {
+    width: 100%;
+  }
+  .container-input-text-component {
+    width: 49%;
+  }
+  .edit-input-radio {
+    justify-content: start;
+    /* align-items: end; */
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+  .edit-input-radio label:first-child {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    transform: translate(0, -116%);
+  }
+  .edit-input-radio label:first-child select {
+    width: 90%;
+    height: 24px;
+  }
+  .edit-input-container-number label:first-child {
+    width: 60%;
+  }
+
+  .right-in select {
+    border: none;
+    padding: 0 1px;
+    border-bottom: 1px solid gray;
+    border-radius: 0;
+    width: 90%;
+  }
+  .edit-input-number {
+    width: 80%;
+    /* padding-bottom: 2px; */
+    height: 98% !important;
+  }
+  .edit-input-number .container-input-text-component input {
+    /* padding-bottom: 2px; */
+    /* height: 98% !important; */
+    margin: 2px 0 0 0 !important;
+  }
+  .container-btn-form-edit-profile {
+    margin-top: 10px;
+  }
+  .container-btn-form-edit-profile button {
+    font-size: 1rem !important;
+    padding: 3px 0 !important;
   }
 }

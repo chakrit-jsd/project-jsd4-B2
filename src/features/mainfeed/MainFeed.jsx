@@ -5,21 +5,22 @@ import CreateActivity from "./components/CreateActivity"
 import SwitchFeed from "./components/SwitchFeed"
 
 
-const MainFeed = ({ user }) => {
+const MainFeed = ({ user, mobileShow, activeClass }) => {
+  const locaName = location.pathname.replace('/me/', '')
 
-  const [ activeClass, setActiveClass ] = useState(true)
-  const [ switcher, setSwitcher ] = useState('')
+  const [ switcher, setSwitcher ] = useState(locaName || 'feed')
   const [ isProgress, setIsProgress ] = useState(true)
   const [ posts, setPosts ] = useState([])
   const [ nextGet, setNextGet ] = useState(true)
 
   const getHome =  async () => {
+    setPosts([])
     try {
       const res = await getFeedHome()
       setPosts(res.data?.posts)
       setTimeout(() => {
         setIsProgress(false)
-      }, 800)
+      }, 10)
       // console.log('home')
     } catch (error) {
       console.log(error)
@@ -27,12 +28,13 @@ const MainFeed = ({ user }) => {
   }
 
   const getAll = async () => {
+    setPosts([])
     try {
       const res = await getFeedAll()
       setPosts(res.data?.posts)
       setTimeout(() => {
         setIsProgress(false)
-      }, 800)
+      }, 10)
       // console.log(res.data.posts)
     } catch (error) {
       console.log(error)
@@ -47,7 +49,7 @@ const MainFeed = ({ user }) => {
 
   const getFeedInfinite = async (getFeedAxios) => {
     const page = calPages()
-    // console.log(page)
+
     try {
       const res = await getFeedAxios(page)
       setNextGet(res.data?.next)
@@ -64,7 +66,6 @@ const MainFeed = ({ user }) => {
       console.log(error)
     }
   }
-
   const nextPosts = async () => {
     setNextGet(true)
     if (location.pathname === '/me/home') {
@@ -95,6 +96,7 @@ const MainFeed = ({ user }) => {
     setIsProgress(true)
     const getFeeds = async () => {
       window.scrollTo(0, 0)
+
       if (location.pathname === '/me/home') {
         setNextGet(true)
         await getHome()
@@ -104,36 +106,24 @@ const MainFeed = ({ user }) => {
         await getAll()
       }
     }
-    getFeeds()
-    // console.log(posts)
-  }, [switcher])
-
-
-  window.onscroll = () => {
-    const prev = window.pageYOffset
-    const lg = (prev, curr) => {
-      if (curr < 100) setActiveClass(true)
-      if (curr > 80 && curr - prev < 0) {
-        setActiveClass(true)
-      }
-      if (curr > 80 && curr - prev > 0) {
-        setActiveClass(false)
-      }
-    }
     setTimeout(() => {
-      const curr = window.pageYOffset
-      lg(prev, curr)
-    }, 50)
-  }
+      getFeeds()
+    }, 800)
+    // console.log(posts)
+  }, [switcher, mobileShow])
 
   return (
-    <article className="container-main-feed">
-      <CreateActivity user={user} activeClass={activeClass} updateSinglePost={updateSinglePost} updateNewPost={updateNewPost} />
-      <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
-      {/* {switcher === 'feed' ? <CardFeed posts={posts} user={user} /> : null}
-      {switcher === 'home' ? <CardFeed posts={posts} user={user} /> : null} */}
-      {<CardFeed nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} isProgress={isProgress} switcher={switcher} updateSinglePost={updateSinglePost} deletePost={deletePost} />}
-    </article>
+    <>
+      {mobileShow === 'feed' ?
+      (<article className="container-main-feed ">
+        <div className={`container-create-menu ${activeClass ? null : 'active-class'}`}>
+          <CreateActivity user={user} activeClass={activeClass} updateSinglePost={updateSinglePost} updateNewPost={updateNewPost} />
+          <SwitchFeed setSwitcher={setSwitcher} switcher={switcher} />
+        </div>
+        <CardFeed mobileShow={mobileShow} nextPosts={nextPosts} nextGet={nextGet} posts={posts} user={user} isProgress={isProgress} switcher={switcher} updateSinglePost={updateSinglePost} deletePost={deletePost} />
+      </article>) : null}
+
+    </>
   )
 }
 

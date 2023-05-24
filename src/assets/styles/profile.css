@@ -270,3 +270,31 @@
   display: none;
 }
 
+@media (width <= 420px) {
+  .mobile-diplay-none {
+    display: none;
+  }
+  .container-profile .profile-head img {
+    width: 40%;
+  }
+  .profile-img-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .edit-profile-icon {
+    right: 24%;
+    transform: translate();
+  }
+  .container-follow {
+    position: relative;
+    height: 500px;
+    margin: 0rem;
+  }
+  .following, .followers {
+    position: static;
+  }
+  .container-main-feed {
+    height: 100% !important;
+  }
+
+}

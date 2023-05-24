@@ -31,7 +31,7 @@ const dashboard = {
   },
 }
 
-const Dashboard = () => {
+const Dashboard = ({ mobileShow }) => {
   const [nameLegend, setNameLegend] = useState('');
 
   // Add data and customize chart here
@@ -61,7 +61,7 @@ const Dashboard = () => {
   };
 
   return (
-    <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
+    <aside className={`container-dashboard col-xl-2 col-lg-2 col-md-1 ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
       <div className="pieChart" style = {{width: 230.83}}>
         <PieChart chartData={data} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>

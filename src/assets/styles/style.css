@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+:root {
+  --main: #FF7B54;
+  --main-hover: #ff7c54a1;
+}
 
 * {
   /* border: 1px solid red; */
@@ -126,4 +130,22 @@ p {
 }
 .refresh-hide {
   display: none;
+}
+
+@media (width <= 420px) {
+  .container-main {
+    padding-top: 0;
+  }
+  .mobile-aside {
+    height: 100%;
+  }
+  .container-profile {
+    position: static;
+  }
+  .profile-head {
+    height: 100%;
+  }
+  .container-main {
+    height: 100%;
+  }
 }
