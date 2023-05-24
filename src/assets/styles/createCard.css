@@ -321,7 +321,7 @@ input[type="range"] {
   border-radius: 5px;
   border: 1px solid var(--main);
   padding: 2px 10px;
-  color: white;
+  color: white !important;
   font-weight: 600;
   letter-spacing: 0.1rem;
   box-shadow: 1px 1px 1px rgba(128, 128, 128, 0.644);
@@ -508,8 +508,11 @@ select[name="activity"] {
   .btn-card-create {
     font-size: 0.9rem;
     width: 40%;
+    font-weight: 600;
     line-height: 100%;
+    color: white !important;
   }
+
   .btn-card-create:disabled {
     font-size: 0.9rem;
   }

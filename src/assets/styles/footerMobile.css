@@ -51,7 +51,7 @@
     color: gray !important;
   }
   .h-svh {
-    top: calc(100svh - 70px);
+    top: calc(100svh - 69px);
   }
   .h-svh-btn {
     top: calc(100svh - 60px);

@@ -1,6 +1,4 @@
-.container-navbar {
-  background-color: rgb(245, 245, 245);
-}
+
 .outter-nav {
   border-bottom: 1px solid black;
   position: relative;
@@ -10,8 +8,8 @@
   height: 60px;
   border: none;
   background: none;
-  z-index: 90;
-  background-color: rgb(245, 245, 245);
+  z-index: 100;
+  background-color: rgb(245, 245, 245) !important;
 }
 .navbar-brand img {
   width: 100px;
@@ -24,7 +22,6 @@
   justify-content: space-between;
   align-items: center;
   margin: 0, auto;
-  background-color: rgb(245, 245, 245);
 }
 .nav-form-input {
   transform: translate(-7%);
@@ -37,7 +34,7 @@
   padding-left: 15px;
   padding-right: 15px;
 
-  background: rgb(245, 245, 245);
+  background: black;
   border: none;
   border-bottom: 2px solid gray;
   /* border-radius: 27.5px; */

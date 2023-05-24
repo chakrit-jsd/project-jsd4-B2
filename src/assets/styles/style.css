@@ -61,8 +61,8 @@ body {
   left: 0;
   margin-left: 0 !important;
   width: 100%;
-  /* background-color: white; */
-  z-index: 100;
+  background-color: black;
+  z-index: 90;
 }
 
 .container-main {
