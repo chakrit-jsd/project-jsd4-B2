@@ -66,9 +66,9 @@ const Dashboard = ({ user }) => {
   return (
     <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
       <header className="title-outter-box">
-        <h2 className="title-text">
+        <font className="title-text">
           Activity Summary
-        </h2>
+        </font>
       </header>
 
       <div className="pieChart">
