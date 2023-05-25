@@ -1,52 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../assets/styles/dashboard.css";
 import PieChart from "../../../chart";
+import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
-const dashboard = {
-  Yoga: {
-    percentage: 20,
-    count: 123,
-    totalTime: 2342
-  },
-  Hiit: {
-    percentage: 30,
-    count: 123,
-    totalTime: 2342
-  },
-  Pilates: {
-    percentage: 10,
-    count: 123,
-    totalTime: 2342
-  },
-  Strength: {
-    percentage: 15,
-    count: 123,
-    totalTime: 2342
-  },
-  Weight: {
-    percentage: 25,
-    count: 123,
-    totalTime: 2342
-  },
-}
 
-const Dashboard = () => {
-  const [nameLegend, setNameLegend] = useState('Yoga');
+const Dashboard = ({ user }) => {
+  const [chartData, setChartData] = useState('');
+  const [nameLegend, setNameLegend] = useState(user.interest || 'Yoga');
+  const [pieData, setPieData] = useState({});
 
+  useEffect(() => {
+    const getChart = async () => {
+      let userId = user._id
+      if (!user.thisme) {
+        userId = 'me';
+      }
+      try {
+        const chartRes = await getDashboard(userId);
+        console.log(chartRes)
+        setChartData(chartRes.data.dashboard);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getChart()
+  }, [])
+
+  useEffect(() => {
+    const labels = []
+    const dataPercentage = []
+    for (const type in chartData) {
+      if (type !== 'totalTimeSpent') {
+        console.log('asdf')
+        labels.push(type)
+        dataPercentage.push(chartData[type].percentage)
+      }
+    }
+    setPieData({
+      labels: labels,
+      dataPercentage: dataPercentage
+    })
+  }, [chartData])
   // Add data and customize chart here
+  // console.log(dataPercentage)
+  // console.log(labels)
   const data = {
-    labels: ['Yoga', 'Hiit', 'Pilates', 'Strength', 'Weight'],
+    labels: pieData.labels,
     datasets: [
       {
         label: 'Percentage',
-        data: [
-          dashboard.Yoga.percentage,
-          dashboard.Hiit.percentage,
-          dashboard.Pilates.percentage,
-          dashboard.Strength.percentage,
-          dashboard.Weight.percentage
-        ],
+        data: pieData.dataPercentage,
         backgroundColor: [
           '#C6D57E',
           '#FF7878',
@@ -61,6 +65,7 @@ const Dashboard = () => {
 
   return (
     <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
+
       <div className="pieChart">
         <PieChart chartData={data} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>
@@ -73,15 +78,21 @@ const Dashboard = () => {
           </p>
           <p className="detail-outter-box">
             &nbsp;&nbsp;Total time: &nbsp;
-            {dashboard[nameLegend]?.percentage}%
+            {chartData[nameLegend]?.percentage}%
           </p>
           <p className="detail-outter-box">
             &nbsp;&nbsp;Submitted activity: &nbsp;
-            {dashboard[nameLegend]?.count}
+            {chartData[nameLegend]?.count}
           </p>
           <p className="detail-outter-box">
-           &nbsp;&nbsp;Time spent (min.): &nbsp;
-           {dashboard[nameLegend]?.totalTime}
+            <span>
+              &nbsp;&nbsp;Time spent (HR.): &nbsp;
+              {chartData[nameLegend]?.timeSpent.hours}
+            </span>
+            :
+            <span>
+            {chartData[nameLegend]?.timeSpent.minutes}
+            </span>
           </p>
         </div>
 

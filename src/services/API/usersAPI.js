@@ -32,6 +32,9 @@ const getSearchUsers = (text) => {
   return http.get(`/search?text=${text}`)
 }
 
+const getDashboard = (userId) => {
+  return http.get(`/users/dashboard/${userId}`)
+}
 
 export {
   getMe,
@@ -41,5 +44,6 @@ export {
   getFeedAll,
   putProfileEdit,
   postFollows,
-  getSearchUsers
+  getSearchUsers,
+  getDashboard
 }

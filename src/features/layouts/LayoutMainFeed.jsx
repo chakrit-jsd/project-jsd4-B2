@@ -31,7 +31,7 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
           {pathname === '/me' || pathname === '/me/feed' || pathname === '/me/home'
           ? <MainFeed user={user} />
           : <MainFeedAnother user={user} /> }
-          <Dashboard />
+          <Dashboard user={user} />
         </main>
 
         {/* <footer className="row">

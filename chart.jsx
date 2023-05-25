@@ -22,7 +22,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
           setNameLegend(legendItem.text);
         },
         position: 'bottom',
-        align: 'start',
+        align: 'center',
         labels:{
           boxWidth: 12,
           padding: 5,
@@ -45,7 +45,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
       const dataPoint = getElementsAtEvent(chartRef.current, event)[0].index
       if (dataPoint == 0) {
         return setNameLegend('Yoga')
-      } 
+      }
       else if (dataPoint == 1) {
         return setNameLegend('Hiit')
       }
@@ -66,7 +66,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
 
   // Apply config here
   return (
-    <Pie 
+    <Pie
       data={chartData}
       options={config}
       plugins={[ChartDataLabels]}
