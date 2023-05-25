@@ -10,6 +10,7 @@ const Navbar = ({ user }) => {
   const [ textSearch, setTextSearch ] = useState('');
 
   const [ resultSearch, setResultSearch ] = useState('')
+  const [ showSearch, setShowSearch ] = useState(false)
   useEffect(() => {
     if (textSearch) return
     setResultSearch('')
@@ -18,7 +19,10 @@ const Navbar = ({ user }) => {
   const searchUsers = async (event) => {
     event.preventDefault();
     try {
-      if (textSearch.length < 1) return
+      if (textSearch.length < 1) {
+        setShowSearch((prev) => !prev)
+        return
+      }
       const res = await getSearchUsers(textSearch);
       // console.log(res);
       if (res.data.message) {
@@ -53,12 +57,12 @@ const Navbar = ({ user }) => {
           </Link>
 
           <form className="d-flex nav-form-input" role="search">
-            <div className="search-">
+            <div className="search">
               <input
-                className="search-nav"
-                type="search"
+                className={`search-nav mobile-search ${showSearch ? 'show' : null}`}
+                type="sears"
                 placeholder="Find Friends"
-                aria-label="Search"
+                aria-label="Sea"
                 value={textSearch}
                 onChange={({ target }) => setTextSearch(target.value)}
               />

@@ -1,0 +1,41 @@
+.container-tooltip {
+  background-color: black;
+}
+.MuiTooltip-tooltip {
+  background-color: rgba(0, 0, 0, 0.767) !important;
+  max-height: 300px !important;
+  max-width: 200px !important;
+}
+.tootip-detail {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 5px;
+}
+
+.tootip-detail a {
+  text-decoration: none;
+  color: white;
+}
+.tootip-detail img {
+  width: 20px;
+  border-radius: 50%;
+}
+.tootip-detail span {
+  font-size: 0.6rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.who-liked-link a {
+  display: flex;
+  align-items: end;
+  flex-wrap: nowrap;
+  gap: 4px;
+}
+
+.tooltip-hover:hover {
+  cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { postLikedCard } from "../../../services/API/cardsAPI"
 import EditActivity from "./EditActivity"
 import ModalQuestion from "../../../components/shared/ModalQuestion"
 import '../../../assets/styles/feedCard.css'
+import CustomTooltip from "./CustomTooltip";
 
 const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
 
@@ -25,7 +26,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
 
   const [ show, setShow ] = useState(false);
   const [ showDel, setShowDel ] = useState(false)
-
+  const [ whoLiked, setWhoLiked ] = useState([])
   const { years, days, hours, minutes } = createAt?.duration
 
   const postLiked = async () => {
@@ -78,7 +79,9 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
           <img src={imgUrl} alt="img-activity" />
           <div className="container-text-activity">
             <div className="liked">
-              <span>{likedCount}</span>
+              <CustomTooltip cardId={_id} likedCount={likedCount} whoLiked={whoLiked} setWhoLiked={setWhoLiked} >
+                <span className="tooltip-hover">{likedCount}</span>
+              </CustomTooltip>
               <i onClick={postLiked} className={`bi bi-heart${isLiked ? '-fill' : ''}`}></i>
             </div>
             <p className="activity">{activity}</p>

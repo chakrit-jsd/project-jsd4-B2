@@ -20,7 +20,6 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
       legend: {
         onClick: (e, legendItem) => {
           setNameLegend(legendItem.text);
-        },
         position: 'bottom',
         align: 'center',
         labels:{
@@ -38,31 +37,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
     }
   }
 
-  const chartRef = useRef();
-  const onClick = (event) => {
-    const checkEvent = getElementsAtEvent(chartRef.current, event)
-    if (checkEvent.length > 0) {
-      const dataPoint = getElementsAtEvent(chartRef.current, event)[0].index
-      if (dataPoint == 0) {
-        return setNameLegend('Yoga')
-      }
-      else if (dataPoint == 1) {
-        return setNameLegend('Hiit')
-      }
-      else if (dataPoint == 2) {
-        return setNameLegend('Pilates')
-      }
-      else if (dataPoint == 3) {
-        return setNameLegend('Strength')
-      }
-      else if (dataPoint == 4) {
-        return setNameLegend('Weight')
-      }
-    } else {
-      console.log('Please select on a chart')
-    }
-  };
-
+  console.log(nameLegend);
 
   // Apply config here
   return (

@@ -24,8 +24,8 @@ const MainAnother = () => {
 
   useEffect(() => {
     // if (user) return
+    window.scrollTo(0, 0)
     const getPage = async () => {
-      window.scrollTo(0, 0)
       try {
         const res = await getAnother(userId)
 

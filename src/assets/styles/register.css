@@ -92,6 +92,7 @@ input[type="radio"] +label {
   width: 100%;
   padding-left: 6px;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid black;
   background-color: transparent;
 
@@ -112,6 +113,7 @@ input[type="radio"] +label {
   width: 30%;
   font-size: 1.2rem;
   box-shadow: 1px 1px 1px 0 black;
+  color: black;
 }
 
 .submit-register {
@@ -134,7 +136,7 @@ input[type="radio"] +label {
   align-items: end;
   justify-content: start;
   flex-wrap: nowrap;
-  gap: 10px;
+  gap: 10px !important;
 }
 
 .container-header-input .label {
@@ -147,45 +149,50 @@ input[type="radio"] +label {
 }
 
 
-/* @media (width <= 1500px) {
+@media (max-width: 421px) {
+  .container-main-register {
+    height: 100svh;
+  }
+  .nav-register img {
+    transform: translate(-4%, 10%);
+  }
+  .nest, .fit {
+    font-size: 2.4rem;
+  }
+  .container-register form {
+    gap: 0.2rem;
+  }
   .container-register {
-    width: 35%;
+    max-width: 420px;
+    width: 90%;
+    transform: translate(5%, 2%);
+  }
+
+  .container-register .container-input-text-component {
+    width: 100%;
+  }
+  .container-register .container-input-text-component p.label {
+    font-size: 0.8rem;
+  }
+  .submit-register {
+    font-size: 1rem
+  }
+  .cancel-register {
+    font-size: 0.9rem;
+  }
+  select[name="city"] {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    padding: 0 2px;
+  }
+  .label-city {
+    font-size: 0.8rem;
+  }
+  input[type="date"] {
+    text-align: start !important;
+  }
+  input::-webkit-date-and-time-value {
+    text-align:left !important;
   }
 }
-@media (width <= 1400px) {
-  .container-register {
-    width: 40%;
-  }
-}
-@media (width <= 1300px) {
-  .container-register {
-    width: 45%;
-  }
-}
-@media (width <= 1200px) {
-  .container-register {
-    width: 50%;
-  }
-}
-@media (width <= 1000px) {
-  .container-register {
-    width: 60%;
-  }
-}
-@media (width <= 900px) {
-  .container-register {
-    width: 65%;
-  }
-}
-@media (width <= 800px) {
-  .container-register {
-    width: 70%;
-    transform: translate(20%, 5%);
-  }
-}
-@media (width <= 700px) {
-  .container-register {
-    width: 75%;
-    transform: translate(15%, 5%);
-  }
-} */

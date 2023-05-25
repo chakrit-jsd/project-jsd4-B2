@@ -67,7 +67,7 @@ export const CityList = ({register, errors}) => {
 
   return (
     <label>
-      <p>City</p>
+      <p className='label-city'>City</p>
       <p className='error-input' ><ErrorMessage errors={errors} name='city' /></p>
       <select {...register('city')}>
         {provincesThailand.map((city, index) => (
