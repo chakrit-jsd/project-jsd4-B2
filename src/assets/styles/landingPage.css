@@ -361,7 +361,7 @@ html, body {
 .container-content-7 .container-login {
   height: 100%;
   width: 50%;
-  z-index: 100;
+  z-index: 1;
   background: none;
   display: flex;
   flex-direction: column;
@@ -403,6 +403,7 @@ html, body {
   width: 84px;
   background-color: white;
   font-weight: 600;
+  color: black;
 }
 
 .content-7-btn a {
@@ -424,9 +425,11 @@ html, body {
   margin-bottom: 0.3rem;
 }
 @media (max-width: 421px) {
+  .container-main-landing {
+    height: 100%;
+  }
   .container-main-content-landing {
     max-width: 420px !important;
-    /* width: 420px; */
   }
   .container-content-1 {
     width: 100%;
@@ -451,6 +454,10 @@ html, body {
   .content-1-2 h1 {
     width: 90%;
     /* transform: translate(10%); */
+  }
+  .content-1-2 a {
+    width: 50%;
+    font-size: 1.1rem;
   }
   .container-head-content-2 h1 {
     font-size: 2.4rem;
@@ -542,5 +549,8 @@ html, body {
     transform: translate(50%, -10%);
     position: absolute;
     /* top: 0; */
+  }
+  .container-content-7 {
+    height: 70vh;
   }
 }
