@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../assets/styles/dashboard.css";
-import PieChart from "../../../chart";
+import PieChart from "./component/chart";
 import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
@@ -66,9 +66,9 @@ const Dashboard = ({ user, mobileShow }) => {
   return (
     <aside className={`container-dashboard col-xl-2 col-lg-2 col-md-1  ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
       <header className="title-outter-box">
-        <h2 className="title-text">
+        <font className="title-text">
           Activity Summary
-        </h2>
+        </font>
       </header>
 
       <div className="pieChart">
