@@ -55,7 +55,7 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
         <main className={`container-main row ${isReFresh ? 'refresh-hide' : null}`}>
           <div className="mobile-aside">
             <Profile mobileShow={mobileShow} getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} />
-            <Dashboard mobileShow={mobileShow} />
+            <Dashboard mobileShow={mobileShow} user={user} />
           </div>
           {pathname === '/me' || pathname === '/me/feed' || pathname === '/me/home' && mobileShow === 'feed'
           ? <MainFeed activeClass={activeClass} mobileShow={mobileShow} user={user} />
