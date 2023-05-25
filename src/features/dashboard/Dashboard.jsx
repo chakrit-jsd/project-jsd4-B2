@@ -49,7 +49,7 @@ const Dashboard = ({ user, mobileShow }) => {
     labels: pieData.labels,
     datasets: [
       {
-        label: 'Percentage',
+        label: ' ',
         data: pieData.dataPercentage,
         backgroundColor: [
           '#C6D57E',
