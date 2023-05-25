@@ -434,6 +434,9 @@ select[name="activity"] {
 .modal-footer button {
   color: black;
 }
+.h-vh {
+  display: none;
+}
 @media (max-width: 421px) {
   .active-class {
     display: flex;
