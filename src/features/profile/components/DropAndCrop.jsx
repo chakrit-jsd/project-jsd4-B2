@@ -132,9 +132,9 @@ const DropAndCrop = ({ imgUrl, setImgUrl, setImgFile, imgFile, imgPreview, setIm
               }
               {imgPreview || imgFile || imgUrl ? <button className='position-btn-image-2' onClick={(e) => handleSelectImgAgain(e)}>Cancel</button> : null}
             </div>
-            <span className='input-img-message-err'>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span>
-            <span className='input-img-message-succ'>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span>
-            <span className='input-img-message-err'>{imgMessage}</span>
+            {fileRejections.length !== 0 ? <span className='input-img-message-err'>{fileRejections.length !== 0 && `${errorMessage?.name} Size: ${errorMessage?.size} MB. -- ${errorMessage?.message}`}</span> : null}
+            { acceptedFiles.length !== 0 ?<span className='input-img-message-succ'>{acceptedFiles.length !== 0 && `${acceptMessage?.name} Size ${acceptMessage?.size} MB.`}</span> : null}
+            {imgMessage.length > 0 ? <span className='input-img-message-err'>{imgMessage}</span> : null}
           </>
         )
       }}

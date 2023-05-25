@@ -23,13 +23,14 @@ const Main = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
+
     if (user) return
     const getPage = async () => {
       try {
         const res = await getMe()
         setUser(res.data.user)
         setImgUrl(res.data.user.profileImgUrl)
-        console.log(res.data.user._id)
+        // console.log(res.data.user._id)
       } catch (error) {
         const res = httpErrorCode(error)
         if(res.status !== 200) {
@@ -41,7 +42,6 @@ const Main = () => {
   }, [])
   return (
     <LayoutMainFeed title='Me Feed' getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} >
-
     </LayoutMainFeed>
   )
 }

@@ -1,8 +1,3 @@
-:root {
-  --main: #FAC031;
-  --main-hover: #fdc0259d;
-}
-
 .dropzone {
   height: 360px;
   width: 100%;

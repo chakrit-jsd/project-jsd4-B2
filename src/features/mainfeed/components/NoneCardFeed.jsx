@@ -4,7 +4,7 @@ import '../../../assets/styles/feedCard.css'
 
 const NoneCardFeed = () => {
   return(
-    <>
+    <div className='mobile-display-none'>
     <figure className="container-card-activity">
         <section className="container-head-card">
           <div className="head-card-top">
@@ -131,7 +131,7 @@ const NoneCardFeed = () => {
           </p>
         </section>
       </figure>
-    </>
+    </div>
   )
 }
 

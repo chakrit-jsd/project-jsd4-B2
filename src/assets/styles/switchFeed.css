@@ -11,7 +11,7 @@
   color: black;
   font-size: 1.1rem;
   border-radius: 15px;
-  width: 49%;
+  width: 40%;
   height: 100%;
   border: 2px solid var(--main);
   background-color: white;
@@ -25,4 +25,17 @@
   box-shadow: 0px 1px 1px black !important;
   color: white !important;
   letter-spacing: 0.3rem !important;
+}
+
+@media (max-width: 421px) {
+  .container-switch-feed a {
+    width: 36%;
+    height: 80%;
+    letter-spacing: 0rem;
+    font-size: 0.9rem;
+  }
+
+  .button-switch-active {
+    letter-spacing: 0.1rem !important;
+  }
 }

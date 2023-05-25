@@ -11,7 +11,7 @@ import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
 import '../../../assets/styles/createCard.css'
 
-const CreateActivity = ({ user, activeClass, updateNewPost }) => {
+const CreateActivity = ({ user, updateNewPost, activeClass }) => {
 
   const {
     register,
@@ -120,9 +120,9 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
     }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
-    console.log(dataForm)
+    // console.log(dataForm)
     const data = {
       ...dataForm,
       file: imgFile || imgBase64
@@ -159,21 +159,20 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL('jpeg'));
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
-
   const [cropper, setCropper] = useState(null);
   return (
     <div className="container-create-activity">
-      <section className={`container-btn-create-activity ${activeClass ? null : 'active-class'}`}>
-        <img src={user.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-img-sm" />
+      <section className={`container-btn-create-activity ${activeClass ? 'h-svh-btn' : 'h-vh' }`}>
+        {/* <img src={user.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-img-sm" /> */}
         <button onClick={handleShow}>
-          Create Activity .....
+          <i className="bi bi-plus-circle-fill"></i>
         </button>
       </section>
 
-      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } >
+      <Modal show={show} onHide={handleClose} fullscreen={false} className='sss' animation={false} backdrop={imgPreview ? 'static' : true } >
         <Modal.Header closeButton>
           <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>
@@ -264,7 +263,7 @@ const CreateActivity = ({ user, activeClass, updateNewPost }) => {
                   <div className='container-range'>
                     <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={duration}
                       style={{
-                        background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`,
+                        background: `linear-gradient(to right, #FF7B54 0%, #FF7B54 ${duration/1.8}%, white ${duration/1.80}%, white 100%)`,
                         // backgroundImage: `linear-gradient(to right, #FAC031 0%, #FAC031 ${duration/1.8}%, black ${duration/1.80}%, black 100%)`,
                       }}
                     />

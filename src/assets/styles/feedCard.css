@@ -46,7 +46,8 @@
 }
 
 .head-card-top button {
-  /* width: 50%; */
+  max-width: fit-content;
+  width: 68%;
   text-decoration: none;
   display: block;
   display: flex;
@@ -61,16 +62,22 @@
 } */
 
 .head-card-top button span {
-  color: black;
+  width: 100%;
+  color: white;
   font-size: 1.4rem;
   padding: 0 0 0 0.6rem ;
-
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: start;
 }
 
 .head-card-top button:hover span {
   text-decoration: underline;
 }
-
+.head-card-top p {
+  color: white;
+}
 .container-image-card {
   display: flex;
   justify-content: center;
@@ -99,28 +106,30 @@
 .container-image-card .container-text-activity {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 3%;
+  flex-wrap: nowrap;
+  gap: 1%;
   position: absolute;
-    bottom: 0;
+    bottom: 10px;
   width: 94%;
   height: auto;
-  margin-bottom: 0.7rem !important
+
 }
 
 .container-text-activity p {
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   align-self: end;
-  color: var(--main);
-  background-color: rgb(240, 248, 255);
+  color: white;
+  line-height: 168%;
+  background-color: rgb(0, 0, 0);
   border-radius: 20px;
-  padding: 0 0.7rem !important;
+  padding: 0rem 0.8rem !important;
 }
 .dropdown-menu button:hover {
   background-color: black;
   color: white;
 }
+
 .duration {
   display: flex;
 }
@@ -156,34 +165,124 @@
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
-
+  align-items: center;
   width: 13%;
 }
 
 .liked i {
+  position: relative;
   font-size: 2rem;
-  color: var(--main);
-  align-self: end;
+  color: rgb(228, 0, 0);
+  /* align-self: end; */
   /* height: 90% */
   width: 42%;
 }
-
+.liked .bi::before {
+  height: inherit;
+  position: absolute;
+  /* height: 100px; */
+  /* align-self: end; */
+  bottom: 0;
+  transform: translate(0, 50%);
+}
 .liked span {
   font-size: 1.1rem;
-  align-self: end;
+  /* align-self: flex-end; */
   text-align: center;
   opacity: 100%;
-  color: var(--main);
-  background-color: rgb(240, 248, 255);
+  color: white;
+  background-color: black;
   border-radius: 10px;
   /* width: ; */
   padding: 0 0.2rem;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
   margin-left: 0.5rem;
 }
 
 .liked i:hover {
-  font-size: 2.5rem;
   cursor: pointer;
-  z-index: 100;
 }
+
+.btn-del-yes,
+.btn-del-no {
+  width: 50px;
+  border: 1px solid var(--main);
+  border-radius: 10px;
+  background-color: white;
+}
+
+.btn-del-yes:hover,
+.btn-del-no:hover {
+  background-color: var(--main);
+  color: white
+}
+/* .container-cards-feed {
+
+} */
+.progress-circle {
+  color: var(--main);
+  height: 60vh;
+  width: 100%;
+  margin: auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+
+.progress-circle svg {
+  transform: scale(2);
+}
+.progress-circle p {
+  font-size: 3rem;
+  text-align: center;
+}
+.onProgress {
+  display: none;
+}
+
+@media (max-width: 421px) {
+  .mobile-diplay-none {
+    display: none !important;
+  }
+  .container-head-card {
+    height: 2.6rem;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+  }
+  .head-card-top {
+    padding-top: 0.3rem;
+  }
+  .head-card-top img {
+    height: 2rem;
+    width: 2rem;
+  }
+  .head-card-top button span {
+    font-size: 1.2rem;
+  }
+  .container-card-activity {
+    border-radius: 1px;
+  }
+  .container-text-activity {
+    gap: 0%;
+  }
+  .container-text-activity p {
+    font-size: 0.9rem;
+    padding: 0rem 0.7rem !important;
+  }
+  .container-title-card {
+    padding: 0.1rem 0.8rem;
+  }
+  .container-title-card figcaption {
+    font-size: 1.1rem;
+  }
+  .liked {
+    width: 20%;
+  }
+  .liked span {
+    font-size: 0.8rem;
+  }
+}
+

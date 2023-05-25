@@ -8,6 +8,8 @@
 
 .container-profile {
   padding: 0.4rem !important;
+  /* max-width: 420px;
+  width: 100%; */
 }
 
 .profile-head {
@@ -17,16 +19,16 @@
   text-align: center;
   /* flex-wrap: wrap; */
   width: 100%;
-  height: 55%;
+  height: 60%;
 }
 
 .container-info {
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
 }
 .container-info h4 {
   margin-top: 20px;
@@ -47,6 +49,7 @@
   font-size: 1.1rem;
   letter-spacing: 0.15rem;
   background: none;
+  color: black;
 }
 .dropdown-menu {
   margin-top: 6px !important;
@@ -155,8 +158,8 @@
   position: relative;
   display: flex;
   /* max-height: 600px; */
+  max-height: 340px;
   height: 100%;
-  max-height: 375px;
   margin: 0 0.5rem;
   padding-top: 5%;
 
@@ -168,10 +171,10 @@
   width: 100%;
   border: none;
   background: none;
-  height: 8%;
+  height: 10%;
   background-color: white;
   font-weight: 600;
-
+  color: black;
 }
 .follow-btn-left {
   z-index: 1;
@@ -219,6 +222,7 @@
 
 .container-follow li {
   width: 100%;
+
   max-width: 250px;
   margin-bottom: 0.5rem;
 }
@@ -247,16 +251,56 @@
 .following, .followers {
   position: absolute;
   margin-top: 1.8rem;
-  padding: 10px 10px;
+  padding: 0px 10px;
   width: 100%;
-  height: 92%;
+  height: 88%;
   background-color: white;
   box-shadow: 1px 2px 3px rgba(128, 128, 128, 0.226);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
+  overflow: hidden;
+}
+.following::-webkit-scrollbar,
+.followers::-webkit-scrollbar {
+  width: 5px;
+}
+
+.following:hover, .followers:hover {
+  overflow-y: overlay;
 }
 
 .follow-none {
   display: none;
 }
 
+@media (max-width: 421px) {
+  .mobile-diplay-none {
+    display: none;
+  }
+  .container-profile {
+    width: 100%;
+  }
+  .container-profile .profile-head img {
+    width: 40%;
+  }
+  .profile-img-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .edit-profile-icon {
+    right: 24%;
+    transform: translate();
+  }
+  .container-follow {
+    position: relative;
+    height: 500px;
+    margin: 0rem;
+  }
+  .following, .followers {
+    position: static;
+  }
+  .container-main-feed {
+    height: 100% !important;
+  }
+
+}

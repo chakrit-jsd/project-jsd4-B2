@@ -39,7 +39,6 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
       description,
       activity,
       dateactivity: setFormat(dateactivity.date)
-      // duration: duration
     }
 
   })
@@ -47,7 +46,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
   const resetData = () => {
     setClassDrop('classDropDefult')
     // setDuration(30)
-    // reset({ title: '', description: '', activity: 'Yoga'})
+    reset({ title, description, activity, duration, dateactivity: setFormat(dateactivity.date) })
     setShow(false)
     setShowLeave(false)
     setImgPreview('')
@@ -58,6 +57,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
 
   const [showLeave, setShowLeave] = useState(false);
   const handleCloseLeave = () => {
+    setDuration(duration)
     resetData()
   }
 
@@ -138,7 +138,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
     // }
     let imgBase64 = ''
     if (typeof cropper !== "undefined" && !imgFile && imgPreview) {
-      imgBase64 = cropper.getCroppedCanvas().toDataURL()
+      imgBase64 = cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg')
     }
     const data = {
       cardId: _id,
@@ -179,7 +179,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
   const getCropData = (event) => {
     event.preventDefault()
     if (typeof cropper !== "undefined") {
-      setImgFile(cropper.getCroppedCanvas().toDataURL());
+      setImgFile(cropper.getCroppedCanvas({ maxWidth: 600, maxHeigth: 600}).toDataURL('image/jpeg'));
     }
   };
 
@@ -193,7 +193,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
         </button>
       </section> */}
 
-      <Modal show={show} onHide={handleClose} animation={false} backdrop={imgPreview ? 'static' : true } >
+      <Modal show={show} onHide={handleCloseLeave} animation={true} className='sss' backdrop={imgPreview ? 'static' : true } >
         <Modal.Header closeButton>
           <Modal.Title>Create<span>Activity</span></Modal.Title>
         </Modal.Header>
@@ -283,7 +283,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
                   <p>Duration</p>
                   <div className='container-range'>
                     <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={durationS}
-                      style={{background: `linear-gradient(to right, #FAC031 0%, #FAC031 ${durationS/1.8}%, white ${durationS/1.80}%, white 100%)`}}
+                      style={{background: `linear-gradient(to right, #FF7B54 0%, #FF7B54 ${durationS/1.8}%, white ${durationS/1.80}%, white 100%)`}}
                     />
                     <p>{durationS} minute.</p>
                   </div>
@@ -292,7 +292,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button onClick={handleClose} className='col-2 btn-card-close'>
+          <button onClick={handleCloseLeave} className='col-2 btn-card-close'>
             Close
           </button>
           <button onClick={handleSubmit(onSubmit)} className='col-4 btn-card-create'>
@@ -301,7 +301,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
         </Modal.Footer>
       </Modal>
 
-      <Modal show={showLeave} onHide={handleCloseLeave} animation={false} backdrop='static' keyboard={false} >
+      {/* <Modal show={showLeave} onHide={handleCloseLeave} animation={false} backdrop='static' keyboard={false} >
         <Modal.Header closeButton>
           <Modal.Title>Leave This Section ?</Modal.Title>
         </Modal.Header>
@@ -316,7 +316,7 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
             Leave
           </button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
