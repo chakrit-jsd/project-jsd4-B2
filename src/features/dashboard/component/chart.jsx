@@ -53,7 +53,6 @@ function PieChart({data, chartData, nameLegend, setNameLegend}) {
     }
   };
 
-
   // Apply config here
   return (
     <Pie

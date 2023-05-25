@@ -38,3 +38,7 @@
 .act-time {
     padding-left: 15px;
 }
+
+@media (max-width: 421px) {
+
+}
