@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "../../assets/styles/dashboard.css";
-import PieChart from "../../../chart";
+import PieChart from "./component/chart";
 import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
