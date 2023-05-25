@@ -113,6 +113,7 @@ input[type="radio"] +label {
   width: 30%;
   font-size: 1.2rem;
   box-shadow: 1px 1px 1px 0 black;
+  color: black;
 }
 
 .submit-register {
@@ -182,5 +183,11 @@ input[type="radio"] +label {
     border-bottom: 1px solid black;
     border-radius: 0;
     padding: 0 2px;
+  }
+  .label-city {
+    font-size: 0.8rem;
+  }
+  input[type="date"] {
+    text-align: start !important;
   }
 }
