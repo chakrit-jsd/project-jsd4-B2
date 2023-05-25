@@ -65,6 +65,7 @@ html, body {
 }
 .container-main-content-landing {
   height: 100%;
+  width: 100%;
 }
 .container-content-1 {
   margin-top: 60px;
@@ -421,4 +422,125 @@ html, body {
   /* align-self: self-start; */
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
+}
+@media (max-width: 421px) {
+  .container-main-content-landing {
+    max-width: 420px !important;
+    /* width: 420px; */
+  }
+  .container-content-1 {
+    width: 100%;
+    max-width: 420px;
+  }
+  .content-1-1 {
+    width: 100%;
+    position: absolute;
+    /* top: 0; */
+  }
+  .content-1-2 {
+    width: 100%;
+    /* height: 100%; */
+    position: absolute;
+    justify-content: space-around;
+    align-items: center;
+    /* top: 0; */
+  }
+  .content-1-2 p {
+    display: none;
+  }
+  .content-1-2 h1 {
+    width: 90%;
+    /* transform: translate(10%); */
+  }
+  .container-head-content-2 h1 {
+    font-size: 2.4rem;
+  }
+  .container-head-content-2 p {
+    display: none;
+  }
+  .container-slide-img {
+    width: 98%;
+  }
+  .carousel-caption p {
+    display: none;
+  }
+  .container-head-content-3 h1 {
+    font-size: 3rem;
+  }
+  .container-head-content-3 p {
+    font-size: 1rem;
+  }
+  .container-content-4 {
+    width: 100%;
+    height: 60vh;
+  }
+  .container-content-4 img {
+    /* display: none; */
+    position: static;
+    width: 90%;
+    height: auto;
+    transform: translate(5%, 50%);
+  }
+  .container-left-content-4 {
+    width: 100%;
+    transform: translate(0, 30%);
+  }
+  .container-left-content-4 h2 {
+    width: 80%;
+    transform: translate(10%);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .container-left-content-4 p {
+    font-size: 0.9rem;
+    text-align: center;
+    width: 80%;
+    transform: translate(10%, 50%);
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-weight: 400;
+  }
+  .container-content-5  {
+    height: 40vh;
+  }
+  .container-content-5 img {
+    width: 90%;
+    height: auto;
+    position: absolute;
+    z-index: 0;
+  }
+  .container-right-content-5 p {
+    display: none;
+  }
+  .container-right-content-5 h2 {
+    width: 100%;
+    z-index: 1;
+    text-align: center;
+    color: white;
+  }
+  .container-content-6 {
+    position: relative;
+    height: 40vh;
+  }
+  .container-content-6 img {
+    width: 90%;
+    height: auto;
+    position: absolute;
+    /* display: none; */
+    z-index: 0;
+    opacity: 40%;
+  }
+  .container-left-content-6 {
+    position: absolute;
+    width: 90%;
+    transform: translate();
+    text-align: center;
+    z-index: 1;
+  }
+  .container-login {
+    transform: translate(50%, -10%);
+    position: absolute;
+    /* top: 0; */
+  }
 }
