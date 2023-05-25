@@ -190,4 +190,7 @@ input[type="radio"] +label {
   input[type="date"] {
     text-align: start !important;
   }
+  input::-webkit-date-and-time-value {
+    text-align:left !important;
+  }
 }
