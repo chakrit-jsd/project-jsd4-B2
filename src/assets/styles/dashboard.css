@@ -1,16 +1,34 @@
+.title-outter-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.title-text {
+  display: flex;
+  align-content: center;
+}
+
 .activity-detail-box {
-    padding: 30px 0px 30px 0px;
+    padding: 20px 0px 20px 0px;
 }
 
 .activity-detail {
-    padding: 4px 0px 4px 0px;
     border-style: solid;
     border-width: 2px;
     margin-top: 10px;
+    border-color: #FF7B54;
+    border-radius: 5px;
 }
 
-.act-name {
+.detail-outter-box {
+    padding: 10px;
+}
+
+#act-name {
     padding-left: 5px;
+    background-color: #ffbda9;
 }
 
 .act-time {

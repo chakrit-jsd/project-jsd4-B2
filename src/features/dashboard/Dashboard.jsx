@@ -1,59 +1,62 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../../assets/styles/dashboard.css";
 import PieChart from "../../../chart";
+import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
-const dashboard = {
-  Yoga: {
-    percentage: 20,
-    count: 123,
-    totalTime: 2342
-  },
-  Hiit: {
-    percentage: 30,
-    count: 123,
-    totalTime: 2342
-  },
-  Pilates: {
-    percentage: 10,
-    count: 123,
-    totalTime: 2342
-  },
-  Strength: {
-    percentage: 15,
-    count: 123,
-    totalTime: 2342
-  },
-  Weight: {
-    percentage: 25,
-    count: 123,
-    totalTime: 2342
-  },
-}
 
-const Dashboard = ({ mobileShow }) => {
-  const [nameLegend, setNameLegend] = useState('');
+const Dashboard = ({ user }) => {
+  const [chartData, setChartData] = useState('');
+  const [nameLegend, setNameLegend] = useState(user.interest || 'Yoga');
+  const [pieData, setPieData] = useState({});
 
+  useEffect(() => {
+    const getChart = async () => {
+      let userId = user._id
+      if (!user.thisme) {
+        userId = 'me';
+      }
+      try {
+        const chartRes = await getDashboard(userId);
+        console.log(chartRes)
+        setChartData(chartRes.data.dashboard);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getChart()
+  }, [])
+
+  useEffect(() => {
+    const labels = []
+    const dataPercentage = []
+    for (const type in chartData) {
+      if (type !== 'totalTimeSpent') {
+        console.log('asdf')
+        labels.push(type)
+        dataPercentage.push(chartData[type].percentage)
+      }
+    }
+    setPieData({
+      labels: labels,
+      dataPercentage: dataPercentage
+    })
+  }, [chartData])
   // Add data and customize chart here
+  // console.log(dataPercentage)
+  // console.log(labels)
   const data = {
-    labels: ['Yoga', 'Hiit', 'Pilates', 'Strength', 'Weight'],
+    labels: pieData.labels,
     datasets: [
       {
-        label: 'My First Dataset',
-        data: [
-          dashboard.Yoga.percentage,
-          dashboard.Hiit.percentage,
-          dashboard.Pilates.percentage,
-          dashboard.Strength.percentage,
-          dashboard.Weight.percentage
-        ],
+        label: 'Percentage',
+        data: pieData.dataPercentage,
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-          'rgb(0, 0, 0)',
-          'rgb(10, 10, 120)',
-          'rgb(10, 150, 120)'
+          '#C6D57E',
+          '#FF7878',
+          '#F1935C',
+          '#BAE5E5',
+          '#FFEB99'
         ],
         hoverOffset: 10,
       },
@@ -61,39 +64,52 @@ const Dashboard = ({ mobileShow }) => {
   };
 
   return (
-    <aside className={`container-dashboard col-xxl-2 col-xl-3 col-lg-2 col-md-1 ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
-      <div className="pieChart" style = {{width: 230.83}}>
+    <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
+      <header className="title-outter-box">
+        <h2 className="title-text">
+          Activity Summary
+        </h2>
+      </header>
+
+      <div className="pieChart">
         <PieChart chartData={data} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>
 
       <main className="activity-detail-box">
         <div className="activity-detail" id="act-1-detail">
-          <p className="act-name">
-            {nameLegend}
+          <p className="detail-outter-box" id="act-name">
+            <b>Type: &nbsp;
+            {nameLegend}</b>
           </p>
-          <p className="act-percent">
-            Percent:
-            {dashboard[nameLegend]?.percentage}
+          <p className="detail-outter-box">
+            &nbsp;&nbsp;Total time: &nbsp;
+            {chartData[nameLegend]?.percentage}%
           </p>
-          <p>
-          Count:
-          {dashboard[nameLegend]?.count}
+          <p className="detail-outter-box">
+            &nbsp;&nbsp;Submitted activity: &nbsp;
+            {chartData[nameLegend]?.count}
           </p>
-          <p>
-          Total Time:
-          {dashboard[nameLegend]?.totalTime}
+          <p className="detail-outter-box">
+            <span>
+              &nbsp;&nbsp;Time spent (HR.): &nbsp;
+              {chartData[nameLegend]?.timeSpent.hours}
+            </span>
+            :
+            <span>
+            {chartData[nameLegend]?.timeSpent.minutes}
+            </span>
           </p>
         </div>
 
       </main>
 
-      <footer className="achievement">
+      {/* <footer className="achievement">
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
         <span className="bagde-1">B</span>
-      </footer>
+      </footer> */}
     </aside>
   );
 };
