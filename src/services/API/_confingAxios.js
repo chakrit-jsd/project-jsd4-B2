@@ -1,10 +1,8 @@
 import axios from "axios";
-
 export default axios.create({
-  baseURL : 'http://localhost:3002/api',
+  baseURL : import.meta.env.VITE_BASE_URL,
   withCredentials: true,
   headers : {
-      'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
   }
 })
-
