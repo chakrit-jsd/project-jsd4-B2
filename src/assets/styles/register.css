@@ -150,7 +150,9 @@ input[type="radio"] +label {
 
 
 @media (max-width: 421px) {
-
+  .container-main-register {
+    height: 100svh;
+  }
   .nav-register img {
     transform: translate(-4%, 10%);
   }
