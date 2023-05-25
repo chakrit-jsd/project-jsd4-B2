@@ -95,10 +95,12 @@ body {
 
 .container-dashboard {
   position: fixed;
-  margin-right: 15px;
   right: 0;
   height: 100%;
-  padding: 0px !important;
+  padding: 0px 10px 0px 0px !important;
+  border-radius: 15px 15px 0px 0px;
+  background: linear-gradient(180deg, rgb(255, 206, 147), #F5F5F5);
+  box-shadow:  -5px 5px 5px #d7d7d7
 }
 
 .error-input {

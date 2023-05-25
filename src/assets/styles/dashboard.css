@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .title-text {
@@ -11,17 +12,15 @@
 }
 
 .activity-detail-box {
-    padding: 20px 0px 20px 0px;
+    padding: 20px 10px 0px 10px;
 }
 
 .activity-detail {
-    border-width: 2px;
-    margin-top: 10px;
-    border-radius: 15px;
-    border-radius: 15px;
-    background: linear-gradient(225deg, #cacaca, #f0f0f0);
-    box-shadow:  -10px 10px 35px #c1c1c1,
-             26px -26px 51px #ffffff;
+  border-width: 2px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #cacaca, #ffffff);
 }
 
 .detail-outter-box {
