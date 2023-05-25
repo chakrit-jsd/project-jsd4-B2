@@ -1,3 +1,15 @@
+.title-outter-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.title-text {
+  display: flex;
+  align-content: center;
+}
+
 .activity-detail-box {
     padding: 20px 0px 20px 0px;
 }
