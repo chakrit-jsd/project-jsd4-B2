@@ -95,10 +95,10 @@ body {
 
 .container-dashboard {
   position: fixed;
+  margin-right: 15px;
   right: 0;
   height: 100%;
   padding: 0px !important;
-  /* background-color: green; */
 }
 
 .error-input {
