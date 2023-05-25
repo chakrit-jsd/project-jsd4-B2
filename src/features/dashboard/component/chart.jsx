@@ -15,12 +15,12 @@ function PieChart({data, chartData, nameLegend, setNameLegend}) {
   const config = {
     plugins: {
       onClick: (e, legendItem) => {
-        console.log('1')
+
         setNameLegend(legendItem.text)
       },
       legend: {
         onClick: (e, legendItem) => {
-          console.log('2')
+
           setNameLegend(legendItem.text);
         },
         position: 'bottom',
