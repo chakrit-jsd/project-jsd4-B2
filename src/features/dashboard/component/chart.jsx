@@ -5,7 +5,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend} from 'chart.js/auto'
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 
-function PieChart({chartData, nameLegend, setNameLegend}) {
+function PieChart({data, chartData, nameLegend, setNameLegend}) {
 
 
   // Create if statement to compare if the clicked -
@@ -15,10 +15,12 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
   const config = {
     plugins: {
       onClick: (e, legendItem) => {
+        console.log('1')
         setNameLegend(legendItem.text)
       },
       legend: {
         onClick: (e, legendItem) => {
+          console.log('2')
           setNameLegend(legendItem.text);
         },
         position: 'bottom',
@@ -42,24 +44,12 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
   const onClick = (event) => {
     const checkEvent = getElementsAtEvent(chartRef.current, event)
     if (checkEvent.length > 0) {
-      const dataPoint = getElementsAtEvent(chartRef.current, event)[0].index
-      if (dataPoint == 0) {
-        return setNameLegend('Yoga')
+      const dataPoint = getElementsAtEvent(chartRef.current, event)[0].element.$context.parsed
+      for (const type in chartData) {
+        if (+chartData[type].percentage === dataPoint) {
+          return setNameLegend(type)
+        }
       }
-      else if (dataPoint == 1) {
-        return setNameLegend('Hiit')
-      }
-      else if (dataPoint == 2) {
-        return setNameLegend('Pilates')
-      }
-      else if (dataPoint == 3) {
-        return setNameLegend('Strength')
-      }
-      else if (dataPoint == 4) {
-        return setNameLegend('Weight')
-      }
-    } else {
-      console.log('Please select on a chart')
     }
   };
 
@@ -67,7 +57,7 @@ function PieChart({chartData, nameLegend, setNameLegend}) {
   // Apply config here
   return (
     <Pie
-      data={chartData}
+      data={data}
       options={config}
       plugins={[ChartDataLabels]}
       onClick={onClick}
