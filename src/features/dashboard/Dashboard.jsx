@@ -64,7 +64,7 @@ const Dashboard = ({ user, mobileShow }) => {
   };
 
   return (
-    <aside className={`container-dashboard col-xl-2 col-lg-2 col-md-1  ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
+    <aside className={`container-dashboard col-xxl-2 col-xl-3 col-lg-2 col-md-1  ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
       <header className="title-outter-box">
         <font className="title-text">
           Activity Summary
