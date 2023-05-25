@@ -5,7 +5,7 @@ import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, mobileShow }) => {
   const [chartData, setChartData] = useState('');
   const [nameLegend, setNameLegend] = useState(user.interest || 'Yoga');
   const [pieData, setPieData] = useState({});
@@ -64,7 +64,7 @@ const Dashboard = ({ user }) => {
   };
 
   return (
-    <aside className="container-dashboard col-xl-2 col-lg-2 col-md-1">
+    <aside className={`container-dashboard col-xl-2 col-lg-2 col-md-1  ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
       <header className="title-outter-box">
         <font className="title-text">
           Activity Summary
