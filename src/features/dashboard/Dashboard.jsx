@@ -9,30 +9,30 @@ const Dashboard = ({ user, mobileShow }) => {
   const [chartData, setChartData] = useState('');
   const [nameLegend, setNameLegend] = useState(user.interest || 'Yoga');
   const [pieData, setPieData] = useState({});
-
   useEffect(() => {
     const getChart = async () => {
       let userId = user._id
       if (!user.thisme) {
         userId = 'me';
       }
+      // console.log(userId)
       try {
         const chartRes = await getDashboard(userId);
-        console.log(chartRes)
+        // console.log(chartRes)
         setChartData(chartRes.data.dashboard);
       } catch (error) {
         console.log(error)
       }
     }
     getChart()
-  }, [])
+  }, [user])
 
   useEffect(() => {
     const labels = []
     const dataPercentage = []
     for (const type in chartData) {
       if (type !== 'totalTimeSpent') {
-        console.log('asdf')
+        // console.log('asdf')
         labels.push(type)
         dataPercentage.push(chartData[type].percentage)
       }
@@ -72,7 +72,7 @@ const Dashboard = ({ user, mobileShow }) => {
       </header>
 
       <div className="pieChart">
-        <PieChart chartData={data} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
+        <PieChart data={data} chartData={chartData} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>
 
       <main className="activity-detail-box">
