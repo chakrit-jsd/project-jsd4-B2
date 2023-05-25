@@ -22,10 +22,12 @@
   height: 60%;
   padding-top: 20px;
   padding-right: 10px;
+  padding-left: 10px;
+  margin-left: 4px;
   border-radius: 15px 15px 15px 0px;
-  background: linear-gradient(180deg, rgb(255, 206, 147), #F5F5F5);
-  box-shadow:  5px 0px 5px #d7d7d7,
-             -5px 5px 5px #F5F5F5
+  background: linear-gradient(180deg, var(--main) 0%, #ffab91 20%, rgb(245, 245, 245) 60%, rgb(245, 245, 245) 100%);
+  /* box-shadow:  5px 0px 5px #d7d7d7 */
+             /* -5px 5px 5px #F5F5F5 */
 }
 
 .container-info {
@@ -38,7 +40,7 @@
 }
 .container-info h4 {
   margin-top: 20px;
-  width: 94%;
+  width: 98%;
   font-weight: 600;
   overflow: hidden;
   white-space: nowrap;
@@ -66,7 +68,7 @@
   background-color: black;
 }
 .container-sub-info {
-  padding-left: 10px;
+  padding-left: 0px;
   width: 97%;
   text-align: start;
   display: flex;
@@ -286,6 +288,12 @@
   }
   .container-profile {
     width: 100%;
+  }
+  .profile-head {
+    background: transparent;
+    border-radius: none !important;
+    box-shadow: none;
+    padding: 0;
   }
   .container-profile .profile-head img {
     width: 40%;
