@@ -180,6 +180,14 @@ const LandingPage = () => {
                 <button type="submit" onClick={handleSubmit(onSubmit)}>LOGIN</button>
                 <Link to='/register'>Register</Link>
               </div>
+              <div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+              </div>
             </form>
           </div>
         </div>
