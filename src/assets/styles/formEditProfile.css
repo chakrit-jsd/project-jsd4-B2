@@ -2,7 +2,7 @@
 #form-edit-profile {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
+  flex-direction: row;
   /* justify-content: start; */
   gap: 1.5rem;
   width: 100%;
@@ -239,6 +239,7 @@ select[name="interest"] {
   #form-edit-profile {
     gap: 0.5rem;
     padding-bottom: 10px;
+    flex-direction: column;
     /* flex-direction: row; */
   }
   .container-edit-profile-left, .container-edit-profile-right {
