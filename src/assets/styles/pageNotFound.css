@@ -1,0 +1,26 @@
+.page-not-found {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-not-found h1 {
+  font-size: 6rem;
+  font-weight: 600;
+  color: var(--main);
+}
+
+.page-not-found a {
+  text-decoration: none;
+  border: 1px solid var(--main);
+  background-color: var(--main);
+  color: white;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 2rem;
+  border-radius: 20px;
+}
