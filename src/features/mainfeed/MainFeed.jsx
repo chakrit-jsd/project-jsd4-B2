@@ -5,7 +5,7 @@ import CreateActivity from "./components/CreateActivity"
 import SwitchFeed from "./components/SwitchFeed"
 
 
-const MainFeed = ({ user, mobileShow, activeClass }) => {
+const MainFeed = ({ user, mobileShow, activeClass, setupdateChart }) => {
   const locaName = location.pathname.replace('/me/', '')
 
   const [ switcher, setSwitcher ] = useState(locaName || 'feed')
@@ -77,16 +77,19 @@ const MainFeed = ({ user, mobileShow, activeClass }) => {
   }
 
   const updateNewPost = (newPost) => {
+    setupdateChart((prev) => !prev)
     setPosts((prevPosts) => [newPost, ...prevPosts])
   }
 
   const updateSinglePost = (newPost) => {
+    setupdateChart((prev) => !prev)
     setPosts((prevPosts) => prevPosts.map((post) => {
     return post._id === newPost._id ? newPost : post
     }))
   }
 
   const deletePost = (delPost) => {
+    setupdateChart((prev) => !prev)
     setPosts((prevPosts) => prevPosts.filter((post) => {
       return post._id !== delPost._id
     }))

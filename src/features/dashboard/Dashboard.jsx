@@ -5,7 +5,7 @@ import { getDashboard } from "../../services/API/usersAPI";
 // import { ' activityData ' } from Database here
 
 
-const Dashboard = ({ user, mobileShow }) => {
+const Dashboard = ({ user, mobileShow, update, updateChart }) => {
   const [chartData, setChartData] = useState('');
   const [nameLegend, setNameLegend] = useState(user.interest || 'Yoga');
   const [pieData, setPieData] = useState({});
@@ -25,7 +25,7 @@ const Dashboard = ({ user, mobileShow }) => {
       }
     }
     getChart()
-  }, [user])
+  }, [user, updateChart])
 
   useEffect(() => {
     const labels = []
