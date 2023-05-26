@@ -13,6 +13,7 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
   const [ isReFresh, setIsReFres ] = useState(true)
   const [ mobileShow, setMobileShow ] = useState('feed')
   const [ activeClass, setActiveClass ] = useState(true)
+  const [ updateChart, setupdateChart ] = useState(true)
 
   useEffect(() => {
     if(user.thisme) {
@@ -55,10 +56,10 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
         <main className={`container-main row ${isReFresh ? 'refresh-hide' : null}`}>
           <div className="mobile-aside">
             <Profile mobileShow={mobileShow} getUserByUpdate={getUserByUpdate} user={user} setUser={setUser} imgUrl={imgUrl} setImgUrl={setImgUrl} />
-            <Dashboard mobileShow={mobileShow} user={user} />
+            <Dashboard updateChart={updateChart} mobileShow={mobileShow} user={user} />
           </div>
           {pathname === '/me' || pathname === '/me/feed' || pathname === '/me/home' && mobileShow === 'feed'
-          ? <MainFeed activeClass={activeClass} mobileShow={mobileShow} user={user} />
+          ? <MainFeed setupdateChart={setupdateChart} activeClass={activeClass} mobileShow={mobileShow} user={user} />
           : <MainFeedAnother activeClass={activeClass} mobileShow={mobileShow} user={user} /> }
         </main>
         {!isReFresh ? <Footer user={user} isReFresh={isReFresh} activeClass={activeClass} mobileShow={mobileShow} setMobileShow={setMobileShow} /> : null}
