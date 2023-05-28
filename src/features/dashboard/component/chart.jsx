@@ -44,12 +44,14 @@ function PieChart({data, chartData, nameLegend, setNameLegend}) {
   const onClick = (event) => {
     const checkEvent = getElementsAtEvent(chartRef.current, event)
     if (checkEvent.length > 0) {
+      // Error pie onclick if same percentage in pie
       const dataPoint = getElementsAtEvent(chartRef.current, event)[0].element.$context.parsed
       for (const type in chartData) {
         if (+chartData[type].percentage === dataPoint) {
           return setNameLegend(type)
         }
       }
+    // Error pie onclick if same percentage in pie
     }
   };
 

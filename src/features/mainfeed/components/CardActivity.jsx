@@ -53,7 +53,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
       <figure key={_id} className="container-card-activity">
         <section className="container-head-card">
           <div className="head-card-top">
-            <button onClick={toPage} ><img src={author.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-sm" /><span>{author.profilename}</span></button>
+            <button onClick={toPage} ><img src={author.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-sm" /><span>{author.profilename || `${author.firstname}  ${author.lastname}`}</span></button>
             <p>{ years && `${years} year` || days && `${days} day` || hours && `${hours} hour` || minutes && `${minutes.toFixed(0)} minute` } ago.</p>
           </div>
 
