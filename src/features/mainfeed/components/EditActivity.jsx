@@ -282,9 +282,11 @@ const EditActivity = ({ show, setShow, post, updateSinglePost }) => {
                 <div className='parent-rage-out'>
                   <p>Duration</p>
                   <div className='container-range'>
+                    {/* CSS INPUT TYPE RAGE CUSTOM COLOR */}
                     <input type="range" {...register('duration')} min={10} max={180} step={10} onChange={handleDuration} value={durationS}
                       style={{background: `linear-gradient(to right, #FF7B54 0%, #FF7B54 ${durationS/1.8}%, white ${durationS/1.80}%, white 100%)`}}
                     />
+                    {/* CSS INPUT TYPE RAGE CUSTOM COLOR */}
                     <p>{durationS} minute.</p>
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import schema from "../utils/validators/validateLogin"
 import ControlledCarousel from "../components/bootstrap/ControlledCarousel"
 import '../assets/styles/landingPage.css'
+import HelmetTitle from "../components/shared/Helmet"
 
 const LandingPage = () => {
   const navigate = useNavigate()
@@ -92,6 +93,7 @@ const LandingPage = () => {
   // }
   return (
     <div className="container-main-landing">
+      <HelmetTitle title='Landing | Nest-Fit by JSD#4 B2'/>
       <nav className="nav-landing">
         <div onClick={() => window.scrollTo(0, 0)} className="nav-logo">
           <img src="static/img/Nest-fit-logo.png" alt="logo-nest-fit" style={{ width: 100}}/>
