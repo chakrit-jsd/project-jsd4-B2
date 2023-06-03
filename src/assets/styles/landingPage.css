@@ -424,6 +424,11 @@ html, body {
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
 }
+.a-slack {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
 @media (max-width: 421px) {
   .container-main-landing {
     height: 100%;

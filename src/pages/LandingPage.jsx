@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { ErrorMessage } from '@hookform/error-message'
 import { Link, useNavigate } from "react-router-dom"
-import { getLogin, postLogin } from "../services/API/authAPI"
+import { getLogin, getSlackLogin, postLogin } from "../services/API/authAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
 import { yupResolver } from "@hookform/resolvers/yup"
 import schema from "../utils/validators/validateLogin"
@@ -91,6 +91,15 @@ const LandingPage = () => {
   //     console.error('ไม่สามารถขออนุญาติใช้งานได้:', error);
   //   }
   // }
+  const slackLogin = async (event) => {
+    event.preventDefault()
+    try {
+      const res = await getSlackLogin()
+      console.log(res)
+    } catch (error) {
+      console.log('sssssssssssssssssssssssssss',error)
+    }
+  }
   return (
     <div className="container-main-landing">
       <HelmetTitle title='Landing | Nest-Fit by JSD#4 B2'/>
@@ -182,6 +191,8 @@ const LandingPage = () => {
                 <button type="submit" onClick={handleSubmit(onSubmit)}>LOGIN</button>
                 <Link to='/register'>Register</Link>
               </div>
+              {/* <button onClick={slackLogin}>Slack</button> */}
+              <Link to='https://nestfit-api.life/api/login/slack' className="a-slack">Slackk</Link>
               <div>
                 <div>
 
