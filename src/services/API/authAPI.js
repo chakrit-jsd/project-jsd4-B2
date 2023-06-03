@@ -17,6 +17,16 @@ const postLogin = (data) => {
   return http.post('/login', data)
 }
 
+const getSlackLogin = () => {
+  // http.interceptors.response.use( async (res) => {
+  //   console.log('res slack 1')
+  //   const data = await res
+  //   console.log(data)
+  //   return res
+  // })
+  return http.get('/login/slack')
+}
+
 const getLogout = () => {
   return http.get('/logout')
 }
@@ -26,5 +36,6 @@ export {
   postRegister,
   getLogin,
   postLogin,
+  getSlackLogin,
   getLogout
 }
