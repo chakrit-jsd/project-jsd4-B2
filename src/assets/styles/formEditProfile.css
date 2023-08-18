@@ -226,6 +226,7 @@ select[name="interest"] {
     justify-content: center;
   }
   body {
+    overflow-x: visible;
     overflow-y: hidden !important;
   }
   .edit-profile-vl {

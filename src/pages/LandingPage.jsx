@@ -192,15 +192,12 @@ const LandingPage = () => {
                 <Link to='/register'>Register</Link>
               </div>
               {/* <button onClick={slackLogin}>Slack</button> */}
-              <Link to='https://nestfit-api.life/api/login/slack' className="a-slack">Slackk</Link>
-              <div>
-                <div>
 
-                </div>
-                <div>
 
-                </div>
-              </div>
+              <Link to='https://nestfit-api.life/api/login/slack' className="a-slack">
+                <img src="static/img/slack.png" alt=""/>
+                {/* <img src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /> */}
+              </Link>
             </form>
           </div>
         </div>

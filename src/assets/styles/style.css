@@ -21,7 +21,7 @@ body {
 
   /* height: calc(200vh - 60px); */
   /* width: 100vw; */
-  /* overflow-y: hidden; */
+  overflow-x: hidden !important;
   overflow-y: overlay !important;
   /* min-width: fit-content; */
   background-color: #1c1e21;
