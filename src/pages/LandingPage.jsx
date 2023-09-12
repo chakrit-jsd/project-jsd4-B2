@@ -14,51 +14,51 @@ const LandingPage = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onChange', resolver: yupResolver(schema)})
   const [ resMessage, setResMessage ] = useState()
-  const [ btnPromt, setBtnPromt ] = useState(false)
   const onSubmit = async (data) => {
     try {
-      if (typeof document.hasStorageAccess !== 'function') {
-        // This browser doesn't support the Storage Access API
-        // so let's just hope we have access!
-        const res = await postLogin(data)
-      } else {
-        const hasAccess = await document.hasStorageAccess();
-        if (hasAccess) {
-          // We have access to unpartitioned cookies, so let's go
-          const res = await postLogin(data)
-        } else {
-          // Check whether unpartitioned cookie access has been granted
-          // to another same-site embed
-          const permission = await navigator.permissions.query({
-            name: "storage-access",
-          });
+      // if (typeof document.hasStorageAccess !== 'function') {
+      //   // This browser doesn't support the Storage Access API
+      //   // so let's just hope we have access!
+      //   const res = await postLogin(data)
+      // } else {
+      //   const hasAccess = await document.hasStorageAccess();
+      //   if (hasAccess) {
+      //     // We have access to unpartitioned cookies, so let's go
+      //     const res = await postLogin(data)
+      //   } else {
+      //     // Check whether unpartitioned cookie access has been granted
+      //     // to another same-site embed
+      //     const permission = await navigator.permissions.query({
+      //       name: "storage-access",
+      //     });
 
-          if (permission.state === "granted") {
-            // If so, you can just call requestStorageAccess() without a user interaction,
-            // and it will resolve automatically.
-            await document.requestStorageAccess();
-            const res = await postLogin(data)
-          } else if (permission.state === "prompt") {
-            // Need to call requestStorageAccess() after a user interaction
-            setBtnPromt(true)
-            const btn = document.getElementById('allowcookie')
-            btn.addEventListener("click", async (event) => {
-              event.preventDefault()
-              try {
-                await document.requestStorageAccess();
-                const res = await postLogin(data)
-              } catch (err) {
-                // If there is an error obtaining storage access.
-                console.error(`Error obtaining storage access: ${err}.
-                              Please sign in.`);
-              }
-            });
-          } else if (permission.state === "denied") {
-            // User has denied unpartitioned cookie access, so we'll
-            // need to do something else
-          }
-        }
-      }
+      //     if (permission.state === "granted") {
+      //       // If so, you can just call requestStorageAccess() without a user interaction,
+      //       // and it will resolve automatically.
+      //       await document.requestStorageAccess();
+      //       const res = await postLogin(data)
+      //     } else if (permission.state === "prompt") {
+      //       // Need to call requestStorageAccess() after a user interaction
+      //       setBtnPromt(true)
+      //       const btn = document.getElementById('allowcookie')
+      //       btn.addEventListener("click", async (event) => {
+      //         event.preventDefault()
+      //         try {
+      //           await document.requestStorageAccess();
+      //           const res = await postLogin(data)
+      //         } catch (err) {
+      //           // If there is an error obtaining storage access.
+      //           console.error(`Error obtaining storage access: ${err}.
+      //                         Please sign in.`);
+      //         }
+      //       });
+      //     } else if (permission.state === "denied") {
+      //       // User has denied unpartitioned cookie access, so we'll
+      //       // need to do something else
+      //     }
+      //   }
+      // }
+      const res = await postLogin(data)
       navigate('/me')
     } catch (error) {
       const res = httpErrorCode(error)
@@ -187,7 +187,7 @@ const LandingPage = () => {
               </div>
               <div className="content-7-btn">
                 {/* {storageAccessGranted ? null : <button onClick={allowAccess}>Allow Cookie</button>} */}
-                {btnPromt ? <button id="allowcookie">allow</button> : null }
+                {/* {btnPromt ? <button id="allowcookie">allow</button> : null } */}
                 <button type="submit" onClick={handleSubmit(onSubmit)}>LOGIN</button>
                 <Link to='/register'>Register</Link>
               </div>

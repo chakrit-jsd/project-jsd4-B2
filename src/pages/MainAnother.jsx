@@ -1,18 +1,20 @@
 import LayoutMainFeed from "../features/layouts/LayoutMainFeed"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { getAnother } from "../services/API/usersAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
 import { useNavigate, useParams } from "react-router-dom"
 import '../assets/styles/style.css'
+import { SocketContext } from "./PageMain"
 
 
 const MainAnother = () => {
+  const socket = useContext(SocketContext)
   const { userId } = useParams()
 
   const [ user, setUser ] = useState('')
   const [ imgUrl, setImgUrl ] = useState('')
   const navigate = useNavigate()
-
+  // console.log(user)
   const getUserByUpdate = async () => {
     try {
       const res = await getAnother(userId)
@@ -37,7 +39,7 @@ const MainAnother = () => {
         const res = httpErrorCode(error)
 
         if (res.status === 307) {
-          return navigate('/me/home')
+          return navigate('/me')
         }
         if (res.status === 500) return
         if (res.status !== 200) {

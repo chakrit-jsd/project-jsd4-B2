@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { postFollows, putProfileEdit } from '../../services/API/usersAPI';
 import { Link } from 'react-router-dom';
 import ModalEditProfile from './components/ModalEditProfile';
 import FormEditProfile from './components/FormEditProfile';
 import DropAndCrop from './components/DropAndCrop';
 import '../../assets/styles/profile.css'
+import { SocketContext } from '../../pages/PageMain';
 
 const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow }) => {
   const {
@@ -28,6 +29,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
   } = user
 
   // console.log(follower)
+  const { chat } = useContext(SocketContext)
   const [ show, setShow ] = useState(false);
   const [ showLeave, setShowLeave ] = useState(false);
   const handleShow = () => setShow(true);
@@ -82,7 +84,12 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
   }
 
   const [ classFollow, setClassFollow ] = useState('left')
-
+  const onClickOpenChat = async (id) => {
+    // console.log(id)
+    // if (id === user._id)
+    const res = await chat.emitWithAck('join_room', { member: id })
+    // console.log(res)
+  }
   return (
     <aside className={`container-profile col-xxl-2 col-xl-3 col-lg-2 col-md-1 ${mobileShow !== 'profile' ? 'mobile-diplay-none' : null}`}>
       <section className='profile-head'>
@@ -140,11 +147,11 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
         <div className={`following ${classFollow !== 'left' && 'follow-none'}`}>
           <ul>
             {following?.length !== 0 && following?.map((userFollowing) => (
-              <li key={userFollowing.target._id}>
-                <Link to={`/another/${userFollowing.target._id}`}>
+              <li key={userFollowing.target._id} onClick={() => onClickOpenChat(userFollowing.target._id)}>
+                {/* <Link to={`/another/${userFollowing.target._id}`}> */}
                   <img src={userFollowing.target.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
                   <span>{userFollowing.target.profilename || `${userFollowing.target.firstname} ${userFollowing.target.lastname}`}</span>
-                </Link>
+                {/* </Link> */}
               </li>
             ))}
           </ul>
@@ -152,11 +159,11 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
         <div className={`followers ${classFollow !== 'right' && 'follow-none'}`}>
           <ul>
           {follower?.length !== 0 && follower?.map((userFollower) => (
-              <li key={userFollower.author._id}>
-                <Link to={`/another/${userFollower.author._id}`}>
+              <li key={userFollower.author._id} onClick={() => onClickOpenChat(userFollower.author._id)}>
+                {/* <Link to={`/another/${userFollower.author._id}`}> */}
                   <img src={userFollower.author.smallImgUrl || 'https://via.placeholder.com/30'} alt="small-img" />
                   <span>{userFollower.author.profilename || `${userFollower.author.firstname} ${userFollower.author.lastname}`}</span>
-                </Link>
+                {/* </Link> */}
               </li>
             ))}
           </ul>

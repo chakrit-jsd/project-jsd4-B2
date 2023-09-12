@@ -10,6 +10,7 @@ const CardFeed = ({ mobileShow, updateSinglePost, deletePost, nextPosts, nextGet
     {mobileShow === 'feed' ? (<section className={`container-cards-feed ${mobileShow !== 'feed' ? 'mobile-display-none' : null}`}>
       {isProgress ? <ProgressSwitcher switcher={switcher} /> : null}
       <InfiniteScroll
+
         dataLength={posts.length} //This is important field to render the next data
         next={nextPosts}
         hasMore={nextGet}

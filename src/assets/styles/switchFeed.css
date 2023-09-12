@@ -6,7 +6,7 @@
 }
 
 
-.container-switch-feed a {
+.container-switch-feed button {
   text-decoration: none;
   color: black;
   font-size: 1.1rem;
@@ -28,7 +28,7 @@
 }
 
 @media (max-width: 421px) {
-  .container-switch-feed a {
+  .container-switch-feed button {
     width: 36%;
     height: 80%;
     letter-spacing: 0rem;

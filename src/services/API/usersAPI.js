@@ -4,6 +4,10 @@ const getMe = () => {
   return http.get('/users')
 }
 
+const getUserById = (userId) => {
+  return http.get(`users/info/${userId}`)
+}
+
 const getAnother = (userId) => {
   return http.get(`/users/another/${userId}`)
 }
@@ -39,6 +43,7 @@ const getDashboard = (userId) => {
 
 export {
   getMe,
+  getUserById,
   getAnother,
   getAnotherFeed,
   getFeedHome,
