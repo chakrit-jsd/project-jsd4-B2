@@ -14,7 +14,6 @@ const LandingPage = () => {
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onChange', resolver: yupResolver(schema)})
   const [ resMessage, setResMessage ] = useState()
-  const [ msg, setMsg ] = useState('')
   const onSubmit = async (data) => {
     try {
       // if (typeof document.hasStorageAccess !== 'function') {
@@ -60,9 +59,7 @@ const LandingPage = () => {
       //   }
       // }
       const res = await postLogin(data)
-      setMsg(JSON.stringify(res))
-      console.log(res)
-      // navigate('/me')
+      navigate('/me')
     } catch (error) {
       const res = httpErrorCode(error)
       setResMessage(res.message || error)
@@ -176,7 +173,6 @@ const LandingPage = () => {
         <div className="container-content-7">
           <img src="static/img/orange juice.jpg" alt="" />
           <div id='login' className="container-login">
-            <p>{msg}</p>
             <form>
               <p className='error-login'>{resMessage}</p>
               <div className="content-7-input">
