@@ -13,11 +13,10 @@ const InputText = ({ room }) => {
   const sendChatText = async (event) => {
     event.preventDefault()
     // console.log(event.currentTarget.querySelector('input')?)
-    const textInput = event.target.querySelector('input')
-    if (!textInput?.value) return
+    if (!text) return
     // console.log('click', chat?.active, chat?.connected, room)
     try {
-      const res = await chat?.emitWithAck('create_text', { room: room._id, text: textInput?.value })
+      const res = await chat?.emitWithAck('create_text', { room: room._id, text: text })
       // console.log(res)
       setText('')
       setTyping(false)
@@ -34,6 +33,9 @@ const InputText = ({ room }) => {
   // let timeTyping: NodeJS.Timeout;
   const onChangeInput = (event) => {
     event.preventDefault()
+    if (event.target.value.length > 200) {
+      return
+    }
     setText(event.target.value)
     if (!typing && event.target.value) {
       // console.log('emit typing', true)
@@ -48,6 +50,7 @@ const InputText = ({ room }) => {
 
   const onEmojiSelect = (context) => {
     // console.log(context)
+    if (text.length > 200) return
     if (!typing) {
       setTyping(true)
       emitTyping(true)
