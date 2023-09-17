@@ -58,8 +58,6 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
       return setTextsCallback(prev, res)
     })
   }
-
-  // console.log(texts)
   useEffect(() => {
     // if (!room) return
     getTexts(room)
@@ -71,14 +69,15 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
       }
     }
     const receiveHandle = (res, cb) => {
+
       if (room._id !== res.room) return
       const obj = res
       obj.hideTime = false
       obj.showDay = false
       setTexts((prev) => {
-        const lastIndex = prev[prev.length - 1]
+        const lastIndex = prev.pop()
         if (!prev.length || lastIndex.author !== obj.author) {
-          return [...prev, obj]
+          return [...prev, lastIndex, obj]
         }
 
         const prevTime = new Date(lastIndex?.createdAt)
@@ -89,9 +88,8 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
         lastIndex.hideTime = diffMin ? false : true
         lastIndex.showDay = diffDay ? true: false
 
-        const prevArr = prev.slice(0, -1)
-
-        return [...prevArr, lastIndex, obj]
+        // const prevArr = prev.slice(0, -1)
+        return [...prev, lastIndex, obj]
       })
 
       cb(true)
@@ -99,13 +97,12 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
     setVisible(false)
     chat.on('text_receive', receiveHandle)
     chat.on('typing_receive', typingHandle)
-
     return () => {
       chat.off('text_receive', receiveHandle)
       chat.off('typing_receive', typingHandle)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [chat, room])
+  }, [member])
 
   useEffect(() => {
     let intervalId;
@@ -177,7 +174,7 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
         inverse={true}
         hasMore={more}
         height={340}
-        // scrollThreshold={0.5}
+        // scrollThreshold={0}
         scrollableTarget='render-chat-scroll'
         style={{ display: 'flex', flexDirection: 'column-reverse' }}
         loader={

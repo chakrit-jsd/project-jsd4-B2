@@ -56,7 +56,7 @@ const ChatFooter = ({ user }) => {
     return () => {
       chat.off('open_room')
     }
-  }, [chat])
+  }, [])
 
   return (
     <>

@@ -8,6 +8,7 @@ import { SocketContext } from "../../../pages/PageMain"
 import CusTooptipSimple from "./CusTooptipSimple"
 
 const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
+  const { chat } = useContext(SocketContext)
   const [ member, setMember ] = useState(null)
   const [ status, setStatus ] = useState('green')
   const [ visible, setVisible ] = useState(true)
@@ -18,7 +19,9 @@ const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
   }
 
   useEffect(() => {
-    if (member) return
+    if (member) {
+      setMember(null)
+    }
     const mem = findMember(room, user._id);
     (async () => {
       try {
@@ -29,10 +32,15 @@ const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
       }
     })();
     // const visibleTime = setTimeout(() => {
-    //   setVisible(false)
-    // }, 400)
+      //   setVisible(false)
+      // }, 400)
+    const reJoinHandle = () => {
+      chat.emit('re_join_room', { room: room._id })
+    }
+    chat.on('connect', reJoinHandle)
 
     return () => {
+      chat.off('connect', reJoinHandle)
       // clearTimeout(visibleTime)
     }
   }, [])
