@@ -85,8 +85,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
 
   const [ classFollow, setClassFollow ] = useState('left')
   const onClickOpenChat = async (id) => {
-    // console.log(id)
-    // if (id === user._id)
+    if (id === thisme?._id) return
     const res = await chat.emitWithAck('join_room', { member: id })
     // console.log(res)
   }
@@ -110,7 +109,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
           {/* <hr/> */}
           { thisme ?
           (
-            <div className='container-btn-follow'>
+            <div className='container-btn-profile-another'>
               {isFollowing ?
                 <div className="following-show">
                   <button className="btn-dropdown-follow" type="button" data-bs-toggle="dropdown" aria-expanded="flase">
@@ -124,6 +123,7 @@ const Profile = ({ user, setUser, imgUrl, setImgUrl, getUserByUpdate, mobileShow
               (<button onClick={postFollow} className={!isFollowing ? 'button-follow': 'button-unfollow'} >
                 Follow
               </button>) : null}
+              <button className='btn-open-chat' onClick={() => onClickOpenChat(user._id)}>Message</button>
             </div>
           ): null}
           <div className='container-sub-info'>
