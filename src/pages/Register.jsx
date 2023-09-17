@@ -17,7 +17,8 @@ const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ mode: 'onBlur', reValidateMode: 'onChange', resolver: yupResolver(schema), defaultValues: {gender: 'other'}})
   const onSubmit = async (data) => {
     try {
-      const res = await postRegister(JSON.stringify(data))
+      const res = await postRegister(data)
+      console.log(data)
       // if (res.status !== 201) return setResMessage('sdfsdf')
       setResMessage(res.data.message)
       return navigate('/')
