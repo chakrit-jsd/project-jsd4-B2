@@ -66,11 +66,12 @@ const PageMain = () => {
     }
 
     noti.on('connect_error', (err) => {
-      console.log(err)
+      // console.log(err)
     if (err.message === 'token expired') {
         getToken()
       }
     })
+
     return () => {
       chat.off('connect_error')
       chat.disconnect()

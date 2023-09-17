@@ -67,7 +67,6 @@ const InputText = ({ room }) => {
           emitTyping(false)
         }, 2000)
     }
-
     return () => {
       clearTimeout(timeTyping)
     }
