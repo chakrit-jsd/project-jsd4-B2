@@ -40,6 +40,7 @@ const Navbar = ({ user }) => {
     try {
       const res = await getLogout()
       // console.log(res)
+      localStorage.removeItem('hide_room')
       if (res.status === 200) return navigate('/')
     } catch (error) {
       console.log(error)

@@ -6,9 +6,8 @@ import SwitchFeed from "./components/SwitchFeed"
 
 
 const MainFeed = ({ user, mobileShow, activeClass, setupdateChart }) => {
-  const locaName = location.pathname.replace('/me/', '')
 
-  const [ switcher, setSwitcher ] = useState(locaName || 'feed')
+  const [ switcher, setSwitcher ] = useState('feed')
   const [ isProgress, setIsProgress ] = useState(true)
   const [ posts, setPosts ] = useState([])
   const [ nextGet, setNextGet ] = useState(true)
@@ -34,8 +33,8 @@ const MainFeed = ({ user, mobileShow, activeClass, setupdateChart }) => {
       setPosts(res.data?.posts)
       setTimeout(() => {
         setIsProgress(false)
-      }, 10)
-      // console.log(res.data.posts)
+      }, 100)
+      // consle.log(res.data.posts)
     } catch (error) {
       console.log(error)
     }
@@ -68,10 +67,10 @@ const MainFeed = ({ user, mobileShow, activeClass, setupdateChart }) => {
   }
   const nextPosts = async () => {
     setNextGet(true)
-    if (location.pathname === '/me/home') {
+    if (switcher === 'home') {
       await getFeedInfinite(getFeedHome)
     }
-    if (location.pathname === '/me/feed' || location.pathname === '/me') {
+    if (switcher=== 'feed') {
       await getFeedInfinite(getFeedAll)
     }
   }
@@ -100,19 +99,21 @@ const MainFeed = ({ user, mobileShow, activeClass, setupdateChart }) => {
     const getFeeds = async () => {
       window.scrollTo(0, 0)
 
-      if (location.pathname === '/me/home') {
+      if (switcher === 'home') {
         setNextGet(true)
         await getHome()
       }
-      if (location.pathname === '/me/feed' || location.pathname === '/me') {
+      if (switcher === 'feed') {
         setNextGet(true)
         await getAll()
       }
     }
-    setTimeout(() => {
+    const getTime = setTimeout(() => {
       getFeeds()
     }, 800)
-    // console.log(posts)
+    return () => {
+      clearTimeout(getTime)
+    }
   }, [switcher, mobileShow])
 
   return (

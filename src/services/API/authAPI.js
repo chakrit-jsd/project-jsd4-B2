@@ -17,6 +17,10 @@ const postLogin = (data) => {
   return http.post('/login', data)
 }
 
+const getUserToken = () => {
+  return http.get('/getuser')
+}
+
 const getSlackLogin = () => {
   // http.interceptors.response.use( async (res) => {
   //   console.log('res slack 1')
@@ -37,5 +41,6 @@ export {
   getLogin,
   postLogin,
   getSlackLogin,
-  getLogout
+  getLogout,
+  getUserToken
 }

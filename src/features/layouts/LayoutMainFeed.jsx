@@ -23,11 +23,12 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
 
   useEffect(() => {
     window.scrollTo(0, 0)
-    setTimeout(() => setIsReFres(false), 800)
+    const timeReFresh = setTimeout(() => setIsReFres(false), 800)
+    return () => clearTimeout(timeReFresh)
   }, [mobileShow, pathname])
 
   window.onscroll = () => {
-    const prev = window.pageYOffset
+    const prev = window.scrollY
     const lg = (prev, curr) => {
       if (curr < 100) setActiveClass(true)
       if (curr > 80 && curr - prev < 0) {
@@ -38,7 +39,7 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
       }
     }
     setTimeout(() => {
-      const curr = window.pageYOffset
+      const curr = window.scrollY
       lg(prev, curr)
     }, 100)
   }
