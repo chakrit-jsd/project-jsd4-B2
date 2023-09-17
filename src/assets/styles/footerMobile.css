@@ -51,10 +51,12 @@
     color: gray !important;
   }
   .h-svh {
-    top: calc(100svh - 69px);
+    /* top: calc(100svh - 69px); */
+    bottom: 0;
   }
   .h-svh-btn {
     top: calc(100svh - 60px);
+    /* bottom: 0px !important; */
   }
   .h-vh {
     display: none;

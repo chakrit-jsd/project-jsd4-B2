@@ -234,14 +234,20 @@
 
   max-width: 250px;
   margin-bottom: 0.5rem;
-}
-
-.container-follow li a {
   text-decoration: none;
   display: flex;
   align-items: end;
   gap: 0.5rem;
 }
+.container-follow li:hover {
+  cursor: pointer;
+}
+/* .container-follow li a {
+  text-decoration: none;
+  display: flex;
+  align-items: end;
+  gap: 0.5rem;
+} */
 
 .container-follow li span {
   color: black;
