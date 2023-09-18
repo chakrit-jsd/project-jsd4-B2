@@ -47,7 +47,6 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
     }
   }
 
-
   return (
     <>
       <figure key={_id} className="container-card-activity">
@@ -86,7 +85,7 @@ const CardActivity = ({ post, user, updateSinglePost, deletePost }) => {
             </div>
             <p className="activity">{activity}</p>
             <p className="duration">{duration} min.</p>
-            <p className="date">{dateactivity.dateFormat || null}</p>
+            <p className="date">{new Date(dateactivity.date).toLocaleString('en-GB', { day: "numeric", month: "long" }) || null}</p>
           </div>
         </section>
 

@@ -73,7 +73,7 @@ const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
         <div className="header-chat-left">
           <Link to={`/another/${member?._id}`}>
             {/* <div className={`status ${status}`}></div> */}
-            <img src={member?.smallImgUrl} alt="profile-small" />
+            <img src={member?.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-small" />
             <span className="name">{member?.profilename}</span>
           </Link>
         </div>

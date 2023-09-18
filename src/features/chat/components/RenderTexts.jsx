@@ -76,7 +76,8 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
       obj.showDay = false
       setTexts((prev) => {
         const lastIndex = prev.pop()
-        if (!prev.length || lastIndex.author !== obj.author) {
+        if (!lastIndex) return [obj]
+        if (lastIndex.author !== obj.author) {
           return [...prev, lastIndex, obj]
         }
 
@@ -130,15 +131,16 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
   }, [typing])
 
   const renderCb = (text) => {
-    const time = new Date(text.createdAt).toLocaleString('TH-th', { hour: '2-digit', minute: '2-digit' })
-    const hide = (text.author !== user._id && !text.hideTime)
+    if (!text) return
+    const time = new Date(text?.createdAt).toLocaleString('TH-th', { hour: '2-digit', minute: '2-digit' })
+    const hide = (text?.author !== user._id && !text?.hideTime)
 
     return (
       <Fragment key={text._id}>
         {text.showDay ? <span className='show-day'>{new Date(text.createdAt).toLocaleString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</span> : null}
         <div className={'text-box' + ' ' + (text.author === user._id ? 'right': 'left')} >
           <div className='text'>
-            {hide ? <img className='img-pro' src={member?.smallImgUrl} alt="profile-small" /> : null}
+            {hide ? <img className='img-pro' src={member?.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-small" /> : null}
             <div className={'container-span' + ' ' + (hide ? 'have': 'not-have')}>
               <CusTooptip time={text.createdAt}>
                 <span>{text.text}</span>
@@ -157,7 +159,7 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
 
   const onClickScrollDown = (event) => {
     const elementTarget = event.currentTarget.parentNode.querySelector('.render-text')
-    elementTarget.scrollTo({ top: 0, behavior: 'smooth'})
+    elementTarget.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return (
@@ -206,7 +208,7 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
         }}
 
       >
-        {!texts || (texts?.map(renderCb)).reverse()}
+        {texts.length !== 0 ? (texts?.map(renderCb)).reverse() : null}
 
       </InfiniteScroll>
       {!scrollDown || <i onClick={onClickScrollDown} className="bi bi-arrow-down-circle-fill btn-scroll-down"></i>}
