@@ -16,7 +16,6 @@ const ChatFooter = ({ user }) => {
         return item._id !== room._id
       })
     })
-    chat.emit('leave_room', { room: room._id })
   }
   localStorage.setItem('hide_room', JSON.stringify(roomsHide))
   const findMember = (room, userId) => {
@@ -24,7 +23,7 @@ const ChatFooter = ({ user }) => {
   }
 
   const deleteSelfRoomHide = (memId) => {
-    setRoomsHide((prev) => prev.filter((v) => v !== memId))
+    setRoomsHide((prev) => prev.filter((v) => v.member !== memId))
   }
   useEffect(() => {
     chat.on('open_room', (res) => {
@@ -40,15 +39,15 @@ const ChatFooter = ({ user }) => {
           const first = prev.shift()
           chat.emit('leave_room', { room: first._id })
           setRoomsHide((prev) => {
-            const prevNew = prev.filter((v) => v !== memId)
+            const prevNew = prev.filter((v) => v.member !== memId)
             if (prevNew.length >= 5) {
               prevNew.shift()
             }
-            return [ ...prevNew, findMember(first, user._id) ]
+            return [ ...prevNew, {room: first._id, member: findMember(first, user._id)} ]
           })
           return [ ...prev, res ]
         }
-        setRoomsHide((prev) => prev.filter((v) => v !== memId))
+        setRoomsHide((prev) => prev.filter((v) => v.member !== memId))
 
         return [ ...prev, res ]
       })
@@ -61,13 +60,13 @@ const ChatFooter = ({ user }) => {
   return (
     <>
       <div className="container-room-chat">
-        {rooms.length !== 0 ? rooms?.map((room) => <Room key={room._id} deleteSelf={deleteSelf} setRoomsHide={setRoomsHide} room={room} user={user} />) : null}
+        {rooms?.map((room) => <Room key={room._id} deleteSelf={deleteSelf} setRoomsHide={setRoomsHide} room={room} user={user} />)}
       </div>
       {chat.connected && roomsHide.length !== 0 ? <div className="container-room-hide">
         <CusTooptipSimple content={'Close All'} positon={'left-start'}>
           <i onClick={() => setRoomsHide([])} className="bi bi-x-circle-fill close-hide-chat-all"></i>
         </CusTooptipSimple>
-        {roomsHide?.map((memId) => <RoomHide key={memId} memId={memId} user={user} deleteSelfRoomHide={deleteSelfRoomHide}/>)}
+        {roomsHide?.map((room) => <RoomHide key={room.room} room={room} user={user} deleteSelfRoomHide={deleteSelfRoomHide}/>)}
       </div> : null}
     </>
   )

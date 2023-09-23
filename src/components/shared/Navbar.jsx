@@ -3,6 +3,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { getSearchUsers } from "../../services/API/usersAPI";
 import { getLogout } from "../../services/API/authAPI";
 import "../../assets/styles/navbar.css";
+import HistoryChat from "../../features/notification/history-chat/HistoryChat";
 
 const Navbar = ({ user }) => {
   const navigate = useNavigate()
@@ -46,7 +47,13 @@ const Navbar = ({ user }) => {
       console.log(error)
     }
   }
-  return (
+
+  const onClickToTop = () => {
+    if (!user.thisme) {
+      document.getElementById('main-scroll').scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+   return (
     <>
       <nav className="navbar bg-body-tertiary outter-nav">
         <div className="container-main-nav">
@@ -54,6 +61,7 @@ const Navbar = ({ user }) => {
             <img
               src="/static/img/Nest-fit-logo.png"
               alt="NestFit"
+              onClick={onClickToTop}
             />
           </Link>
 
@@ -88,30 +96,34 @@ const Navbar = ({ user }) => {
             </button>
           </form>
 
-          <div className="dropdown container-dropdown nav-profile-menu">
-            <button
-              className="image-button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src={(user.thisme ? user.thisme?.smallImgUrl : user.smallImgUrl) || 'https://via.placeholder.com/40'}
-                alt="profile-img-small"
-                width={40}
-              />
-            </button>
-            <ul className="dropdown-menu drop-list">
-              <li>
-                <Link to={'/me/home'} className="dropdown-item">
-                  {user.thisme?.profilename || (user.profilename || `${user.firstname}  ${user.lastname}`)}
-                </Link>
-              </li>
-              <li>
-                <button onClick={logout} className="dropdown-item">
-                  Logout
-                </button>
-              </li>
-            </ul>
+          <div className="container-nav-right">
+            <HistoryChat user={user} />
+            <div className="dropdown container-dropdown nav-profile-menu">
+              <button
+                className="image-button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img
+                  src={(user.thisme ? user.thisme?.smallImgUrl : user.smallImgUrl) || 'https://via.placeholder.com/40'}
+                  alt="profile-img-small"
+                  width={40}
+                />
+              </button>
+              <ul className="dropdown-menu drop-list">
+                <li>
+                  <Link to={'/me/home'} className="dropdown-item">
+                    {user.thisme?.profilename || (user.profilename || `${user.firstname}  ${user.lastname}`)}
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={logout} className="dropdown-item">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+
           </div>
         </div>
       </nav>

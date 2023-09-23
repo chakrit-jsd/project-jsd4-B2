@@ -7,6 +7,7 @@ import ChatFooter from "../features/chat/ChatFooter"
 import { getMe } from "../services/API/usersAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
 import { useNavigate } from "react-router-dom"
+import Navbar from "../components/shared/Navbar"
 
 export const SocketContext = createContext(null)
 const PageMain = () => {
@@ -82,6 +83,10 @@ const PageMain = () => {
 
   return (
     <SocketContext.Provider value={{ chat, noti }}>
+      <nav className={`container-navbar row`}>
+        <Navbar user={user} />
+      </nav>
+
       {path === '/me' ? <Main user={user} setUser={setUser} /> : <MainAnother />}
       {user ? <ChatFooter user={user} /> : null}
     </SocketContext.Provider>

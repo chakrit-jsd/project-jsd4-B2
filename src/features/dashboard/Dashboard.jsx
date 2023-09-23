@@ -52,11 +52,11 @@ const Dashboard = ({ user, mobileShow, update, updateChart }) => {
         label: ' ',
         data: pieData.dataPercentage,
         backgroundColor: [
-          '#C6D57E',
-          '#FF7878',
-          '#F1935C',
-          '#BAE5E5',
-          '#FFEB99'
+          '#6C3428',
+          '#BA704F',
+          '#DFA878',
+          '#967E76',
+          '#D7C0AE'
         ],
         hoverOffset: 10,
       },
@@ -65,20 +65,20 @@ const Dashboard = ({ user, mobileShow, update, updateChart }) => {
 
   return (
     <aside className={`container-dashboard col-xxl-2 col-xl-3 col-lg-2 col-md-1  ${mobileShow !== 'dashboard' ? 'mobile-diplay-none' : null}`}>
-      <header className="title-outter-box">
-        <font className="title-text">
-          Activity Summary
-        </font>
-      </header>
 
       <div className="pieChart">
         <PieChart data={data} chartData={chartData} nameLegend={nameLegend} setNameLegend={setNameLegend}/>
       </div>
 
+      <header className="title-outter-box">
+        <font className="title-text">
+          Activity Summary
+        </font>
+      </header>
       <main className="activity-detail-box">
         <div className="activity-detail" id="act-1-detail">
           <p className="detail-outter-box" id="act-name">
-            <b>Type: &nbsp;
+            <b className="detail-head-type">Type: &nbsp;
             {nameLegend}</b>
           </p>
           <p className="detail-outter-box">

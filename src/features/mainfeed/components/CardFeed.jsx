@@ -14,13 +14,14 @@ const CardFeed = ({ mobileShow, updateSinglePost, deletePost, nextPosts, nextGet
         dataLength={posts.length} //This is important field to render the next data
         next={nextPosts}
         hasMore={nextGet}
-        loader={<h4>Loading...</h4>}
+        loader={<h4 style={{ textAlign: 'center' }}>Loading...</h4>}
         endMessage={
           <p style={{ textAlign: 'center' }}>
             <b>Yay! You have seen it all</b>
           </p>
         }
         className={isProgress ? 'onProgress' : null}
+        scrollableTarget="main-scroll"
         // below props only if you need pull down functionality
         // refreshFunction={this.refresh}
         // pullDownToRefresh

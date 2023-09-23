@@ -1,0 +1,113 @@
+.container-chat-history {
+  position: relative;
+  display: flex;
+  width: 40px;
+  height: 40px;
+}
+
+.container-chat-history .container-i-history {
+  border: none;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+}
+
+.container-chat-history .container-i-history:hover {
+  background-color: rgb(209, 209, 209);
+  border-radius: 50%;
+}
+
+.container-chat-history .container-i-history i {
+  font-size: 1.8rem;
+  text-align: end;
+  line-height: 100%;
+}
+.container-chat-history .noti-count-all {
+  position: absolute;
+  background-color: var(--main);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  text-align: center;
+  top: 0px;
+  right: -12px;
+  align-self: flex-end;
+  justify-self: end;
+  z-index: 100;
+  /* width: 100%; */
+}
+.container-render-history {
+  overflow-y: overlay;
+  max-height: 86vh;
+}
+
+.container-render-history .history-infinite {
+  overflow: hidden !important;
+}
+.container-render-history::-webkit-scrollbar {
+  width: 6px;
+}
+
+.container-render-history::-webkit-scrollbar-track {
+  margin: 10px 1px;
+}
+.container-render-history h6 {
+  text-align: start;
+  margin: 0;
+  height: 100%;
+  padding: 8px 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+
+}
+
+.container-box-history {
+  height: 80px;
+  width: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  padding: 0 20px;
+  border-top: 1px solid rgb(247, 247, 247);
+}
+.container-box-history:hover {
+  cursor: pointer;
+  background-color: rgb(235, 235, 235);
+}
+
+.container-box-history .container-box-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.container-box-history .container-text p {
+  width: 190px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.9rem;
+}
+
+.f-b {
+  font-weight: 600;
+}
+
+.container-box-history .unread-count {
+  position: relative;
+  right: 12px;
+  background-color: var(--main);
+  color: white;
+  padding: 2px 4px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+.end-history {
+  font-size: 0.8rem;
+  padding: 2px 0;
+  height: 22px;
+  font-weight: 600;
+}

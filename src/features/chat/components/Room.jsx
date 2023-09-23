@@ -40,6 +40,7 @@ const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
     chat.on('connect', reJoinHandle)
 
     return () => {
+      chat.emit('leave_room', { room: room._id })
       chat.off('connect', reJoinHandle)
       // clearTimeout(visibleTime)
     }
@@ -62,32 +63,32 @@ const Room = ({ deleteSelf, setRoomsHide, room, user }) => {
       if (prev.length >= 5) {
         prev.shift()
       }
-      return [...prev, memId]
+      return [...prev, { room: room._id, member: memId }]
     })
     deleteSelf(room)
   }
 
   return(
-    <div className={'room-chat' + (visible ? ' visible' : '')}>
-      <div className="header-chat">
-        <div className="header-chat-left">
-          <Link to={`/another/${member?._id}`}>
-            {/* <div className={`status ${status}`}></div> */}
-            <img src={member?.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-small" />
-            <span className="name">{member?.profilename}</span>
-          </Link>
+    <div className={`room-chat ${visible ? 'visible': null}`}>
+        <div className="header-chat">
+          <div className="header-chat-left">
+            <Link to={`/another/${member?._id}`}>
+              {/* <div className={`status ${status}`}></div> */}
+              <img src={member?.smallImgUrl || 'https://via.placeholder.com/40'} alt="profile-small" />
+              <span className="name">{member?.profilename}</span>
+            </Link>
+          </div>
+          <div className="header-chat-right">
+            <CusTooptipSimple content={'Hide Chat'} positon={'top-end'} >
+              <button onClick={onClickHideChat}><i className="bi bi-dash-lg"></i></button>
+            </CusTooptipSimple>
+            <CusTooptipSimple content={'Close Chat'} positon={'top-start'} >
+              <button onClick={onClickCloseChat}><i className="bi bi-x-lg"></i></button>
+            </CusTooptipSimple>
+          </div>
         </div>
-        <div className="header-chat-right">
-          <CusTooptipSimple content={'Hide Chat'} positon={'top-end'} >
-            <button onClick={onClickHideChat}><i className="bi bi-dash-lg"></i></button>
-          </CusTooptipSimple>
-          <CusTooptipSimple content={'Close Chat'} positon={'top-start'} >
-            <button onClick={onClickCloseChat}><i className="bi bi-x-lg"></i></button>
-          </CusTooptipSimple>
-        </div>
-      </div>
-      {member ? <RenderTexts room={room} member={member} user={user} setVisible={setVisible}/> : null}
-      <InputText room={room} />
+        {member ? <RenderTexts room={room} member={member} user={user} setVisible={setVisible}/> : null}
+        <InputText room={room} />
     </div>
   )
 }

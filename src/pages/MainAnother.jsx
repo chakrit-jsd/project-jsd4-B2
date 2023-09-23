@@ -4,11 +4,8 @@ import { getAnother } from "../services/API/usersAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
 import { useNavigate, useParams } from "react-router-dom"
 import '../assets/styles/style.css'
-import { SocketContext } from "./PageMain"
-
 
 const MainAnother = () => {
-  const socket = useContext(SocketContext)
   const { userId } = useParams()
 
   const [ user, setUser ] = useState('')
