@@ -16,8 +16,8 @@ const InputText = ({ room }) => {
     if (!text) return
     // console.log('click', chat?.active, chat?.connected, room)
     try {
-      const res = await chat?.emitWithAck('create_text', { room: room._id, text: text })
-      // console.log(res)
+      const res = await chat?.emitWithAck('create_text', { room: room._id, text: text, members: room.members })
+      // console.log()
       setText('')
       setTyping(false)
       emitTyping(false)

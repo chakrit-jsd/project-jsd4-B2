@@ -4,13 +4,10 @@ import { getMe } from "../services/API/usersAPI"
 import { httpErrorCode } from "../utils/errorsHandle/httpStatuscode"
 import { useNavigate } from "react-router-dom"
 import '../assets/styles/style.css'
-import { SocketContext } from "./PageMain"
-
 
 const Main = ({ user, setUser }) => {
 
   const [ imgUrl, setImgUrl ] =useState('')
-  const socket = useContext(SocketContext)
 
   const getUserByUpdate =  async () => {
     try {

@@ -93,7 +93,7 @@ const RenderTexts = ({ room, member, user, setVisible }) => {
         return [...prev, lastIndex, obj]
       })
 
-      cb(true)
+      cb(member._id)
     }
     setVisible(false)
     chat.on('text_receive', receiveHandle)

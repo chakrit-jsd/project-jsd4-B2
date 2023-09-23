@@ -27,19 +27,18 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
     return () => clearTimeout(timeReFresh)
   }, [mobileShow, pathname])
 
-  window.onscroll = () => {
-    const prev = window.scrollY
+  const mainScrollHandle = (e) => {
+    const prev = e.target.scrollTop
     const lg = (prev, curr) => {
-      if (curr < 100) setActiveClass(true)
-      if (curr > 80 && curr - prev < 0) {
+      if (curr > 80 && curr - prev < -30) {
         setActiveClass(true)
       }
-      if (curr > 80 && curr - prev > 0) {
+      if (curr > 80 && curr - prev > 30) {
         setActiveClass(false)
       }
     }
     setTimeout(() => {
-      const curr = window.scrollY
+      const curr = e.target.scrollTop
       lg(prev, curr)
     }, 100)
   }
@@ -47,10 +46,7 @@ const LayoutMainFeed = ({ title, getUserByUpdate, user, setUser, children, imgUr
   return (
     <>
       <HelmetTitle title={title + ' | Nest-Fit by JSD#4 B2'} />
-      <div className="container-fulid">
-        <nav className={`container-navbar row ${isReFresh ? 'refresh-hide' : null}`}>
-          <Navbar user={user} />
-        </nav>
+      <div onScroll={mainScrollHandle} id="main-scroll" className="container-fulid">
         {isReFresh ? <div className="refresh">
           <img src="/static/img/Nest-fit-logo.png" alt="logo" />
         </div>: null}

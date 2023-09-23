@@ -3,12 +3,16 @@ html, body {
   width: 100%;
   margin: 0;
   background-color: white;
+  overflow-y: hidden;
 }
 
 .container-main-landing {
-  height: calc(500vh - 60px);
+  /* height: calc(500vh - 60px); */
+  height: 100%;
+  max-height: max-content;
   background-color: white;
   position: relative;
+  overflow-y: overlay;
 }
 
 .nav-landing {
