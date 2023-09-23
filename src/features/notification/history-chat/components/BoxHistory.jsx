@@ -1,4 +1,3 @@
-import Skeleton from '@mui/material/Skeleton';
 import { useEffect, useState, useContext } from "react"
 import { SocketContext } from '../../../../pages/PageMain';
 import { getUserById } from '../../../../services/API/usersAPI';
@@ -57,11 +56,11 @@ const BoxHistory = ({ room, user, handleClose }) => {
   return (
     <div className='container-box-history' onClick={onClickOpenChat}>
       <div className='container-box-img'>
-        {text ? <img src={member?.smallImgUrl || 'https://via.placeholder.com/150'} /> : <Skeleton variant="circular" width={50} height={50} />}
+        {text ? <img src={member?.smallImgUrl || 'https://via.placeholder.com/150'} /> : null}
       </div>
       <div className='container-text'>
-        {text ? <p className='f-b '>{member?.profilename}</p> : <Skeleton variant="text" width={200} sx={{ fontSize: '1rem' }} />}
-        {text ? <p className={unread.count ? 'f-b' : null}>{text.author === user._id ? 'you: ' + text.text : text.text}</p> :<Skeleton variant="text" width={200} sx={{ fontSize: '1rem' }} />}
+        {text ? <p className='f-b '>{member?.profilename}</p> : null}
+        {text ? <p className={unread.count ? 'f-b' : null}>{text.author === user._id ? 'you: ' + text.text : text.text}</p> : null}
       </div>
       {unread?.count ? <div className='unread-count'>{unread?.count}</div> : null}
     </div>
