@@ -1,4 +1,4 @@
-import BoxHistory from "./Boxhistory"
+import BoxHistory from "./BoxHistory"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { SocketContext } from "../../../../pages/PageMain"
 import { useEffect, useContext } from "react"
