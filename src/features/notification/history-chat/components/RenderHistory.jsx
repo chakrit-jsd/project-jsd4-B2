@@ -1,10 +1,10 @@
 import BoxHistory from "./Boxhistory"
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { SocketContext } from "../../../../pages/PageMain"
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useContext } from "react"
 import { CircularProgress } from "@mui/material"
 const RenderHistory = ({ history, setHistory, user, more, setMore, handleClose }) => {
-  const { noti, chat } = useContext(SocketContext)
+  const { noti } = useContext(SocketContext)
 
   const nextLoad = async () => {
     // console.log(history[history.length -1])
@@ -27,7 +27,6 @@ const RenderHistory = ({ history, setHistory, user, more, setMore, handleClose }
         className="history-infinite"
         dataLength={history.length}
         hasMore={more}
-        // height={'90vh'}
         scrollableTarget='history-scroll'
         next={() => {
           setTimeout(() => {
