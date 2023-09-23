@@ -58,8 +58,9 @@
 }
 
 .header-chat .header-chat-left a:hover {
-  background-color: coral;
+  background-color: var(--main);
   border-radius: 4px;
+  color: white
 }
 
 .header-chat .header-chat-left .name {
@@ -160,7 +161,7 @@
 }
 
 .render-chat .render-text:hover::-webkit-scrollbar-thumb {
-  background: #ff511d85;
+  background: var(--main-hover);
 }
 .contaier-circle-load-chat {
   width: 30px;
