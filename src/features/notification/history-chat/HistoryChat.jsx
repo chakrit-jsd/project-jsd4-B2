@@ -49,7 +49,9 @@ const HistoryChat = ({ user }) => {
     })
 
     noti.on('noti_unread_all', (res) => {
-      setCount(res.count || 0);
+      console.log(res.count)
+      const c = res.count <= 0 ? 0 : +res.count
+      setCount(c);
     })
     return () => {
       noti.off('chat_history')
@@ -62,7 +64,7 @@ const HistoryChat = ({ user }) => {
   const rederCount = +count > 999 ? '999+' : count
   return (
     <div className="container-chat-history">
-      {rederCount !== '0' ? <div className={`noti-count-all ${!count ? ' visible': null}`}>{rederCount}</div> : null}
+      {rederCount !== '0' ? <div className={`noti-count-all ${!(count > 0) ? ' visible': null}`}>{rederCount}</div> : null}
       <CusTooptipSimple content={'History'} positon={'bottom-end'}>
         <button className="container-i-history" aria-describedby={id} variant="contained" onClick={handleClick}>
           <i className="bi bi-chat-dots"></i>
